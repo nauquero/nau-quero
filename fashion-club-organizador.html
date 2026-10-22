@@ -168,7 +168,7 @@ function kv(rows){return '<div class="kv">'+rows.map(function(r){return '<div>'+
 function cell(c,sid,r,ci){
   if(c&&typeof c==="object"){
     var k=sid+".t."+c.k;
-    if(c.t==="in") return '<input type="text" data-k="'+k+'" aria-label="'+esc(c.l||"campo")+'" placeholder="'+esc(c.p||"")+'">';
+    if(c.t==="in") return '<input type="text" data-k="'+k+'" aria-label="'+esc(c.l||"campo")+'" placeholder="'+esc(c.p||"")+'"'+(c.v?' value="'+esc(c.v)+'"':'')+'>';
     if(c.t==="num") return '<input type="number" min="1" max="5" data-k="'+k+'" aria-label="'+esc(c.l||"valor")+'">';
     if(c.t==="chk") return '<label><input type="checkbox" data-k="'+k+'" '+(c.nc?'data-nc="1" ':'')+'aria-label="'+esc(c.l||"feito")+'"></label>';
     if(c.t==="cyc") return '<button type="button" class="cyc" data-k="'+k+'" data-cyc="1" data-v="?" aria-label="Alternar estado">?</button>';
@@ -215,7 +215,7 @@ html:function(s){return ''
 ["Método","Por limitação de tempo, baseei o redesign numa auditoria heurística (11 ecrãs), na análise das avaliações das lojas de apps, num card sorting com 10 pessoas, na comparação com apps de outros centros e num teste de usabilidade com 3 pessoas."],
 ["Resultado em 1 frase","Só no fim, com dados reais. Ex.: “3 em 3 pessoas encontraram onde usar o saldo, contra X na app atual.”"]])
 +'<h3>Contexto da app</h3>'
-+kv([["Lançamento","10/07/2018"],["Atualizações recentes","26/06/2025 e 28/07/2025: melhorias de desempenho"],["Transferências","50 000+ (Google Play)"],["Google Play","3,8 de 5 · 86 avaliações · de 2019 a 2023"],["App Store","3,9 de 5 · 11 classificações"],["Pedido recorrente","Ver os movimentos do cartão"]])
++kv([["Lançamento","10/07/2018"],["Atualizações recentes","26/06/2025 e 28/07/2025: melhorias de desempenho"],["Transferências","50 000+ (Google Play)"],["Google Play","3,8 de 5 · 86 avaliações · de 2019 a 2023"],["App Store","3,9 de 5 · 11 classificações"],["Pedido recorrente","Ver os movimentos do cartão"],["Cartão virtual","Funciona com e sem internet, sem perder velocidade"]])
 +callout("peach","“É lenta” saiu do problem statement","<p>A app teve atualizações de desempenho em 2025. Se as cronometragens confirmarem lentidão, volta a entrar. O que não conseguires provar, tira ou suaviza.</p>")
 +'<h3>O que fazer</h3>'
 +checklist(s,"todo",["Confirmar que cada parte do problem statement está provada na auditoria","Escrever o método usado e as limitações (honestidade)","Deixar o “Resultado em 1 frase” para o fim"])
@@ -254,7 +254,7 @@ html:function(s){
 +'<h3>Ecrãs auditados</h3>'
 +table(s,["Ecrã","Estado"],[["Início (promoções)","✓ analisado"],["Cartão (QR e saldo)","✓ analisado"],["Popup do “i” (como usar o QR)","✓ analisado"],["Espaço de Informações (calendário)","✓ analisado"],["Lojas e pesquisa","✓ analisado"],["Detalhe da loja (Adidas)","✓ analisado"],["Mapa do centro","✓ analisado"],["Promoção “Sempre Mais” (site)","✓ analisado"],["Detalhe da oferta (livro)","✓ analisado"],["Configurações e Editar perfil","✓ analisado"],["“Como é que o Fashion Club funciona?”",{t:"chk",k:"p1",l:"Print tirado e analisado"}],["Termos e Condições",{t:"chk",k:"p2",l:"Print tirado e analisado"}],["Pin de uma loja no mapa",{t:"chk",k:"p3",l:"Print tirado e analisado"}]])
 +'<h3>O que funciona (a manter)</h3>'
-+plain(["Identidade a preto e branco forte e reconhecível.","QR e saldo no cabeçalho de vários ecrãs: o cartão está sempre perto.","No ecrã do cartão, o saldo e o código são grandes e legíveis.","Menu inferior com 5 separadores e pesquisa de lojas à vista.","O detalhe da loja é transparente sobre as exclusões do cartão.","O mapa tem pesquisa, categorias e serviços (casas de banho)."])
++plain(["Identidade a preto e branco forte e reconhecível.","QR e saldo no cabeçalho de vários ecrãs: o cartão está sempre perto.","No ecrã do cartão, o saldo e o código são grandes e legíveis.","Menu inferior com 5 separadores e pesquisa de lojas à vista.","O detalhe da loja é transparente sobre as exclusões do cartão.","O mapa tem pesquisa, categorias e serviços (casas de banho).","O cartão funciona mesmo sem internet, sem perder velocidade — uma vantagem a preservar no redesign."])
 +'<h3>Tabela de problemas</h3>'
 +'<div class="chips" id="probChips"><button class="chip on" data-f="all" type="button">Todos</button><button class="chip" data-f="Grave" type="button">Grave</button><button class="chip" data-f="Menor" type="button">Menor</button></div>'
 +'<p class="counter">Destacados para o portfólio: <b id="hlCount">0</b> (ideal: 6 a 8)</p>'
@@ -295,34 +295,63 @@ STEPS.push({id:"ideias",icon:"💡",title:"Ideias de novas funcionalidades",goal
 html:function(s){return ''
 +callout("mint","Regra de ouro para o case study","<p>Separa <b>Fase 1</b> (resolver os problemas que encontraste na auditoria) de <b>Fase 2</b> (ideias para evoluir a app). As ideias novas ainda não vêm de dados de utilizadores, por isso apresenta-as como <b>hipóteses</b>. Assim não escondes os problemas de clareza do cartão e das promoções, que são o centro do projeto.</p>")
 +'<div class="cards">'
-+'<div class="idea"><h4>📅 Calendário de eventos</h4><p class="src">Inspiração: Shopping Park Europeu (eventos) e Puerta Europa.</p><dl><dt>Hoje no Fashion Club</dt><dd>O separador do calendário abre o “Espaço de Informações”, com um só card (problema 4).</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Incluir nos mockups: resolve um problema real e dá um motivo para abrir a app.</dd><dt>Validar</dt><dd>Perguntar quantos membros procuram eventos; tarefa de teste “encontra um evento este mês”.</dd></dl></div>'
-+'<div class="idea"><h4>🎁 Promoções exclusivas</h4><p class="src">Inspiração: 8ª Avenida (vantagens exclusivas), Colombo (benefícios).</p><dl><dt>Hoje no Fashion Club</dt><dd>Já existem ofertas para membros (por exemplo o cashback das quartas), mas mal visíveis e com a condição escondida (problemas 1, 2, 12 e 14).</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Incluir: dar destaque ao “exclusivo para membros” e à condição no topo.</dd><dt>Validar</dt><dd>Tarefa “quanto precisas de gastar para receber a oferta do livro?”.</dd></dl></div>'
-+'<div class="idea"><h4>📰 Notícias de estilo de vida e moda</h4><p class="src">Inspiração: LoureShopping (novidades em primeira mão), Puerta Europa (notícias).</p><dl><dt>Valor para marketing</dt><dd>Conteúdo que traz o membro de volta à app, mesmo sem promoção.</dd><dt>Complexidade</dt><dd>'+tag("Média","i")+' precisa de uma equipa que produza conteúdo.</dd><dt>Risco</dt><dd>Competir com as promoções pela atenção e encher o Início.</dd><dt>Sugestão</dt><dd>Um ecrã simples “Descobrir”, junto dos eventos.</dd><dt>Validar</dt><dd>Pergunta no questionário: “Lerias notícias de moda na app?”.</dd></dl></div>'
-+'<div class="idea"><h4>🎮 Gamificação</h4><p class="src">Inspiração: desafios do Espaço Guimarães &amp; EU, passatempos da 8ª Avenida.</p><dl><dt>Ideia</dt><dd>Uma camada leve sobre o que já existe: progresso até à próxima recompensa, desafios simples (por exemplo, visitar 3 lojas) e selos.</dd><dt>Complexidade</dt><dd>'+tag("Média","i")+'</dd><dt>Risco</dt><dd>Complicar uma app onde a clareza já é o problema. Passatempos e sorteios têm regras legais próprias.</dd><dt>Sugestão</dt><dd>Mockup de 1 ecrã, assumido como Fase 2.</dd></dl></div>'
-+'<div class="idea"><h4>🧾 Registar faturas para acumular pontos</h4><p class="src">Inspiração: Espaço Guimarães &amp; EU, Parque Nascente &amp; EU, Centro Comercial EUROPA.</p><dl><dt>Atenção ao que já existe</dt><dd>O Fashion Club já acumula crédito (5%) ao apresentar o QR na caixa. Confirma como acumula hoje e onde as faturas acrescentam valor (compras sem QR?).</dd><dt>Complexidade</dt><dd>'+tag("Alta","g")+' validação das faturas, fraude, dados pessoais.</dd><dt>Vocabulário</dt><dd>Pontos, euros ou crédito? Escolhe um só termo (problema 16).</dd><dt>Sugestão</dt><dd>Só o fluxo desenhado em mockup, deixando a viabilidade técnica por validar.</dd></dl></div>'
++'<div class="idea"><h4>📅 Calendário de eventos</h4><p class="src">Inspiração: Shopping Park Europeu (eventos) e Puerta Europa.</p><dl><dt>Hoje no Fashion Club</dt><dd>O separador do calendário abre o “Espaço de Informações”, com um só card (problema 4).</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Incluir nos mockups: resolve um problema real e dá um motivo para abrir a app.</dd><dt>Validado pelo card sorting</dt><dd>10 em 10 pessoas agruparam este cartão em “Início” — sinal forte para o pôr em destaque no ecrã inicial, não escondido num separador à parte.</dd></dl></div>'
++'<div class="idea"><h4>🎁 Promoções exclusivas</h4><p class="src">Inspiração: 8ª Avenida (vantagens exclusivas), Colombo (benefícios).</p><dl><dt>Hoje no Fashion Club</dt><dd>Já existem ofertas para membros (por exemplo o cashback das quartas), mas mal visíveis e com a condição escondida (problemas 1, 2, 12 e 14).</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Incluir: dar destaque ao “exclusivo para membros” e à condição no topo.</dd><dt>Validado pelo card sorting</dt><dd>“Ver as condições de uma oferta” teve 10 em 10 no grupo “Ofertas”: a secção já é reconhecida, falta só torná-la clara.</dd></dl></div>'
++'<div class="idea"><h4>📰 Notícias de moda e lifestyle</h4><p class="src">Inspiração: LoureShopping (novidades em primeira mão), Puerta Europa (notícias).</p><dl><dt>Ideia</dt><dd>Conteúdo editorial com as últimas tendências do momento, sempre ligado a lojas concretas do outlet onde a pessoa as pode encontrar (por exemplo, “tendência X — disponível na loja Y”).</dd><dt>Valor para marketing</dt><dd>Traz o membro de volta à app mesmo sem promoção, e leva tráfego real às lojas.</dd><dt>Complexidade</dt><dd>'+tag("Média","i")+' precisa de uma equipa que produza conteúdo.</dd><dt>Risco</dt><dd>Competir com as promoções pela atenção e encher o Início.</dd><dt>Validado pelo card sorting</dt><dd>6 em 10 agruparam em “Início” e 4 em “Notícias”: deve viver dentro do Início/Descobrir, não como separador próprio.</dd></dl></div>'
++'<div class="idea"><h4>🎮 Gamificação leve: desafios simples</h4><p class="src">Inspiração: desafios do Espaço Guimarães &amp; EU.</p><dl><dt>Ideia</dt><dd>Só desafios simples sobre o que já existe (por exemplo, visitar 3 lojas) e selos de progresso. <b>Sem passatempos nem sorteios</b> — ver “Hipóteses descartadas”.</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Mockup de 1 ecrã dentro do Cartão, assumido como Fase 2.</dd><dt>Validado pelo card sorting</dt><dd>“Desafios e recompensas” foi agrupado em “Cartão” por 10 em 10 pessoas — faz mais sentido como secção dentro do ecrã do cartão do que como separador novo.</dd></dl></div>'
++'<div class="idea"><h4>🛍️ Registo de compras e histórico do cliente</h4><p class="src">Inspiração: Espaço Guimarães &amp; EU, Parque Nascente &amp; EU, Centro Comercial EUROPA — adaptada, sem faturas.</p><dl><dt>Ideia</dt><dd>O mesmo gesto que já dá o desconto de 5% ao passar o QR na caixa passa também a alimentar um histórico de compras, sem pedir fotografias de faturas nem passo extra.</dd><dt>Porque não faturas</dt><dd>Registar faturas abre a porta a fraude (fotos falsas ou reutilizadas) e exige validação manual e dados de compra sensíveis — ver “Hipóteses descartadas”.</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Ecrã “As minhas compras” dentro do Cartão, com a lista de visitas e o saldo acumulado em cada uma.</dd></dl></div>'
 +'</div>'
++'<h3>Hipóteses descartadas</h3>'
++callout("peach","Porque ficam de fora","<p>Estas ideias foram consideradas e rejeitadas, pelos problemas que poderiam trazer a um projeto deste tipo. Ficam registadas para mostrar o raciocínio, não para implementar.</p>")
++table(s,["Ideia descartada","Porque foi rejeitada"],[
+["Registar faturas ou recibos para ganhar pontos","Risco de fraude (fotos de faturas falsas ou reutilizadas), necessidade de validação manual e exposição de dados sensíveis de compra. Substituída pelo registo automático via cartão/QR."],
+["Passatempos e sorteios (dentro da gamificação)","Têm regras legais próprias (regulamento, registo oficial, fiscalização), fora do âmbito de um projeto de portfólio. Ficou só a parte leve: desafios simples."]])
 +'<h3>Priorização rápida</h3>'
 +'<p>Dá uma nota de 1 a 5 a cada ideia (impacto e esforço) e escolhe a decisão.</p>'
-+table(s,["Ideia","Impacto (1-5)","Esforço (1-5)","Decisão"],["Calendário de eventos","Promoções exclusivas","Notícias de moda e lifestyle","Gamificação","Registo de faturas e pontos"].map(function(n,i){return [n,{t:"num",k:"imp"+i,l:"Impacto"},{t:"num",k:"esf"+i,l:"Esforço"},{t:"sel",k:"dec"+i,o:["Fase 1: mockup","Fase 2: ideia","Fora do projeto"]}];}))
++table(s,["Ideia","Impacto (1-5)","Esforço (1-5)","Decisão"],["Calendário de eventos","Promoções exclusivas","Notícias de moda e lifestyle","Gamificação leve: desafios simples","Registo de compras e histórico do cliente"].map(function(n,i){return [n,{t:"num",k:"imp"+i,l:"Impacto"},{t:"num",k:"esf"+i,l:"Esforço"},{t:"sel",k:"dec"+i,o:["Fase 1: mockup","Fase 2: ideia","Fora do projeto"]}];}))
 +'<h3>Como validar rápido (sem refazer o card sorting)</h3>'
-+checklist(s,"val",["Fazer um card sorting <b>fechado</b> com 3 a 5 pessoas, só com 5 cartões novos: Calendário de eventos, Notícias de moda e lifestyle, Promoções exclusivas, Desafios e recompensas, Registar fatura","Acrescentar 3 perguntas curtas a quem já respondeu: “Usarias o calendário de eventos?”, “Lerias notícias de moda?”, “Registarias faturas para ganhar pontos?”","Acrescentar 1 ou 2 tarefas ao teste (etapa 8)","Escrever as ideias no case study como hipóteses, com o que ainda falta validar"])
++checklist(s,"val",["Fazer um card sorting <b>fechado</b> com 3 a 5 pessoas, só com os cartões novos: Calendário de eventos, Notícias de moda e lifestyle, Promoções exclusivas, Desafios e recompensas, Registo de compras","Acrescentar 3 perguntas curtas a quem já respondeu: “Usarias o calendário de eventos?”, “Lerias notícias de moda com sugestões de lojas?”, “Gostarias de ver o histórico das tuas compras no outlet?”","Acrescentar 1 ou 2 tarefas ao teste (etapa 8)","Escrever as ideias no case study como hipóteses, com o que ainda falta validar, e as descartadas com a razão da rejeição"])
 +notes(s);}});
 
 /* 6 IA */
 var CARDS=["Mostrar o meu cartão do clube na caixa","Ver quanto dinheiro tenho acumulado","Ver as compras e movimentos do meu cartão","Saber em que lojas posso usar o meu saldo","Saber que artigos ou marcas ficam de fora do cartão","Perceber como funciona o Fashion Club","Ver todas as promoções ativas","Ver as condições de uma oferta","Receber avisos de novas promoções","Lista de lojas","Pesquisar uma loja pelo nome","Ver a informação de uma loja (horário, contacto)","Mapa do outlet","Saber onde ficam as casas de banho e outros serviços","Espaço de Informações (onde levantar ofertas)","Avaliar uma loja","Editar os meus dados","Mudar o idioma","Termos e condições","Terminar sessão","(em branco) o que a pessoa acrescentou","(em branco) o que a pessoa acrescentou"];
-var NEWCARDS=["Calendário de eventos","Notícias de moda e lifestyle","Promoções exclusivas para membros","Desafios e recompensas","Registar uma fatura para acumular pontos"];
+var NEWCARDS=["Calendário de eventos","Notícias de moda e lifestyle","Promoções exclusivas para membros","Desafios e recompensas","Registo de compras e histórico do cliente"];
+var RESULTS=[
+["Cartão (10)","Cartão"],
+["Cartão (6) · Perfil (4)","Cartão"],
+["Cartão (8) · Perfil (2)","Cartão"],
+["Cartão (8) · Informações (2)","Cartão"],
+["Cartão (8) · Informações (2)","Cartão"],
+["Informações (6) · Cartão (4)","Informações"],
+["Início (5) · Ofertas (5)","Empate — decidir"],
+["Ofertas (10)","Ofertas"],
+["Início (6) · Ofertas (4)","Início"],
+["Lojas (10)","Lojas"],
+["Lojas (8)","Lojas"],
+["Lojas — contagem não registada, confirmar","Lojas"],
+["Lojas (5) · Informações (2) · Mapa do outlet (3)","Lojas"],
+["Mapa do outlet (10)","Mapa do outlet"],
+["Informações (6) · Mapa do outlet (4)","Informações"],
+["Lojas (10)","Lojas"],
+["Perfil (10)","Perfil"],
+["Perfil (10)","Perfil"],
+["Informações (10)","Informações"],
+["Perfil (10)","Perfil"]
+];
+var NEWRESULTS=[["Início (10)","Início"],["Início (6) · Notícias (4)","Início"],["",""],["Cartão (10)","Cartão"],["",""]];
 STEPS.push({id:"ia",icon:"🗂️",title:"Card sorting e arquitetura de informação",goal:"Organizar o conteúdo como as pessoas pensam. O resultado decide o menu e o sitemap.",when:"Semana 1",
 html:function(s){
- var r1=CARDS.map(function(c,i){return [String(i+1),c,{t:"in",k:"g"+i,l:"Grupo escolhido",p:"Grupo (nº de pessoas)"},{t:"in",k:"n"+i,l:"Nome dado",p:"Nome dado"}];});
- var r2=NEWCARDS.map(function(c,i){return [String(23+i),c+" "+tag("novo","i"),{t:"in",k:"ng"+i,l:"Grupo",p:"Grupo"},{t:"in",k:"nn"+i,l:"Nome",p:"Nome"}];});
+ var r1=CARDS.map(function(c,i){var r=RESULTS[i]||["",""];return [String(i+1),c,{t:"in",k:"g"+i,l:"Grupo escolhido",p:"Grupo (nº de pessoas)",v:r[0]},{t:"in",k:"n"+i,l:"Nome dado",p:"Nome dado",v:r[1]}];});
+ var r2=NEWCARDS.map(function(c,i){var r=NEWRESULTS[i]||["",""];return [String(23+i),c+" "+tag("novo","i"),{t:"in",k:"ng"+i,l:"Grupo",p:"Grupo",v:r[0]},{t:"in",k:"nn"+i,l:"Nome",p:"Nome",v:r[1]}];});
  return ''
 +'<h3>Ficha do card sorting</h3>'
-+kv([["Tipo","Aberto, 22 cartões (20 + 2 em branco)"],["Participantes","10 pessoas"],["Cartões baralhados e sem títulos de grupo?","Confirma: sim ou não"],["Acordo entre participantes","Se todos agruparam da mesma forma, confirma com as fotos e regista os grupos abaixo"],["Cartões que geraram dúvida","Anota os que hesitaram"],["Nomes de grupo que se repetiram","Estes são candidatos a nomes do menu"]])
-+callout("peach","Nota sobre o acordo total","<p>Se as 10 pessoas agruparam tudo igual, é um resultado forte, mas antes de o escreveres confirma que os cartões estavam baralhados e sem os títulos de categoria à vista, e que os nomes dos grupos também coincidiram.</p>")
++kv([["Tipo","Aberto, 22 cartões (20 + 2 em branco)"],["Participantes","10 pessoas"],["Cartões sem dados (em branco)","Cartões 21 e 22, se ninguém os preencheu"],["Cartões com acordo total (10/10)","1, 8, 10, 14, 16, 17, 18, 19, 20 e os novos 23, 26"],["Cartões divididos","2, 3, 4, 5, 6 (Cartão vs. Perfil/Informações), 7, 9 (Início vs. Ofertas), 13, 15 (Lojas/Informações vs. Mapa do outlet), 24 (Início vs. Notícias)"],["Cartão a confirmar","12 — grupo “Lojas”, mas sem a contagem exata registada"]])
++callout("mint","O que estes resultados dizem","<p>Os cartões do cartão virtual, lojas, perfil, informações e mapa do outlet têm grupos claros e bem reconhecidos — é uma base sólida para o menu. As divisões (Cartão/Perfil, Início/Ofertas, Lojas/Mapa) são decisões de design a tomar com critério, não erros do teste. As duas ideias novas testadas (“Início” para calendário de eventos; “Cartão” para desafios e recompensas) tiveram sinais fortes e simples de seguir.</p>")
 +'<h3>Resultados reais</h3>'
-+'<p>Escreve o grupo escolhido (e quantas pessoas o escolheram) e o nome que deram.</p>'
++'<p>Resultados das 10 pessoas já preenchidos abaixo. Revê sobretudo os cartões com dúvida (6, 7, 9, 13, 15 e 24) e confirma a contagem do cartão 12; os campos continuam editáveis se precisares de corrigir algum valor.</p>'
 +table(s,["#","Cartão","Grupo escolhido","Nome dado"],r1)
 +'<h3>Cartões novos (2.ª ronda, só se validares as ideias)</h3>'
++'<p>“Promoções exclusivas” e “Registo de compras e histórico do cliente” ainda não entraram nesta ronda de teste.</p>'
 +table(s,["#","Cartão","Grupo","Nome"],r2)
 +'<h3>Proposta de navegação (hipótese a validar)</h3>'
 +table(s,["Separador","Versão base (Fase 1)","Com ideias novas (Fase 2)"],[
@@ -332,14 +361,14 @@ html:function(s){
 ["Cartão","QR e saldo, movimentos e “o que posso fazer com o meu saldo”","Com recompensas, desafios e registo de faturas"],
 ["Mais","Espaço de Informações, Como funciona, Termos, Perfil e idioma","Com “Descobrir” (eventos e notícias), se não couber no menu"]])
 +'<h3>O que fazer</h3>'
-+checklist(s,"todo",["Passar os resultados reais das 10 pessoas para a tabela","Anotar os cartões que geraram dúvidas","Desenhar o sitemap “antes” e “depois” em FigJam (retângulos com conectores)","Decidir o menu principal (3 a 5 itens) e os nomes","Opcional: card sorting fechado com 3 pessoas para confirmar"])
++checklist(s,"todo",["Confirmar a contagem exata do cartão 12 (“Lojas”, sem número registado)","Decidir onde ficam os cartões divididos: 2 a 6 (Cartão vs. Perfil/Informações), 7 e 9 (Início vs. Ofertas), 13 e 15 (Lojas/Informações vs. Mapa do outlet), 24 (Início vs. Notícias)","Desenhar o sitemap “antes” e “depois” em FigJam (retângulos com conectores)","Decidir o menu principal (3 a 5 itens) e os nomes, com base nos grupos já confirmados","Opcional: card sorting fechado com 3 pessoas para confirmar os casos divididos"])
 +notes(s);}});
 
 /* 7 WIREFRAMES */
 STEPS.push({id:"wire",icon:"▢",title:"Wireframes e user flows",goal:"Resolver a estrutura antes da estética, em Figma e em escala de cinzentos.",when:"Semana 1 e 2",
 html:function(s){
  var W=[["Início","Cartão, saldo e promoções em destaque","1, 2, 3"],["Cartão e saldo","Mostrar o cartão e ver saldo e movimentos","3, 7, 8, 9"],["Promoção e detalhe da oferta","Condição no topo, botão claro","1, 12, 14, 15"],["O que o cartão cobre","Onde descontar, exceções e como funciona","7, 16, 17"],["Lojas e detalhe da loja","Categoria, zona, “aceita o cartão”","5, 6, 13"],["Mapa","Mapa maior, legenda e filtros úteis","5, 18, 19"]];
- var X=[["Descobrir: eventos e notícias","Calendário e conteúdo de moda","4 (e ideias novas)"],["Recompensas e desafios","Progresso, desafios e selos","Ideia nova"],["Registar fatura","Fluxo de registo e pontos","Ideia nova"]];
+ var X=[["Descobrir: eventos e notícias","Calendário e tendências de moda, ligadas a lojas do outlet","4 (e ideias novas) · card sorting: Início"],["Desafios simples","Progresso e desafios leves, sem passatempos nem sorteios","Ideia nova · card sorting: Cartão (10/10)"],["Histórico de compras","Lista de compras feitas com o cartão, sem faturas","Ideia nova · substitui o registo de faturas"]];
  var rw=W.map(function(w,i){return [w[0],w[1],w[2],{t:"chk",k:"w"+i,l:"Wireframe feito"}];});
  var rx=X.map(function(w,i){return [w[0],w[1],w[2],{t:"chk",k:"x"+i,l:"Wireframe feito"}];});
  return ''
@@ -378,8 +407,11 @@ html:function(s){
 +'<h3>Extras que te distinguem</h3>'
 +'<ul class="chk">'+E.map(function(m,i){return '<li>'+ck(s+".e."+i,m)+'</li>';}).join("")+'</ul>'
 +callout("mint","Porquê uma página web?","<p>Queres trabalhar em marketing e website. Redesenhar a página da campanha “Sempre Mais”, que na app abre o site com um estilo diferente, mostra que pensas na experiência inteira e não só na app.</p>")
++'<h3>Paleta e tipografia decididas</h3>'
++callout("mint","Direção visual confirmada","<p>Mantém a base preto / branco / cinzento da identidade atual e acrescenta prata e azul-marinho como acentos, coerentes com o próprio outlet. Tipografia estilizada mas editorial e simples: um sans-serif limpo no corpo de texto e, no máximo, um toque de serif ou display mais editorial só nos títulos.</p>")
++kv([["Preto","Base da identidade: texto principal e fundos de destaque"],["Branco","Fundo e espaço negativo, para manter a leveza"],["Cinzento","Superfícies secundárias, bordas e estados inativos"],["Prata","Acentos metálicos discretos — ícones, linhas finas, estados de hover"],["Azul-marinho","Acento principal — botões, links e elementos de maior destaque"],["Tipografia","Sans-serif simples no corpo; um toque editorial (serif/display) só nos títulos"]])
 +'<h3>Design system</h3>'
-+checklist(s,"ds",["Partir da identidade atual (preto e branco) e decidir o que manter e o que melhorar","Definir paleta, 1 ou 2 fontes, ícones e espaçamentos (múltiplos de 8)","Construir os componentes: cartão e saldo, card de promoção, card de loja e barra de navegação","Verificar o contraste (mínimo recomendado 4,5:1), sobretudo no saldo e no nome do membro","Escolher 1 ou 2 termos para “redimir / rebater / utilizar / descontar” e usá-los em todo o lado"])
++checklist(s,"ds",["Aplicar a paleta decidida — preto, branco e cinzento como base, com prata e azul-marinho como acentos — mantendo a força visual preto e branco já reconhecível","Escolher a tipografia: sans-serif simples no corpo e, no máximo, um toque editorial (serif ou display) nos títulos","Construir os componentes: cartão e saldo, card de promoção, card de loja e barra de navegação, já na nova paleta","Verificar o contraste (mínimo recomendado 4,5:1), sobretudo no saldo e no nome do membro, com o novo azul-marinho e o cinzento","Escolher 1 ou 2 termos para “redimir / rebater / utilizar / descontar” e usá-los em todo o lado"])
 +'<h3>Como fazer no Figma</h3>'
 +plain(["Parte dos wireframes e aplica paleta, tipografia e componentes.","Usa dados realistas (lojas e promoções verdadeiras), mas <b>sem dados pessoais</b>.","Põe cada ecrã num frame de telemóvel e mostra o “antes” ao lado do “depois”.","Procura nos templates da comunidade do Figma por “device mockup” ou “case study template” (confirma o que o teu plano inclui).","Partilha o protótipo em modo só visualização e exporta também um PDF."])
 +notes(s);}});
@@ -424,7 +456,7 @@ function applyStore(){
     var k=el.getAttribute("data-k"),v=store[k];
     if(el.type==="checkbox"){el.checked=!!v;}
     else if(el.getAttribute("data-cyc")){var s=v||"?";el.textContent=s;el.setAttribute("data-v",s);}
-    else{el.value=(v==null?"":v);}
+    else{ if(v!=null){ el.value=v; } }
   });
 }
 applyStore();
