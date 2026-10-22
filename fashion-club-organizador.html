@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fashion Club · Organizador do projeto UI/UX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#FFF9F3; --surface:#FFFFFF; --surface2:#F4EFFC; --ink:#2E2542; --muted:#6F6585;
+  --accent:#7B5CB8; --accent-ink:#FFFFFF; --pink:#E98BB0; --pink-soft:#FDECEF;
+  --mint:#DDF2E8; --peach:#FFE9DC; --line:#E6DDF3; --ok:#3C8F6A; --warn:#B4513C;
+  --shadow:0 6px 24px rgba(91,62,140,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17131F; --surface:#211B2E; --surface2:#2A2340; --ink:#F1ECFA; --muted:#B3A9C9;
+    --accent:#B79CF0; --accent-ink:#1B1429; --pink:#F29CBF; --pink-soft:#3B2430;
+    --mint:#1F3A30; --peach:#3A2C26; --line:#3A3150; --ok:#7FD1A8; --warn:#F0A08B;
+    --shadow:0 6px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17131F; --surface:#211B2E; --surface2:#2A2340; --ink:#F1ECFA; --muted:#B3A9C9;
+  --accent:#B79CF0; --accent-ink:#1B1429; --pink:#F29CBF; --pink-soft:#3B2430;
+  --mint:#1F3A30; --peach:#3A2C26; --line:#3A3150; --ok:#7FD1A8; --warn:#F0A08B;
+  --shadow:0 6px 24px rgba(0,0,0,.35);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+a{color:var(--accent)}
+.hero{padding:34px 20px 8px;max-width:1180px;margin:0 auto}
+.hero .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);font-weight:600}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:6px 0 8px;font-weight:600;color:var(--accent)}
+.hero p{margin:0;color:var(--muted);max-width:720px}
+.topbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.overall{flex:1;min-width:220px}
+.bar{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--accent));border-radius:99px;transition:width .3s}
+.overall small{color:var(--muted)}
+button,.btn{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:99px;font-size:13px}
+.btn:hover{border-color:var(--accent)}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:26px;max-width:1180px;margin:0 auto;padding:18px 20px 80px}
+nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;display:flex;flex-direction:column;gap:6px;max-height:calc(100vh - 40px);overflow:auto}
+nav.side a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);padding:9px 12px;border-radius:14px;font-size:13.5px;border:1px solid transparent}
+nav.side a:hover{background:var(--surface2)}
+nav.side a.active{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
+nav.side .n{width:26px;height:26px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--accent);flex:none}
+nav.side a.done .n{background:var(--ok);color:#fff}
+nav.side .pc{margin-left:auto;font-size:11px;color:var(--muted)}
+main{min-width:0}
+section.step{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 24px;margin-bottom:22px;box-shadow:var(--shadow)}
+.step-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:6px}
+.badge{flex:none;width:44px;height:44px;border-radius:14px;background:var(--surface2);display:grid;place-items:center;font-size:20px}
+.step h2{margin:0;font-size:22px;font-weight:600;line-height:1.25}
+.step .goal{margin:2px 0 0;color:var(--muted);font-size:14px}
+.step .when{display:inline-block;margin-top:6px;font-size:12px;background:var(--pink-soft);color:var(--ink);padding:2px 10px;border-radius:99px}
+.mini{display:flex;align-items:center;gap:10px;margin:14px 0 4px}
+.mini .bar{flex:1;height:7px}
+.mini span{font-size:12px;color:var(--muted);min-width:44px;text-align:right}
+h3{font-size:15px;margin:24px 0 8px;font-weight:600;display:flex;align-items:center;gap:8px}
+h3::before{content:"✦";color:var(--pink);font-size:13px}
+p{margin:8px 0}
+ul.chk{list-style:none;margin:6px 0;padding:0}
+ul.chk li{margin:0}
+ul.chk label{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border-radius:12px;cursor:pointer}
+ul.chk label:hover{background:var(--surface2)}
+input[type=checkbox]{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);flex:none}
+input[type=checkbox]:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pink)}
+ul.plain{margin:6px 0;padding-left:20px}
+ul.plain li{margin:3px 0}
+.callout{border-radius:16px;padding:14px 16px;margin:14px 0;border-left:5px solid var(--accent);background:var(--surface2)}
+.callout b.t{display:block;margin-bottom:2px}
+.callout.pink{background:var(--pink-soft);border-left-color:var(--pink)}
+.callout.mint{background:var(--mint);border-left-color:var(--ok)}
+.callout.peach{background:var(--peach);border-left-color:#E59A6E}
+.callout p{margin:4px 0}
+.tw{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+th{background:var(--accent);color:var(--accent-ink);text-align:left;padding:9px 12px;font-weight:600;white-space:nowrap}
+td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--surface2) 55%,transparent)}
+td input[type=text],td input[type=number],td select,textarea{width:100%;font:inherit;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+td input[type=number]{max-width:80px}
+textarea{min-height:92px;resize:vertical;display:block}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.tag{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:500;white-space:nowrap}
+.tag.g{background:var(--pink-soft);color:var(--warn)}
+.tag.m{background:var(--mint);color:var(--ok)}
+.tag.i{background:var(--surface2);color:var(--accent)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 14px;border-radius:99px;font-size:13px}
+.chip.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.cyc{width:44px;height:32px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:15px}
+.cyc[data-v="✓"]{background:var(--mint);color:var(--ok)}
+.cyc[data-v="✗"]{background:var(--pink-soft);color:var(--warn)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin:12px 0}
+.idea{border:1px solid var(--line);border-radius:20px;padding:16px;background:var(--surface)}
+.idea h4{margin:0 0 4px;font-size:15.5px;display:flex;gap:8px;align-items:center}
+.idea .src{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.idea dl{margin:8px 0 0;font-size:13.5px}
+.idea dt{font-weight:600;margin-top:8px;color:var(--accent)}
+.idea dd{margin:0}
+.kv{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:10px 0;font-size:14px}
+.kv>div{padding:9px 12px;border-top:1px solid var(--line)}
+.kv>div:nth-child(-n+2){border-top:0}
+.kv>div:nth-child(odd){background:var(--surface2);font-weight:600}
+.copybox{background:var(--surface2);border:1px dashed var(--accent);border-radius:16px;padding:14px 16px;white-space:pre-wrap;font-size:13.5px;margin:10px 0 6px}
+.note-l{font-size:12.5px;color:var(--muted);margin-top:22px;display:block}
+.counter{font-size:13px;color:var(--muted)}
+footer{max-width:1180px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:12.5px}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;padding-top:6px}
+  nav.side{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;flex-direction:row;overflow-x:auto;max-height:none;background:var(--bg);padding:8px 0;margin:0 -20px;padding-left:20px;padding-right:20px;border-bottom:1px solid var(--line)}
+  nav.side a{flex:none;padding:6px 10px}
+  nav.side .t,nav.side .pc{display:none}
+  html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+  section.step{padding:20px 16px;border-radius:20px}
+  .kv{grid-template-columns:1fr}
+  .kv>div:nth-child(2){border-top:0}
+  .kv>div:nth-child(-n+2){border-top:0}
+  .kv>div:nth-child(even){border-top:0}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">UI/UX · projeto individual</div>
+  <h1>Fashion Club · organizador do projeto</h1>
+  <p>Um passo de cada vez, da auditoria aos mockups e à partilha com o outlet. Marca as tarefas, escreve notas e vê o progresso. Fica tudo guardado neste dispositivo.</p>
+  <div class="topbar">
+    <div class="overall">
+      <div class="bar"><i id="overallBar"></i></div>
+      <small id="overallTxt">0% concluído</small>
+    </div>
+    <button class="btn" id="themeBtn" type="button">☾ Tema</button>
+    <button class="btn" id="resetBtn" type="button">Limpar tudo</button>
+  </div>
+</header>
+<div class="layout">
+  <nav class="side" id="nav" aria-label="Etapas"></nav>
+  <main id="main"></main>
+</div>
+<footer>Projeto conceptual de portfólio, sem afiliação ao Vila do Conde Fashion Outlet. As descrições das apps de outros centros vêm das fontes que indicaste: confirma-as nas próprias apps antes de as usares no case study.</footer>
+
+<script>
+(function(){
+"use strict";
+var KEY="fc-organizador-v1";
+var store={};
+try{ store=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ store={}; }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){} }
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function ck(k,txt,opts){opts=opts||{};return '<label><input type="checkbox" data-k="'+k+'"'+(opts.nocount?' data-nc="1"':'')+'><span>'+txt+'</span></label>';}
+function checklist(sid,name,items){return '<ul class="chk">'+items.map(function(t,i){return '<li>'+ck(sid+"."+name+"."+i,t)+'</li>';}).join("")+'</ul>';}
+function callout(kind,title,html){return '<div class="callout '+kind+'"><b class="t">'+title+'</b>'+html+'</div>';}
+function plain(items){return '<ul class="plain">'+items.map(function(t){return '<li>'+t+'</li>';}).join("")+'</ul>';}
+function kv(rows){return '<div class="kv">'+rows.map(function(r){return '<div>'+r[0]+'</div><div>'+r[1]+'</div>';}).join("")+'</div>';}
+function cell(c,sid,r,ci){
+  if(c&&typeof c==="object"){
+    var k=sid+".t."+c.k;
+    if(c.t==="in") return '<input type="text" data-k="'+k+'" aria-label="'+esc(c.l||"campo")+'" placeholder="'+esc(c.p||"")+'">';
+    if(c.t==="num") return '<input type="number" min="1" max="5" data-k="'+k+'" aria-label="'+esc(c.l||"valor")+'">';
+    if(c.t==="chk") return '<label><input type="checkbox" data-k="'+k+'" '+(c.nc?'data-nc="1" ':'')+'aria-label="'+esc(c.l||"feito")+'"></label>';
+    if(c.t==="cyc") return '<button type="button" class="cyc" data-k="'+k+'" data-cyc="1" data-v="?" aria-label="Alternar estado">?</button>';
+    if(c.t==="sel") return '<select data-k="'+k+'" aria-label="'+esc(c.l||"escolha")+'"><option value=""></option>'+c.o.map(function(o){return '<option>'+esc(o)+'</option>';}).join("")+'</select>';
+  }
+  return c;
+}
+function table(sid,cols,rows,o){
+  o=o||{};
+  var h='<div class="tw"><table'+(o.id?' id="'+o.id+'"':'')+'><thead><tr>'+cols.map(function(c){return '<th>'+c+'</th>';}).join("")+'</tr></thead><tbody>';
+  rows.forEach(function(r,ri){
+    var attr=(r.attr?" "+r.attr:"");
+    var cells=r.cells||r;
+    h+='<tr'+attr+'>'+cells.map(function(c,ci){return '<td>'+cell(c,sid,ri,ci)+'</td>';}).join("")+'</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function notes(sid){return '<span class="note-l">Notas desta etapa</span><textarea data-k="'+sid+".notes"+'" data-nc="1" placeholder="Escreve aqui o que fizeste, decidiste ou descobriste…" aria-label="Notas"></textarea>';}
+function tag(t,c){return '<span class="tag '+c+'">'+t+'</span>';}
+
+/* ---------- content ---------- */
+var STEPS=[];
+
+/* 1 PLANO */
+STEPS.push({id:"plano",icon:"🗓️",title:"Plano e calendário",goal:"Três semanas, um resultado por semana: estrutura, design, teste e portfólio.",when:"26 out – 13 nov 2026 (ajusta às tuas datas)",
+html:function(s){return ''
++callout("pink","Assumi início a 26 de outubro","<p>Se começares noutro dia, desloca as semanas. O importante é ter um resultado claro no fim de cada uma.</p>")
++'<h3>Semana 1 · Estrutura (26 a 30 out)</h3>'
++checklist(s,"s1",["Escrever o resumo do projeto (etapa 2)","Tirar os 3 prints que faltam e confirmar as 3 dúvidas na app (etapa 3)","Experimentar 3 apps de outros centros e preencher o benchmark (etapa 4)","Decidir que ideias novas entram nos mockups (etapa 5)","Passar os resultados do card sorting para a tabela e desenhar o sitemap (etapa 6)","Desenhar os user flows das tarefas de teste (etapa 7)"])
++'<h3>Semana 2 · Design (2 a 6 nov)</h3>'
++checklist(s,"s2",["Wireframes dos ecrãs-chave, com 3 versões rápidas de cada","Moodboard, paleta, tipografia e componentes","Mockups dos 6 ecrãs principais (etapa 9)","Protótipo clicável no Figma"])
++'<h3>Semana 3 · Teste e portfólio (9 a 13 nov)</h3>'
++checklist(s,"s3",["Preparar o teste e recrutar 3 pessoas","Fazer os 3 testes e registar os resultados (etapa 8)","Corrigir os problemas graves e montar o antes e depois","Conclusões, limitações e exportar o PDF","Preparar a partilha com o outlet (etapa 10)"])
++notes(s);}});
+
+/* 2 RESUMO */
+STEPS.push({id:"resumo",icon:"✦",title:"Resumo do projeto",goal:"Dar contexto em 30 segundos: problema, teu papel e método.",when:"Semana 1",
+html:function(s){return ''
++'<h3>Ficha do projeto</h3>'
++kv([["Projeto","Redesign da app Fashion Club (Vila do Conde Fashion Outlet)"],
+["Contexto","A app Fashion Club é a aplicação do clube de fidelização do Vila do Conde Fashion Outlet. Permite aceder ao cartão virtual, consultar o saldo acumulado, explorar promoções e ver as lojas. É usada pelos membros do clube. Escolhi-a porque a uso com frequência e sinto que a experiência atual tem muito potencial de melhoria."],
+["O meu papel","Projeto individual · UI designer e UX researcher"],
+["Problem statement","Os membros do Fashion Club precisam de aceder depressa ao cartão, ao saldo e às promoções, mas a app atual não mostra todas as promoções à primeira vista, não explica de forma clara onde e como usar o cartão (a informação está dispersa e com termos diferentes), mistura ecrãs com estilos diferentes e torna a orientação no outlet confusa, mesmo sendo de um só piso."],
+["Método","Por limitação de tempo, baseei o redesign numa auditoria heurística (11 ecrãs), na análise das avaliações das lojas de apps, num card sorting com 10 pessoas, na comparação com apps de outros centros e num teste de usabilidade com 3 pessoas."],
+["Resultado em 1 frase","Só no fim, com dados reais. Ex.: “3 em 3 pessoas encontraram onde usar o saldo, contra X na app atual.”"]])
++'<h3>Contexto da app</h3>'
++kv([["Lançamento","10/07/2018"],["Atualizações recentes","26/06/2025 e 28/07/2025: melhorias de desempenho"],["Transferências","50 000+ (Google Play)"],["Google Play","3,8 de 5 · 86 avaliações · de 2019 a 2023"],["App Store","3,9 de 5 · 11 classificações"],["Pedido recorrente","Ver os movimentos do cartão"]])
++callout("peach","“É lenta” saiu do problem statement","<p>A app teve atualizações de desempenho em 2025. Se as cronometragens confirmarem lentidão, volta a entrar. O que não conseguires provar, tira ou suaviza.</p>")
++'<h3>O que fazer</h3>'
++checklist(s,"todo",["Confirmar que cada parte do problem statement está provada na auditoria","Escrever o método usado e as limitações (honestidade)","Deixar o “Resultado em 1 frase” para o fim"])
++notes(s);}});
+
+/* 3 AUDITORIA */
+var PROBS=[
+["Títulos das promoções cortados (“Acumule 5% em Todas as Comp…”): a condição nunca se vê","Início, Espaço de Info.","Grave","Título completo em 2 linhas"],
+["Imagens muito grandes: só cabem cerca de 2 promoções por ecrã","Início","Grave","Cards compactos e filtros"],
+["Nome e saldo em cinzento sobre cinzento (baixo contraste); QR pequeno sobre a barra","Cabeçalho","Grave","Saldo a branco sobre preto; QR separado"],
+["Ícones do menu sem legenda; o calendário abre “Espaço de Informações”, com 1 card e muito vazio","Menu inferior","Grave","Legendas, nomes claros e estado vazio útil"],
+["Mapa escondido numa linha “Mapa do Centro” no topo da lista de lojas","Lojas","Grave","Acesso próprio ao mapa; “ver no mapa” em cada loja"],
+["Cards de loja altos (cerca de 3 por ecrã), telefone em destaque, sem categoria, zona ou “aceita o cartão”","Lojas","Grave","Categoria, zona e selo do cartão"],
+["“Como funciona o Fashion Club?” escondido em Configurações; “redimir as ofertas” é jargão","Configurações, Cartão","Grave","Bloco “O que posso fazer com o meu saldo?”"],
+["Não há movimentos do cartão (pedido recorrente nas avaliações)","Cartão, Configurações","Grave","Ecrã “Saldo e movimentos”"],
+["Botões ⟳ e “i” sem texto","Cartão","Menor","Rótulos e “atualizado há X”"],
+["Campos sem etiqueta visível (“4485”, “NACIONAL”); campos cinzentos sem explicação; password só como placeholder","Editar perfil","Menor","Etiquetas permanentes"],
+["Grande bloco preto vazio, só com “EDITAR”","Configurações","Menor","Mostrar nome e dados do membro"],
+["Promoção abre o site dentro da app: estilo diferente, sem menu, cartão amarelo cobre o botão, texto cortado e “Junte-se” mostrado a quem já é membro","Promoção “Sempre Mais”","Grave","Página na app, com a mesma identidade e botão para membros"],
+["Detalhe da loja: bloco de texto grande sem horário, localização nem atalho para o mapa; exclusões do cartão no fim; “Informação da loja” cortada","Detalhe da loja","Grave","Ficha organizada com exceções em destaque"],
+["Detalhe da oferta: texto longo; a condição (≥ 150 €, levantar no Espaço de Informações) está no fim e tapada pelo botão “UTILIZAR”, de efeito pouco claro","Detalhe da oferta","Grave","Condição no topo e botão com texto claro"],
+["Erros de texto: “ais do que”, “receba o seu no Espaço”, “Termos&Condições”","Oferta, Cartão","Menor","Rever todos os textos"],
+["Vocabulário inconsistente: redimir, rebater, utilizar, descontar; crédito, saldo, cashback","Cartão, Oferta, Site","Grave","Usar 1 ou 2 termos simples em todo o lado"],
+["Explicação do cartão (até 25%, “exclusões podem aplicar-se”) atrás do “i”, vaga e repetida com palavras diferentes","Cartão, Config., Site","Grave","Um único bloco visível"],
+["Mapa com estilo próprio, sem menu nem voltar à vista, faixa vazia, ocupa cerca de 1/3 do ecrã, pontos sem nome ou legenda e textos cortados","Mapa","Grave","Mapa maior, na identidade da app, com legenda"],
+["No mapa, “Popular” mostra casas de banho antes de lojas; faltam filtros “aceita o cartão” e “ofertas”","Mapa","Menor","Categorias úteis para o membro"],
+["Títulos genéricos (“Detalhes das Lojas”); nome do membro cortado e em cinzento","Várias","Menor","Nome da loja como título; nome legível"]];
+STEPS.push({id:"auditoria",icon:"🔍",title:"Auditoria da app atual",goal:"Mostrar o que falha com provas: print, local, gravidade e solução.",when:"Semana 1",
+html:function(s){
+ var rows=PROBS.map(function(p,i){return {attr:'data-g="'+p[2]+'"',cells:[String(i+1),p[0],p[1],tag(p[2],p[2]==="Grave"?"g":"m"),p[3],{t:"chk",k:"hl"+i,nc:1,l:"Destacar no portfólio"}]};});
+ return ''
++callout("mint","O que é uma avaliação heurística","<p>Analisas o design com base em regras reconhecidas (as 10 heurísticas de Nielsen, por exemplo: mostrar o que está a acontecer, ser consistente, prevenir erros). No portfólio descreve-a como <b>avaliação de especialista</b>, não como teste com utilizadores.</p>")
++'<h3>O que fazer</h3>'
++checklist(s,"todo",["Tirar os 3 prints que faltam","Confirmar as 3 dúvidas da lista “A confirmar”","Cobrir dados pessoais, QR e número do cartão nos prints","Escolher os 6 a 8 problemas a destacar no case study (coluna “Destacar”)","Ler as avaliações das lojas de apps e anotar o ano (são de 2019 a 2023, valem como pistas)","Fazer as cronometragens: abrir a app até ao cartão, ver saldo, chegar às promoções (3 medições cada)"])
++callout("pink","Privacidade dos prints","<p>Os prints mostram dados pessoais (apelido, email, data de nascimento, código postal) e o <b>QR e número do cartão</b>, que podem ser usados para resgatar o teu saldo. <b>Cobre ou desfoca tudo</b> antes de pôr os prints no portfólio.</p>")
++'<h3>Ecrãs auditados</h3>'
++table(s,["Ecrã","Estado"],[["Início (promoções)","✓ analisado"],["Cartão (QR e saldo)","✓ analisado"],["Popup do “i” (como usar o QR)","✓ analisado"],["Espaço de Informações (calendário)","✓ analisado"],["Lojas e pesquisa","✓ analisado"],["Detalhe da loja (Adidas)","✓ analisado"],["Mapa do centro","✓ analisado"],["Promoção “Sempre Mais” (site)","✓ analisado"],["Detalhe da oferta (livro)","✓ analisado"],["Configurações e Editar perfil","✓ analisado"],["“Como é que o Fashion Club funciona?”",{t:"chk",k:"p1",l:"Print tirado e analisado"}],["Termos e Condições",{t:"chk",k:"p2",l:"Print tirado e analisado"}],["Pin de uma loja no mapa",{t:"chk",k:"p3",l:"Print tirado e analisado"}]])
++'<h3>O que funciona (a manter)</h3>'
++plain(["Identidade a preto e branco forte e reconhecível.","QR e saldo no cabeçalho de vários ecrãs: o cartão está sempre perto.","No ecrã do cartão, o saldo e o código são grandes e legíveis.","Menu inferior com 5 separadores e pesquisa de lojas à vista.","O detalhe da loja é transparente sobre as exclusões do cartão.","O mapa tem pesquisa, categorias e serviços (casas de banho)."])
++'<h3>Tabela de problemas</h3>'
++'<div class="chips" id="probChips"><button class="chip on" data-f="all" type="button">Todos</button><button class="chip" data-f="Grave" type="button">Grave</button><button class="chip" data-f="Menor" type="button">Menor</button></div>'
++'<p class="counter">Destacados para o portfólio: <b id="hlCount">0</b> (ideal: 6 a 8)</p>'
++table(s,["#","Problema","Onde","Gravidade","Solução proposta","Destacar"],rows,{id:"probTable"})
++'<h3>A confirmar na app</h3>'
++checklist(s,"conf",["A página web da promoção e o mapa têm botão de voltar?","O que acontece ao tocar em “UTILIZAR” na oferta?","O mapa mostra a tua posição? (aparece “Refinar a sua localização”)"])
++notes(s);}});
+
+/* 4 BENCHMARK */
+STEPS.push({id:"benchmark",icon:"⚖️",title:"Benchmark: apps de centros comerciais",goal:"Ver o que as outras apps fazem bem e onde o Fashion Club pode fazer diferente.",when:"Semana 1",
+html:function(s){return ''
++callout("peach","Confirma sempre na app","<p>As descrições abaixo vêm das fontes que indicaste (páginas e redes sociais dos centros, lojas de apps). Instala pelo menos 3 apps e confirma o que fazem antes de o escreveres no case study.</p>")
++'<h3>Apps em Portugal (referências diretas)</h3>'
++table(s,["App","O que faz (segundo as fontes)","O que aprender","Fontes"],[
+["<b>Colombo Loves Me</b><br>Centro Colombo","Acesso a campanhas, novidades e vantagens, como períodos de estacionamento gratuito ao associar um cartão bancário.","Um benefício concreto e imediato ligado ao uso da app.",'<a href="https://www.facebook.com/centrocolombo/videos/2-horas-de-parque-gr%C3%A1tis-no-colombo/1159899805843569/" target="_blank" rel="noopener">Colombo (1)</a><br><a href="https://www.facebook.com/centrocolombo/videos/pub-agora-quando-fizerem-as-vossas-compras-no-centrocolombo-podem-aproveitar-2-h/1119626629848395/" target="_blank" rel="noopener">Colombo (2)</a>'],
+["<b>ArrábidaShopping App</b>","Explorar o centro, campanhas e descontos a partir do telemóvel.","Como organizam a exploração do centro e as campanhas.",'<a href="https://www.arrabidashopping.com/app/" target="_blank" rel="noopener">arrabidashopping.com/app</a>'],
+["<b>Espaço Guimarães &amp; EU</b><br>(Klépierre)","Registar ou digitalizar faturas de compras no centro para acumular pontos e trocá-los por descontos ou ofertas; desafios e prémios ou vales.","O fluxo de registo de faturas e a gamificação (desafios).",'<a href="https://play.google.com/store/apps/details?id=com.klepierre.loyalty_program_espaco_guimaeres" target="_blank" rel="noopener">Google Play</a><br><a href="https://www.viralagenda.com/pt/events/1052531/espaco-guimaraes-apresenta-app-espaco-guimaraes-eu" target="_blank" rel="noopener">Apresentação</a>'],
+["<b>Parque Nascente &amp; EU</b><br>(Klépierre)","Programa de fidelização do mesmo grupo: faturas, desafios e prémios ou vales.","Comparar com o Espaço Guimarães: o que se repete é o padrão do grupo.",'<a href="https://parque-nascente.klepierre.pt/loyalty-landing-page" target="_blank" rel="noopener">Página do programa</a>'],
+["<b>8ª Avenida</b>","App com vantagens exclusivas, promoções, descontos e passatempos para os visitantes.","Como apresentam as vantagens exclusivas e os passatempos.",'<a href="https://www.8avenida.com/noticias/chegou-nova-app-site-8a-avenida-vantagens-appaixonantes-2/" target="_blank" rel="noopener">Notícia da app</a>'],
+["<b>LoureShopping</b>","Descontos, ofertas especiais e novidades em primeira mão.","Como comunicam as novidades e as ofertas.",'<a href="https://www.loureshopping.pt/noticias/nova-app-e-novo-site-do-loureshopping/" target="_blank" rel="noopener">Nova app e site</a>']])
++'<h3>Referências fora de Portugal (usar só para ideias de funcionalidades)</h3>'
++callout("pink","Atenção","<p>Estas três não são centros portugueses, por isso não as uses como comparação direta. O <b>Shopping Park Europeu</b> parece ser brasileiro (confirmar na loja de apps) e o <b>Centro Comercial EUROPA</b> fica em Lipetsk, na Rússia, segundo a fonte. Na dúvida, prefere as apps portuguesas acima.</p>")
++table(s,["App","O que faz (segundo as fontes)","Fontes"],[
+["<b>Shopping Park Europeu</b>","Lojas, restaurantes, horários de cinema, compra de bilhetes, cupões exclusivos, eventos e pagamento do estacionamento.",'<a href="https://play.google.com/store/apps/details?id=br.com.mobits.mobitsplaza.argo.shoppingparkeuropeu&amp;hl=pt" target="_blank" rel="noopener">Google Play</a><br><a href="https://apps.apple.com/us/app/shopping-park-europeu/id6744340917" target="_blank" rel="noopener">App Store</a>'],
+["<b>Centro Comercial EUROPA</b>","Fidelização: carregar recibos de compra, acumular bónus e trocá-los por descontos, brindes ou certificados.",'<a href="https://play.google.com/store/apps/details?id=com.mymall.europa&amp;hl=pt_PT" target="_blank" rel="noopener">Google Play</a>'],
+["<b>Puerta Europa</b>","Localizador de lojas, horários, notícias, promoções e cartaz de cinema.",'<a href="https://play.google.com/store/apps/details?id=io.tc.puertaeuropa&amp;hl=es_419" target="_blank" rel="noopener">Google Play</a>']])
++'<h3>Matriz de funcionalidades</h3>'
++'<p>Clica em cada quadrado para alternar <b>?</b> (por confirmar), <b>✓</b> (tem) e <b>✗</b> (não tem). Preenche depois de instalares as apps.</p>'
++table(s,["Funcionalidade","Fashion Club","Colombo","Arrábida","Guimarães &amp; EU","8ª Avenida","Loureshopping"],
+ ["Cartão virtual / QR","Promoções e campanhas","Promoções exclusivas para membros","Calendário de eventos","Notícias de moda e lifestyle","Registo de faturas e pontos","Desafios / gamificação","Passatempos","Benefício de estacionamento","Movimentos do cartão"].map(function(f,i){
+   return [f].concat([0,1,2,3,4,5].map(function(j){return {t:"cyc",k:"m"+i+"_"+j};}));}))
++'<h3>O que fazer</h3>'
++checklist(s,"todo",["Instalar 3 apps (por exemplo Guimarães & EU, Colombo e 8ª Avenida)","Tirar prints dos ecrãs mais interessantes (sem dados pessoais)","Preencher a matriz de funcionalidades","Escrever 3 conclusões: o que copiar, o que evitar e o que fazer diferente"])
++notes(s);}});
+
+/* 5 IDEIAS */
+STEPS.push({id:"ideias",icon:"💡",title:"Ideias de novas funcionalidades",goal:"As tuas ideias para evoluir a app, com inspiração, riscos e como validar cada uma.",when:"Semana 1",
+html:function(s){return ''
++callout("mint","Regra de ouro para o case study","<p>Separa <b>Fase 1</b> (resolver os problemas que encontraste na auditoria) de <b>Fase 2</b> (ideias para evoluir a app). As ideias novas ainda não vêm de dados de utilizadores, por isso apresenta-as como <b>hipóteses</b>. Assim não escondes os problemas de clareza do cartão e das promoções, que são o centro do projeto.</p>")
++'<div class="cards">'
++'<div class="idea"><h4>📅 Calendário de eventos</h4><p class="src">Inspiração: Shopping Park Europeu (eventos) e Puerta Europa.</p><dl><dt>Hoje no Fashion Club</dt><dd>O separador do calendário abre o “Espaço de Informações”, com um só card (problema 4).</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Incluir nos mockups: resolve um problema real e dá um motivo para abrir a app.</dd><dt>Validar</dt><dd>Perguntar quantos membros procuram eventos; tarefa de teste “encontra um evento este mês”.</dd></dl></div>'
++'<div class="idea"><h4>🎁 Promoções exclusivas</h4><p class="src">Inspiração: 8ª Avenida (vantagens exclusivas), Colombo (benefícios).</p><dl><dt>Hoje no Fashion Club</dt><dd>Já existem ofertas para membros (por exemplo o cashback das quartas), mas mal visíveis e com a condição escondida (problemas 1, 2, 12 e 14).</dd><dt>Complexidade</dt><dd>'+tag("Baixa","m")+'</dd><dt>Sugestão</dt><dd>Incluir: dar destaque ao “exclusivo para membros” e à condição no topo.</dd><dt>Validar</dt><dd>Tarefa “quanto precisas de gastar para receber a oferta do livro?”.</dd></dl></div>'
++'<div class="idea"><h4>📰 Notícias de estilo de vida e moda</h4><p class="src">Inspiração: LoureShopping (novidades em primeira mão), Puerta Europa (notícias).</p><dl><dt>Valor para marketing</dt><dd>Conteúdo que traz o membro de volta à app, mesmo sem promoção.</dd><dt>Complexidade</dt><dd>'+tag("Média","i")+' precisa de uma equipa que produza conteúdo.</dd><dt>Risco</dt><dd>Competir com as promoções pela atenção e encher o Início.</dd><dt>Sugestão</dt><dd>Um ecrã simples “Descobrir”, junto dos eventos.</dd><dt>Validar</dt><dd>Pergunta no questionário: “Lerias notícias de moda na app?”.</dd></dl></div>'
++'<div class="idea"><h4>🎮 Gamificação</h4><p class="src">Inspiração: desafios do Espaço Guimarães &amp; EU, passatempos da 8ª Avenida.</p><dl><dt>Ideia</dt><dd>Uma camada leve sobre o que já existe: progresso até à próxima recompensa, desafios simples (por exemplo, visitar 3 lojas) e selos.</dd><dt>Complexidade</dt><dd>'+tag("Média","i")+'</dd><dt>Risco</dt><dd>Complicar uma app onde a clareza já é o problema. Passatempos e sorteios têm regras legais próprias.</dd><dt>Sugestão</dt><dd>Mockup de 1 ecrã, assumido como Fase 2.</dd></dl></div>'
++'<div class="idea"><h4>🧾 Registar faturas para acumular pontos</h4><p class="src">Inspiração: Espaço Guimarães &amp; EU, Parque Nascente &amp; EU, Centro Comercial EUROPA.</p><dl><dt>Atenção ao que já existe</dt><dd>O Fashion Club já acumula crédito (5%) ao apresentar o QR na caixa. Confirma como acumula hoje e onde as faturas acrescentam valor (compras sem QR?).</dd><dt>Complexidade</dt><dd>'+tag("Alta","g")+' validação das faturas, fraude, dados pessoais.</dd><dt>Vocabulário</dt><dd>Pontos, euros ou crédito? Escolhe um só termo (problema 16).</dd><dt>Sugestão</dt><dd>Só o fluxo desenhado em mockup, deixando a viabilidade técnica por validar.</dd></dl></div>'
++'</div>'
++'<h3>Priorização rápida</h3>'
++'<p>Dá uma nota de 1 a 5 a cada ideia (impacto e esforço) e escolhe a decisão.</p>'
++table(s,["Ideia","Impacto (1-5)","Esforço (1-5)","Decisão"],["Calendário de eventos","Promoções exclusivas","Notícias de moda e lifestyle","Gamificação","Registo de faturas e pontos"].map(function(n,i){return [n,{t:"num",k:"imp"+i,l:"Impacto"},{t:"num",k:"esf"+i,l:"Esforço"},{t:"sel",k:"dec"+i,o:["Fase 1: mockup","Fase 2: ideia","Fora do projeto"]}];}))
++'<h3>Como validar rápido (sem refazer o card sorting)</h3>'
++checklist(s,"val",["Fazer um card sorting <b>fechado</b> com 3 a 5 pessoas, só com 5 cartões novos: Calendário de eventos, Notícias de moda e lifestyle, Promoções exclusivas, Desafios e recompensas, Registar fatura","Acrescentar 3 perguntas curtas a quem já respondeu: “Usarias o calendário de eventos?”, “Lerias notícias de moda?”, “Registarias faturas para ganhar pontos?”","Acrescentar 1 ou 2 tarefas ao teste (etapa 8)","Escrever as ideias no case study como hipóteses, com o que ainda falta validar"])
++notes(s);}});
+
+/* 6 IA */
+var CARDS=["Mostrar o meu cartão do clube na caixa","Ver quanto dinheiro tenho acumulado","Ver as compras e movimentos do meu cartão","Saber em que lojas posso usar o meu saldo","Saber que artigos ou marcas ficam de fora do cartão","Perceber como funciona o Fashion Club","Ver todas as promoções ativas","Ver as condições de uma oferta","Receber avisos de novas promoções","Lista de lojas","Pesquisar uma loja pelo nome","Ver a informação de uma loja (horário, contacto)","Mapa do outlet","Saber onde ficam as casas de banho e outros serviços","Espaço de Informações (onde levantar ofertas)","Avaliar uma loja","Editar os meus dados","Mudar o idioma","Termos e condições","Terminar sessão","(em branco) o que a pessoa acrescentou","(em branco) o que a pessoa acrescentou"];
+var NEWCARDS=["Calendário de eventos","Notícias de moda e lifestyle","Promoções exclusivas para membros","Desafios e recompensas","Registar uma fatura para acumular pontos"];
+STEPS.push({id:"ia",icon:"🗂️",title:"Card sorting e arquitetura de informação",goal:"Organizar o conteúdo como as pessoas pensam. O resultado decide o menu e o sitemap.",when:"Semana 1",
+html:function(s){
+ var r1=CARDS.map(function(c,i){return [String(i+1),c,{t:"in",k:"g"+i,l:"Grupo escolhido",p:"Grupo (nº de pessoas)"},{t:"in",k:"n"+i,l:"Nome dado",p:"Nome dado"}];});
+ var r2=NEWCARDS.map(function(c,i){return [String(23+i),c+" "+tag("novo","i"),{t:"in",k:"ng"+i,l:"Grupo",p:"Grupo"},{t:"in",k:"nn"+i,l:"Nome",p:"Nome"}];});
+ return ''
++'<h3>Ficha do card sorting</h3>'
++kv([["Tipo","Aberto, 22 cartões (20 + 2 em branco)"],["Participantes","10 pessoas"],["Cartões baralhados e sem títulos de grupo?","Confirma: sim ou não"],["Acordo entre participantes","Se todos agruparam da mesma forma, confirma com as fotos e regista os grupos abaixo"],["Cartões que geraram dúvida","Anota os que hesitaram"],["Nomes de grupo que se repetiram","Estes são candidatos a nomes do menu"]])
++callout("peach","Nota sobre o acordo total","<p>Se as 10 pessoas agruparam tudo igual, é um resultado forte, mas antes de o escreveres confirma que os cartões estavam baralhados e sem os títulos de categoria à vista, e que os nomes dos grupos também coincidiram.</p>")
++'<h3>Resultados reais</h3>'
++'<p>Escreve o grupo escolhido (e quantas pessoas o escolheram) e o nome que deram.</p>'
++table(s,["#","Cartão","Grupo escolhido","Nome dado"],r1)
++'<h3>Cartões novos (2.ª ronda, só se validares as ideias)</h3>'
++table(s,["#","Cartão","Grupo","Nome"],r2)
++'<h3>Proposta de navegação (hipótese a validar)</h3>'
++table(s,["Separador","Versão base (Fase 1)","Com ideias novas (Fase 2)"],[
+["Início","Cartão, saldo e promoções em destaque","Igual, com destaque para o próximo evento"],
+["Promoções","Lista de promoções e detalhe da oferta (condição no topo)","Com secção “exclusivas para membros”"],
+["Lojas","Lista e mapa na mesma secção; detalhe com “aceita o cartão” e exceções","Igual"],
+["Cartão","QR e saldo, movimentos e “o que posso fazer com o meu saldo”","Com recompensas, desafios e registo de faturas"],
+["Mais","Espaço de Informações, Como funciona, Termos, Perfil e idioma","Com “Descobrir” (eventos e notícias), se não couber no menu"]])
++'<h3>O que fazer</h3>'
++checklist(s,"todo",["Passar os resultados reais das 10 pessoas para a tabela","Anotar os cartões que geraram dúvidas","Desenhar o sitemap “antes” e “depois” em FigJam (retângulos com conectores)","Decidir o menu principal (3 a 5 itens) e os nomes","Opcional: card sorting fechado com 3 pessoas para confirmar"])
++notes(s);}});
+
+/* 7 WIREFRAMES */
+STEPS.push({id:"wire",icon:"▢",title:"Wireframes e user flows",goal:"Resolver a estrutura antes da estética, em Figma e em escala de cinzentos.",when:"Semana 1 e 2",
+html:function(s){
+ var W=[["Início","Cartão, saldo e promoções em destaque","1, 2, 3"],["Cartão e saldo","Mostrar o cartão e ver saldo e movimentos","3, 7, 8, 9"],["Promoção e detalhe da oferta","Condição no topo, botão claro","1, 12, 14, 15"],["O que o cartão cobre","Onde descontar, exceções e como funciona","7, 16, 17"],["Lojas e detalhe da loja","Categoria, zona, “aceita o cartão”","5, 6, 13"],["Mapa","Mapa maior, legenda e filtros úteis","5, 18, 19"]];
+ var X=[["Descobrir: eventos e notícias","Calendário e conteúdo de moda","4 (e ideias novas)"],["Recompensas e desafios","Progresso, desafios e selos","Ideia nova"],["Registar fatura","Fluxo de registo e pontos","Ideia nova"]];
+ var rw=W.map(function(w,i){return [w[0],w[1],w[2],{t:"chk",k:"w"+i,l:"Wireframe feito"}];});
+ var rx=X.map(function(w,i){return [w[0],w[1],w[2],{t:"chk",k:"x"+i,l:"Wireframe feito"}];});
+ return ''
++callout("mint","Conceitos simples","<p><b>Wireframe</b>: esboço de um ecrã (caixas e texto) que mostra o que fica onde. <b>User flow</b>: o caminho que a pessoa faz, ecrã a ecrã, para concluir uma tarefa. No Figma, um ecrã é um <b>Frame</b> (tecla F) e uma peça reutilizável, como a barra de navegação, é um <b>componente</b>.</p>")
++'<h3>Ecrãs-chave (Fase 1)</h3>'
++table(s,["Ecrã","Objetivo","Problemas que resolve","Feito"],rw)
++'<h3>Ecrãs das ideias novas (Fase 2, só os que escolheres)</h3>'
++table(s,["Ecrã","Objetivo","Origem","Feito"],rx)
++'<h3>O que fazer</h3>'
++checklist(s,"todo",["Desenhar o user flow de cada tarefa de teste","Esboçar 3 versões rápidas de cada ecrã e escolher a melhor","Fazer os wireframes em Figma, com a barra de navegação como componente","Escrever 1 ou 2 linhas sobre cada decisão, ligada a um problema da auditoria"])
++notes(s);}});
+
+/* 8 TESTE */
+STEPS.push({id:"teste",icon:"🧪",title:"Protótipo e teste rápido",goal:"Provar com 3 pessoas que o design funciona. Um teste curto e honesto vale mais do que nenhum.",when:"Semana 3",
+html:function(s){
+ var T=["T1 · Mostrar o cartão e ver o saldo","T2 · Ver os movimentos","T3 · Condição da oferta","T4 · Exceções do cartão","T5 · Encontrar loja no mapa","T6 · Encontrar um evento (opcional)","T7 · Registar uma fatura (opcional)"];
+ var rows=T.map(function(t,i){return [t,{t:"in",k:"s"+i,l:"Sucesso",p:"n/3"},{t:"in",k:"t"+i,l:"Tempo",p:"seg."},{t:"in",k:"q"+i,l:"Notas",p:"Notas e citações"}];});
+ return ''
++'<h3>Tarefas</h3>'
++plain(["<b>T1.</b> “Estás na caixa e queres usar o teu cartão. Mostra-me como o apresentas e quanto saldo tens.”","<b>T2.</b> “Queres ver o que fizeste com o cartão nas últimas visitas. Descobre.”","<b>T3.</b> “Quanto precisas de gastar para receber a oferta do livro e onde a levantas?”","<b>T4.</b> “Queres comprar uns ténis Adidas Samba com o teu saldo. Consegues? Como sabes?”","<b>T5.</b> “Já estás no outlet e queres encontrar a loja X. Mostra-me como chegavas lá.”","<b>T6 (opcional).</b> “Descobre se há algum evento este mês.”","<b>T7 (opcional).</b> “Acabaste de comprar numa loja e queres ganhar pontos com a fatura. Mostra-me como.”"])
++callout("pink","Como conduzir","<p>Diz que estás a testar a app, não a pessoa, e pede para pensar em voz alta. Não ajudes nem expliques. Se pedirem ajuda, devolve: “O que farias se estivesses sozinha?”. Regista se concluiu (sim, com ajuda, não), o tempo, os toques e uma citação. Opcional: faz as mesmas tarefas na app atual para teres um “Antes” real.</p>")
++'<h3>Resultados</h3>'
++table(s,["Tarefa","Sucesso (n/3)","Tempo médio","Notas e citações"],rows)
++'<h3>O que fazer</h3>'
++checklist(s,"todo",["Ligar os ecrãs no Figma só para as tarefas e abrir o protótipo no telemóvel","Recrutar 3 pessoas (10 a 15 min cada), idealmente membros do clube","Fazer os testes e registar os resultados","Corrigir os problemas graves e anotar o que mudaste","Cobrir dados pessoais em gravações e capturas, e pedir autorização para gravar"])
++notes(s);}});
+
+/* 9 UI */
+STEPS.push({id:"ui",icon:"🎨",title:"Mockups e UI visual",goal:"A parte que mais se vê no portfólio: 5 a 6 ecrãs bem feitos valem mais do que 20 medianos.",when:"Semana 2 e 3",
+html:function(s){
+ var M=["Início (cartão, saldo e promoções em destaque)","Cartão e movimentos","Detalhe de uma promoção (condição no topo, botão claro)","O que o cartão cobre (onde descontar e exceções)","Lojas e detalhe da loja","Mapa"];
+ var E=["Descobrir: eventos e notícias","Recompensas e desafios","Registar fatura","Página web de uma campanha (ex.: “Sempre Mais”)"];
+ return ''
++'<h3>Mockups principais</h3>'
++'<ul class="chk">'+M.map(function(m,i){return '<li>'+ck(s+".m."+i,m)+'</li>';}).join("")+'</ul>'
++'<h3>Extras que te distinguem</h3>'
++'<ul class="chk">'+E.map(function(m,i){return '<li>'+ck(s+".e."+i,m)+'</li>';}).join("")+'</ul>'
++callout("mint","Porquê uma página web?","<p>Queres trabalhar em marketing e website. Redesenhar a página da campanha “Sempre Mais”, que na app abre o site com um estilo diferente, mostra que pensas na experiência inteira e não só na app.</p>")
++'<h3>Design system</h3>'
++checklist(s,"ds",["Partir da identidade atual (preto e branco) e decidir o que manter e o que melhorar","Definir paleta, 1 ou 2 fontes, ícones e espaçamentos (múltiplos de 8)","Construir os componentes: cartão e saldo, card de promoção, card de loja e barra de navegação","Verificar o contraste (mínimo recomendado 4,5:1), sobretudo no saldo e no nome do membro","Escolher 1 ou 2 termos para “redimir / rebater / utilizar / descontar” e usá-los em todo o lado"])
++'<h3>Como fazer no Figma</h3>'
++plain(["Parte dos wireframes e aplica paleta, tipografia e componentes.","Usa dados realistas (lojas e promoções verdadeiras), mas <b>sem dados pessoais</b>.","Põe cada ecrã num frame de telemóvel e mostra o “antes” ao lado do “depois”.","Procura nos templates da comunidade do Figma por “device mockup” ou “case study template” (confirma o que o teu plano inclui).","Partilha o protótipo em modo só visualização e exporta também um PDF."])
++notes(s);}});
+
+/* 10 PARTILHA */
+var MSG="Olá [nome / equipa de Marketing e Digital],\n\nChamo-me [o teu nome] e sou membro do Fashion Club. Como projeto pessoal de UI/UX, analisei a app e preparei uma proposta de melhorias para o cartão, as promoções e o mapa do outlet.\n\nO trabalho inclui uma auditoria da app, um card sorting com 10 pessoas e um protótipo com [N] ecrãs. Parti do que a app já faz bem, como o acesso rápido ao cartão e ao saldo, e identifiquei oportunidades como tornar as promoções e as regras do cartão mais claras.\n\nÉ um projeto conceptual, sem qualquer afiliação ao outlet. Deixo o link do protótipo e o PDF em anexo:\n[link do protótipo no Figma, só visualização]\n\nTenho muito interesse em trabalhar na área de marketing e website, e teria todo o gosto em partilhar o trabalho com a vossa equipa, ou numa conversa breve de 15 minutos.\n\nObrigada pelo vosso tempo.\n\nCom os melhores cumprimentos,\n[o teu nome]\n[LinkedIn / portfólio]\n[telemóvel]";
+STEPS.push({id:"partilha",icon:"💌",title:"Marketing, partilha e carreira",goal:"Ligar o design ao negócio, partilhar com o outlet e continuar a aprender.",when:"Semana 3 e depois",
+html:function(s){return ''
++'<h3>Impacto no negócio (hipóteses)</h3>'
++callout("peach","Escreve como hipóteses","<p>Não tens dados do outlet, por isso não prometas resultados. Diz o que esperas que aconteça e como se poderia medir.</p>")
++table(s,["Mudança","Hipótese","Como medir (se houvesse dados)"],[
+["Promoções mais visíveis e com a condição à vista","Mais ofertas usadas e menos dúvidas","Taxa de uso das ofertas"],
+["Regras do cartão claras num só sítio","Menos dúvidas no balcão e mais confiança","Pedidos de ajuda; sucesso na tarefa “onde descontar”"],
+["Movimentos do cartão","Mais motivos para abrir a app","Aberturas por semana"],
+["Calendário de eventos e notícias","Visitas mais planeadas e regresso à app","Cliques em eventos; visitas"],
+["Gamificação e registo de faturas (Fase 2)","Mais compras e mais dados de fidelização","Faturas registadas; frequência de visita"]])
++'<h3>Antes de partilhar</h3>'
++checklist(s,"antes",["Protótipo e PDF prontos e sem dados pessoais, QR ou número do cartão","Dizer sempre que é um projeto conceptual, sem afiliação ao outlet","Não usar mais logótipos e imagens da marca do que o necessário","Começar pelo que a app faz bem e apresentar “oportunidades”, não “erros”","Link do Figma em modo só visualização"])
++'<h3>Como contactar</h3>'
++checklist(s,"contacto",["Procurar no LinkedIn por Marketing, Digital ou Comunicação mais o nome do outlet ou do grupo que o gere","Enviar uma mensagem curta com o link e o PDF","Enviar só um seguimento ao fim de uma semana","Continuar a candidatar-me a vagas e estágios com o mesmo portfólio"])
++'<h3>Mensagem pronta (edita os parênteses retos)</h3>'
++'<div class="copybox" id="msgBox">'+esc(MSG)+'</div><button class="btn" id="copyBtn" type="button">Copiar mensagem</button> <span class="counter" id="copyOk"></span>'
++'<h3>Continuar a aprender</h3>'
++plain(['<a href="https://www.coursera.org/professional-certificates/google-ux-design" target="_blank" rel="noopener">Google UX Design Certificate (Coursera)</a>: confirma o preço e a disponibilidade.','<a href="https://www.nngroup.com" target="_blank" rel="noopener">Nielsen Norman Group</a>: artigos sobre usabilidade e as 10 heurísticas.','<a href="https://lawsofux.com" target="_blank" rel="noopener">Laws of UX</a>: princípios de design em linguagem simples.',"Os recursos gratuitos do próprio Figma.","Um segundo projeto pequeno (por exemplo, o redesign de uma página web) mostra que continuas a aprender."])
++callout("mint","Orgulho de seres autodidata","<p>Escreve no portfólio que és autodidata e que a tua experiência em marketing te ajuda a compreender o negócio. Mostra iniciativa.</p>")
++notes(s);}});
+
+/* ---------- render ---------- */
+var nav=document.getElementById("nav"),main=document.getElementById("main");
+var navHtml="",mainHtml="";
+STEPS.forEach(function(st,i){
+  navHtml+='<a href="#'+st.id+'" data-s="'+st.id+'"><span class="n">'+(i+1)+'</span><span class="t">'+st.title+'</span><span class="pc" id="pc-'+st.id+'"></span></a>';
+  mainHtml+='<section class="step" id="'+st.id+'"><div class="step-head"><div class="badge">'+st.icon+'</div><div><h2>'+(i+1)+' · '+st.title+'</h2><p class="goal">'+st.goal+'</p><span class="when">'+st.when+'</span></div></div>'
+   +'<div class="mini"><div class="bar"><i id="bar-'+st.id+'"></i></div><span id="mt-'+st.id+'">0%</span></div>'
+   +st.html(st.id)+'</section>';
+});
+nav.innerHTML=navHtml; main.innerHTML=mainHtml;
+
+/* ---------- restore state ---------- */
+function applyStore(){
+  document.querySelectorAll("[data-k]").forEach(function(el){
+    var k=el.getAttribute("data-k"),v=store[k];
+    if(el.type==="checkbox"){el.checked=!!v;}
+    else if(el.getAttribute("data-cyc")){var s=v||"?";el.textContent=s;el.setAttribute("data-v",s);}
+    else{el.value=(v==null?"":v);}
+  });
+}
+applyStore();
+
+/* ---------- progress ---------- */
+function updateProgress(){
+  var tot=0,done=0;
+  STEPS.forEach(function(st){
+    var sec=document.getElementById(st.id);
+    var boxes=sec.querySelectorAll('input[type=checkbox][data-k]:not([data-nc])');
+    var d=0;boxes.forEach(function(b){if(b.checked)d++;});
+    var pct=boxes.length?Math.round(d/boxes.length*100):0;
+    tot+=boxes.length;done+=d;
+    document.getElementById("bar-"+st.id).style.width=pct+"%";
+    document.getElementById("mt-"+st.id).textContent=pct+"%";
+    document.getElementById("pc-"+st.id).textContent=pct+"%";
+    var a=nav.querySelector('[data-s="'+st.id+'"]');
+    if(a){a.classList.toggle("done",pct===100&&boxes.length>0);}
+  });
+  var p=tot?Math.round(done/tot*100):0;
+  document.getElementById("overallBar").style.width=p+"%";
+  document.getElementById("overallTxt").textContent=p+"% concluído ("+done+" de "+tot+" tarefas)";
+  var hl=0;document.querySelectorAll('input[data-k$=".t.hl0"],input[data-k*=".t.hl"]').forEach(function(b){if(b.checked)hl++;});
+  var hc=document.getElementById("hlCount");if(hc)hc.textContent=hl;
+}
+updateProgress();
+
+/* ---------- events ---------- */
+document.addEventListener("change",function(e){
+  var el=e.target;if(!el.getAttribute||!el.getAttribute("data-k"))return;
+  var k=el.getAttribute("data-k");
+  store[k]=(el.type==="checkbox")?el.checked:el.value;
+  save();updateProgress();
+});
+document.addEventListener("input",function(e){
+  var el=e.target;if(!el.getAttribute)return;var k=el.getAttribute("data-k");
+  if(!k||el.type==="checkbox")return;
+  store[k]=el.value;save();
+});
+document.addEventListener("click",function(e){
+  var el=e.target.closest?e.target.closest("button"):null;if(!el)return;
+  if(el.getAttribute("data-cyc")){
+    var cur=el.getAttribute("data-v"),nx=cur==="?"?"✓":(cur==="✓"?"✗":"?");
+    el.textContent=nx;el.setAttribute("data-v",nx);store[el.getAttribute("data-k")]=nx;save();return;
+  }
+  if(el.hasAttribute("data-f")){
+    var f=el.getAttribute("data-f");
+    document.querySelectorAll("#probChips .chip").forEach(function(c){c.classList.toggle("on",c===el);});
+    document.querySelectorAll("#probTable tbody tr").forEach(function(tr){tr.style.display=(f==="all"||tr.getAttribute("data-g")===f)?"":"none";});
+    return;
+  }
+  if(el.id==="copyBtn"){
+    var box=document.getElementById("msgBox"),ok=document.getElementById("copyOk");
+    function done(m){ok.textContent=m;setTimeout(function(){ok.textContent="";},2500);}
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(box.textContent).then(function(){done("Copiado!");},function(){done("Seleciona o texto e copia manualmente.");});}
+      else{var r=document.createRange();r.selectNodeContents(box);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);done("Texto selecionado, copia com Ctrl+C.");}
+    }catch(err){done("Seleciona o texto e copia manualmente.");}
+    return;
+  }
+  if(el.id==="resetBtn"){
+    if(confirm("Apagar todas as marcações e notas guardadas neste dispositivo?")){store={};try{localStorage.removeItem(KEY);}catch(x){}
+      document.querySelectorAll("[data-k]").forEach(function(n){if(n.type==="checkbox")n.checked=false;else if(n.getAttribute("data-cyc")){n.textContent="?";n.setAttribute("data-v","?");}else n.value="";});
+      updateProgress();}
+    return;
+  }
+  if(el.id==="themeBtn"){
+    var cur=document.documentElement.getAttribute("data-theme");
+    var dark=cur?cur==="dark":(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var nx=dark?"light":"dark";document.documentElement.setAttribute("data-theme",nx);
+    try{localStorage.setItem(KEY+"-theme",nx);}catch(x){}
+  }
+});
+try{var th=localStorage.getItem(KEY+"-theme");if(th)document.documentElement.setAttribute("data-theme",th);}catch(x){}
+
+/* active nav on scroll */
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){nav.querySelectorAll("a").forEach(function(a){a.classList.toggle("active",a.getAttribute("data-s")===en.target.id);});}});
+  },{rootMargin:"-20% 0px -70% 0px"});
+  STEPS.forEach(function(st){io.observe(document.getElementById(st.id));});
+}
+})();
+</script>
+</body>
+</html>
