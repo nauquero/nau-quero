@@ -171,7 +171,7 @@ function cell(c,sid,r,ci){
     if(c.t==="in") return '<input type="text" data-k="'+k+'" aria-label="'+esc(c.l||"campo")+'" placeholder="'+esc(c.p||"")+'"'+(c.v?' value="'+esc(c.v)+'"':'')+'>';
     if(c.t==="num") return '<input type="number" min="1" max="5" data-k="'+k+'" aria-label="'+esc(c.l||"valor")+'">';
     if(c.t==="chk") return '<label><input type="checkbox" data-k="'+k+'" '+(c.nc?'data-nc="1" ':'')+'aria-label="'+esc(c.l||"feito")+'"></label>';
-    if(c.t==="cyc") return '<button type="button" class="cyc" data-k="'+k+'" data-cyc="1" data-v="?" aria-label="Alternar estado">?</button>';
+    if(c.t==="cyc"){var cv=c.v||"?";return '<button type="button" class="cyc" data-k="'+k+'" data-cyc="1" data-v="'+cv+'" aria-label="Alternar estado">'+cv+'</button>';}
     if(c.t==="sel") return '<select data-k="'+k+'" aria-label="'+esc(c.l||"escolha")+'"><option value=""></option>'+c.o.map(function(o){return '<option>'+esc(o)+'</option>';}).join("")+'</select>';
   }
   return c;
@@ -265,29 +265,43 @@ html:function(s){
 
 /* 4 BENCHMARK */
 STEPS.push({id:"benchmark",icon:"⚖️",title:"Benchmark: apps de centros comerciais",goal:"Ver o que as outras apps fazem bem e onde o Fashion Club pode fazer diferente.",when:"Semana 1",
-html:function(s){return ''
-+callout("peach","Confirma sempre na app","<p>As descrições abaixo vêm das fontes que indicaste (páginas e redes sociais dos centros, lojas de apps). Instala pelo menos 3 apps e confirma o que fazem antes de o escreveres no case study.</p>")
+html:function(s){
+ var M=[
+ ["Cartão virtual / QR",["✓","✗","✗","✗","✗","✗"]],
+ ["Promoções e campanhas",["✓","✓","✓","✓","✓","✓"]],
+ ["Promoções exclusivas para membros",["✓","✓","✗","✓","✓","✓"]],
+ ["Calendário de eventos",["✗","✓","✗","✗","✗","✗"]],
+ ["Notícias de moda e lifestyle",["✗","✓","✗","✗","✗","✗"]],
+ ["Registo de faturas e pontos",["✗","✗","✗","✓","✓","✓"]],
+ ["Desafios / gamificação",["✗","✗","✗","✓","✗","✗"]],
+ ["Passatempos",["✗","✗","✗","✗","✓","✗"]],
+ ["Benefício de estacionamento",["✗","✓","✗","✗","✗","✗"]],
+ ["Movimentos do cartão",["✗","✗","✗","✗","✗","✗"]]
+ ];
+ var mrows=M.map(function(row,i){return [row[0]].concat(row[1].map(function(v,j){return {t:"cyc",k:"m"+i+"_"+j,v:v};}));});
+ return ''
++callout("peach","Pesquisa real, sem instalar as apps","<p>Pesquisei as fichas oficiais de cada app (loja de aplicações, site e redes sociais do centro) para preencher a matriz abaixo com dados reais. Onde não encontrei confirmação pública (sobretudo nas apps russa e brasileira), mantive a informação da fonte que já tinhas e marquei como tal. Continua a ser um bom exercício instalares 1 ou 2 destas apps mais tarde, para ver a experiência por dentro.</p>")
 +'<h3>Apps em Portugal (referências diretas)</h3>'
-+table(s,["App","O que faz (segundo as fontes)","O que aprender","Fontes"],[
-["<b>Colombo Loves Me</b><br>Centro Colombo","Acesso a campanhas, novidades e vantagens, como períodos de estacionamento gratuito ao associar um cartão bancário.","Um benefício concreto e imediato ligado ao uso da app.",'<a href="https://www.facebook.com/centrocolombo/videos/2-horas-de-parque-gr%C3%A1tis-no-colombo/1159899805843569/" target="_blank" rel="noopener">Colombo (1)</a><br><a href="https://www.facebook.com/centrocolombo/videos/pub-agora-quando-fizerem-as-vossas-compras-no-centrocolombo-podem-aproveitar-2-h/1119626629848395/" target="_blank" rel="noopener">Colombo (2)</a>'],
-["<b>ArrábidaShopping App</b>","Explorar o centro, campanhas e descontos a partir do telemóvel.","Como organizam a exploração do centro e as campanhas.",'<a href="https://www.arrabidashopping.com/app/" target="_blank" rel="noopener">arrabidashopping.com/app</a>'],
-["<b>Espaço Guimarães &amp; EU</b><br>(Klépierre)","Registar ou digitalizar faturas de compras no centro para acumular pontos e trocá-los por descontos ou ofertas; desafios e prémios ou vales.","O fluxo de registo de faturas e a gamificação (desafios).",'<a href="https://play.google.com/store/apps/details?id=com.klepierre.loyalty_program_espaco_guimaeres" target="_blank" rel="noopener">Google Play</a><br><a href="https://www.viralagenda.com/pt/events/1052531/espaco-guimaraes-apresenta-app-espaco-guimaraes-eu" target="_blank" rel="noopener">Apresentação</a>'],
-["<b>Parque Nascente &amp; EU</b><br>(Klépierre)","Programa de fidelização do mesmo grupo: faturas, desafios e prémios ou vales.","Comparar com o Espaço Guimarães: o que se repete é o padrão do grupo.",'<a href="https://parque-nascente.klepierre.pt/loyalty-landing-page" target="_blank" rel="noopener">Página do programa</a>'],
-["<b>8ª Avenida</b>","App com vantagens exclusivas, promoções, descontos e passatempos para os visitantes.","Como apresentam as vantagens exclusivas e os passatempos.",'<a href="https://www.8avenida.com/noticias/chegou-nova-app-site-8a-avenida-vantagens-appaixonantes-2/" target="_blank" rel="noopener">Notícia da app</a>'],
-["<b>LoureShopping</b>","Descontos, ofertas especiais e novidades em primeira mão.","Como comunicam as novidades e as ofertas.",'<a href="https://www.loureshopping.pt/noticias/nova-app-e-novo-site-do-loureshopping/" target="_blank" rel="noopener">Nova app e site</a>']])
++table(s,["App","O que faz (confirmado nas fontes)","O que aprender","Fontes"],[
+["<b>Colombo Loves Me</b><br>Centro Colombo","Mapa e navegação interior, diretório de mais de 340 lojas com contactos e promoções, cupões de desconto guardados na app ou enviados por email/SMS, <b>artigos de lifestyle e moda</b>, e reserva de lugares em eventos.","Confirma a ideia das notícias de moda: já existe noutra app portuguesa, associada a eventos reserváveis.",'<a href="https://apps.apple.com/app/id700969899" target="_blank" rel="noopener">App Store</a><br><a href="https://www.facebook.com/centrocolombo/videos/2-horas-de-parque-gr%C3%A1tis-no-colombo/1159899805843569/" target="_blank" rel="noopener">Colombo (1)</a><br><a href="https://www.facebook.com/centrocolombo/videos/pub-agora-quando-fizerem-as-vossas-compras-no-centrocolombo-podem-aproveitar-2-h/1119626629848395/" target="_blank" rel="noopener">Colombo (2)</a>'],
+["<b>ArrábidaShopping App</b>","Notícias do centro, navegação interior, horários e informação de lojas, e reserva de serviços diretamente na app.","O padrão de reservar serviços dentro da app, útil para o Espaço de Informações do Fashion Club.",'<a href="https://apps.apple.com/ao/app/arr%C3%A1bidashopping/id779580265" target="_blank" rel="noopener">App Store</a><br><a href="https://www.arrabidashopping.com/app/" target="_blank" rel="noopener">arrabidashopping.com/app</a>'],
+["<b>Espaço Guimarães &amp; EU</b><br>(Klépierre)","Registar ou digitalizar faturas de compras no centro para acumular pontos e trocá-los por descontos ou ofertas; desafios e prémios ou vales.","O fluxo de registo de faturas e a gamificação (desafios) — a parte que decidiste não copiar (ver etapa 5).",'<a href="https://play.google.com/store/apps/details?id=com.klepierre.loyalty_program_espaco_guimaeres" target="_blank" rel="noopener">Google Play</a><br><a href="https://www.viralagenda.com/pt/events/1052531/espaco-guimaraes-apresenta-app-espaco-guimaraes-eu" target="_blank" rel="noopener">Apresentação</a>'],
+["<b>Parque Nascente &amp; EU</b><br>(Klépierre)","Programa de fidelização do mesmo grupo: faturas, desafios e prémios ou vales.","Comparar com o Espaço Guimarães: o que se repete é o padrão do grupo (não consegui confirmar detalhes adicionais em fontes públicas).",'<a href="https://parque-nascente.klepierre.pt/loyalty-landing-page" target="_blank" rel="noopener">Página do programa</a>'],
+["<b>8ª Avenida</b>","Funciona como “personal shopper”: conteúdo filtrado pelos interesses da pessoa, ofertas e propostas exclusivas na app, recomendações personalizadas, e um <b>clube de fidelização com sistema de pontos, prémios e vantagens exclusivas</b>.","O clube de pontos confirma que a fidelização além do cartão simples é comum nestas apps; usa a mesma plataforma (Tecnologia Creativa) da LoureShopping.",'<a href="https://apps.apple.com/pt/app/8-avenida/id1546085491" target="_blank" rel="noopener">App Store</a><br><a href="https://www.8avenida.com/noticias/chegou-nova-app-site-8a-avenida-vantagens-appaixonantes-2/" target="_blank" rel="noopener">Notícia da app</a>'],
+["<b>LoureShopping</b>","A mesma proposta da 8ª Avenida (mesmo fornecedor): personal shopper, ofertas exclusivas na app, recomendações personalizadas e clube de fidelização com pontos.","Duas apps de outlets diferentes a usar a mesma plataforma — sinal de que este é um padrão comprado, não desenvolvido de raiz.",'<a href="https://apps.apple.com/us/app/id1546085660" target="_blank" rel="noopener">App Store</a><br><a href="https://www.loureshopping.pt/noticias/nova-app-e-novo-site-do-loureshopping/" target="_blank" rel="noopener">Nova app e site</a>']])
 +'<h3>Referências fora de Portugal (usar só para ideias de funcionalidades)</h3>'
-+callout("pink","Atenção","<p>Estas três não são centros portugueses, por isso não as uses como comparação direta. O <b>Shopping Park Europeu</b> parece ser brasileiro (confirmar na loja de apps) e o <b>Centro Comercial EUROPA</b> fica em Lipetsk, na Rússia, segundo a fonte. Na dúvida, prefere as apps portuguesas acima.</p>")
++callout("pink","Atenção","<p>Estas três não são centros portugueses, por isso não as uses como comparação direta. O <b>Shopping Park Europeu</b> parece ser brasileiro e o <b>Centro Comercial EUROPA</b> fica em Lipetsk, na Rússia. Não encontrei mais detalhes públicos além dos que já tinhas: mantive a tua informação original.</p>")
 +table(s,["App","O que faz (segundo as fontes)","Fontes"],[
 ["<b>Shopping Park Europeu</b>","Lojas, restaurantes, horários de cinema, compra de bilhetes, cupões exclusivos, eventos e pagamento do estacionamento.",'<a href="https://play.google.com/store/apps/details?id=br.com.mobits.mobitsplaza.argo.shoppingparkeuropeu&amp;hl=pt" target="_blank" rel="noopener">Google Play</a><br><a href="https://apps.apple.com/us/app/shopping-park-europeu/id6744340917" target="_blank" rel="noopener">App Store</a>'],
 ["<b>Centro Comercial EUROPA</b>","Fidelização: carregar recibos de compra, acumular bónus e trocá-los por descontos, brindes ou certificados.",'<a href="https://play.google.com/store/apps/details?id=com.mymall.europa&amp;hl=pt_PT" target="_blank" rel="noopener">Google Play</a>'],
 ["<b>Puerta Europa</b>","Localizador de lojas, horários, notícias, promoções e cartaz de cinema.",'<a href="https://play.google.com/store/apps/details?id=io.tc.puertaeuropa&amp;hl=es_419" target="_blank" rel="noopener">Google Play</a>']])
 +'<h3>Matriz de funcionalidades</h3>'
-+'<p>Clica em cada quadrado para alternar <b>?</b> (por confirmar), <b>✓</b> (tem) e <b>✗</b> (não tem). Preenche depois de instalares as apps.</p>'
-+table(s,["Funcionalidade","Fashion Club","Colombo","Arrábida","Guimarães &amp; EU","8ª Avenida","Loureshopping"],
- ["Cartão virtual / QR","Promoções e campanhas","Promoções exclusivas para membros","Calendário de eventos","Notícias de moda e lifestyle","Registo de faturas e pontos","Desafios / gamificação","Passatempos","Benefício de estacionamento","Movimentos do cartão"].map(function(f,i){
-   return [f].concat([0,1,2,3,4,5].map(function(j){return {t:"cyc",k:"m"+i+"_"+j};}));}))
++'<p>Preenchida com base na pesquisa acima. Continua a poder alternar cada quadrado entre <b>✓</b> (tem), <b>✗</b> (não tem) e <b>?</b> (por confirmar), se quiseres corrigir algum valor depois de instalares uma app.</p>'
++table(s,["Funcionalidade","Fashion Club","Colombo","Arrábida","Guimarães &amp; EU","8ª Avenida","Loureshopping"],mrows)
++'<h3>3 conclusões</h3>'
++plain(["<b>Copiar:</b> conteúdo de lifestyle/moda ligado a eventos reserváveis (Colombo) e um clube de vantagens exclusivas bem comunicado (8ª Avenida / LoureShopping) — sem copiar o registo de faturas.","<b>Evitar:</b> depender de faturas fotografadas para dar pontos (Guimarães &amp; EU / Parque Nascente &amp; EU) — risco de fraude que já descartaste na etapa 5.","<b>Fazer diferente:</b> o Fashion Club é a única destas apps com cartão/QR próprio e cashback automático; em vez de copiar um clube de pontos novo, o histórico de compras (etapa 5) aproveita esse QR já existente, sem pedir mais nada à pessoa."])
 +'<h3>O que fazer</h3>'
-+checklist(s,"todo",["Instalar 3 apps (por exemplo Guimarães & EU, Colombo e 8ª Avenida)","Tirar prints dos ecrãs mais interessantes (sem dados pessoais)","Preencher a matriz de funcionalidades","Escrever 3 conclusões: o que copiar, o que evitar e o que fazer diferente"])
++checklist(s,"todo",["Rever a matriz e corrigir algum valor que não coincida com a tua experiência real como membro","Opcional: instalar 1 ou 2 destas apps (por exemplo Colombo ou 8ª Avenida) para ver a experiência por dentro e confirmar os detalhes visuais","Usar as 3 conclusões no case study, já escritas acima"])
 +notes(s);}});
 
 /* 5 IDEIAS */
@@ -377,18 +391,31 @@ html:function(s){
 +table(s,["Ecrã","Objetivo","Problemas que resolve","Feito"],rw)
 +'<h3>Ecrãs das ideias novas (Fase 2, só os que escolheres)</h3>'
 +table(s,["Ecrã","Objetivo","Origem","Feito"],rx)
++'<h3>Especificação de conteúdo (para desenhares mais rápido)</h3>'
++callout("mint","Como usar isto","<p>Para cada ecrã, a ordem dos blocos abaixo é a hierarquia sugerida de cima para baixo. É um ponto de partida: ajusta ao que fizer sentido quando estiveres a desenhar.</p>")
++'<div class="cards">'
++'<div class="idea"><h4>🏠 Início</h4><dl><dt>Cabeçalho fixo</dt><dd>Mini-cartão com QR e saldo, sempre visível.</dd><dt>Promoções em destaque</dt><dd>2 a 3 cards compactos, título completo em 2 linhas, condição sempre visível.</dd><dt>Exclusivo para membros</dt><dd>Secção separada, com selo “exclusivo”.</dd><dt>Acesso rápido</dt><dd>Atalhos para Lojas e Mapa.</dd><dt>Fase 2</dt><dd>Bloco “Descobrir” com o próximo evento.</dd></dl></div>'
++'<div class="idea"><h4>💳 Cartão e saldo</h4><dl><dt>Cabeçalho</dt><dd>QR grande e saldo em destaque, alto contraste (resolve o problema 3).</dd><dt>O que posso fazer com o meu saldo</dt><dd>Bloco fixo, sempre visível, não escondido no “i”.</dd><dt>Movimentos</dt><dd>Lista cronológica: data, loja, valor.</dd><dt>Fase 2</dt><dd>Secção de desafios e progresso, no fim do ecrã.</dd></dl></div>'
++'<div class="idea"><h4>🎁 Promoção e detalhe da oferta</h4><dl><dt>Título</dt><dd>Completo, em 2 linhas, sem cortar.</dd><dt>Condição</dt><dd>No topo, antes da imagem (ex.: “Gasta 150€”).</dd><dt>Imagem</dt><dd>Abaixo da condição, não por cima do texto.</dd><dt>Botão de ação</dt><dd>Texto claro (ex.: “Resgatar no Espaço de Informações”), não “UTILIZAR”.</dd><dt>Rodapé</dt><dd>Validade e exclusões.</dd></dl></div>'
++'<div class="idea"><h4>🧾 O que o cartão cobre</h4><dl><dt>Bloco único</dt><dd>Percentagem, onde descontar e exceções no mesmo sítio — não repetido com palavras diferentes em 3 ecrãs.</dd><dt>Exceções</dt><dd>Em destaque, não no fim do texto.</dd><dt>Link</dt><dd>“Mais perguntas” para o FAQ/Termos.</dd></dl></div>'
++'<div class="idea"><h4>🛍️ Lojas e detalhe da loja</h4><dl><dt>Lista</dt><dd>Categoria, zona e selo “aceita o cartão” em cada card.</dd><dt>Detalhe</dt><dd>Horário e contacto no topo, não escondidos num bloco de texto.</dd><dt>Atalho</dt><dd>Botão “ver no mapa”.</dd><dt>Exceções do cartão</dt><dd>Em destaque, mantendo o que já funciona bem hoje.</dd></dl></div>'
++'<div class="idea"><h4>🗺️ Mapa</h4><dl><dt>Mapa</dt><dd>Ocupa a maior parte do ecrã, não cerca de 1/3.</dd><dt>Filtros</dt><dd>“Aceita o cartão”, categoria de loja, serviços.</dd><dt>Legenda</dt><dd>Nomes visíveis nos pontos, sem texto cortado.</dd><dt>Pesquisa</dt><dd>No topo, sempre acessível.</dd></dl></div>'
++'<div class="idea"><h4>📅 Descobrir (Fase 2)</h4><dl><dt>Calendário</dt><dd>Eventos do mês, com data e local no outlet.</dd><dt>Notícias de moda</dt><dd>Tendência + “disponível na loja X”, com link direto para a loja.</dd></dl></div>'
++'<div class="idea"><h4>🎯 Desafios (dentro do Cartão, Fase 2)</h4><dl><dt>Lista</dt><dd>2 a 3 desafios simples (ex.: “visita 3 lojas este mês”).</dd><dt>Progresso</dt><dd>Barra ou selo, sem mecânicas de sorteio.</dd></dl></div>'
++'<div class="idea"><h4>🧺 Histórico de compras (dentro do Cartão, Fase 2)</h4><dl><dt>Lista</dt><dd>Data, loja e saldo ganho em cada visita — vem do mesmo toque do QR, sem fatura.</dd></dl></div>'
++'</div>'
 +'<h3>O que fazer</h3>'
-+checklist(s,"todo",["Desenhar o user flow de cada tarefa de teste","Esboçar 3 versões rápidas de cada ecrã e escolher a melhor","Fazer os wireframes em Figma, com a barra de navegação como componente","Escrever 1 ou 2 linhas sobre cada decisão, ligada a um problema da auditoria"])
++checklist(s,"todo",["Desenhar o user flow de cada tarefa de teste","Esboçar 3 versões rápidas de cada ecrã e escolher a melhor, usando a especificação de conteúdo acima como ponto de partida","Fazer os wireframes em Figma, com a barra de navegação como componente","Escrever 1 ou 2 linhas sobre cada decisão, ligada a um problema da auditoria"])
 +notes(s);}});
 
 /* 8 TESTE */
 STEPS.push({id:"teste",icon:"🧪",title:"Protótipo e teste rápido",goal:"Provar com 3 pessoas que o design funciona. Um teste curto e honesto vale mais do que nenhum.",when:"Semana 3",
 html:function(s){
- var T=["T1 · Mostrar o cartão e ver o saldo","T2 · Ver os movimentos","T3 · Condição da oferta","T4 · Exceções do cartão","T5 · Encontrar loja no mapa","T6 · Encontrar um evento (opcional)","T7 · Registar uma fatura (opcional)"];
+ var T=["T1 · Mostrar o cartão e ver o saldo","T2 · Ver os movimentos","T3 · Condição da oferta","T4 · Exceções do cartão","T5 · Encontrar loja no mapa","T6 · Encontrar um evento (opcional)","T7 · Ver o histórico de compras (opcional)"];
  var rows=T.map(function(t,i){return [t,{t:"in",k:"s"+i,l:"Sucesso",p:"n/3"},{t:"in",k:"t"+i,l:"Tempo",p:"seg."},{t:"in",k:"q"+i,l:"Notas",p:"Notas e citações"}];});
  return ''
 +'<h3>Tarefas</h3>'
-+plain(["<b>T1.</b> “Estás na caixa e queres usar o teu cartão. Mostra-me como o apresentas e quanto saldo tens.”","<b>T2.</b> “Queres ver o que fizeste com o cartão nas últimas visitas. Descobre.”","<b>T3.</b> “Quanto precisas de gastar para receber a oferta do livro e onde a levantas?”","<b>T4.</b> “Queres comprar uns ténis Adidas Samba com o teu saldo. Consegues? Como sabes?”","<b>T5.</b> “Já estás no outlet e queres encontrar a loja X. Mostra-me como chegavas lá.”","<b>T6 (opcional).</b> “Descobre se há algum evento este mês.”","<b>T7 (opcional).</b> “Acabaste de comprar numa loja e queres ganhar pontos com a fatura. Mostra-me como.”"])
++plain(["<b>T1.</b> “Estás na caixa e queres usar o teu cartão. Mostra-me como o apresentas e quanto saldo tens.”","<b>T2.</b> “Queres ver o que fizeste com o cartão nas últimas visitas. Descobre.”","<b>T3.</b> “Quanto precisas de gastar para receber a oferta do livro e onde a levantas?”","<b>T4.</b> “Queres comprar uns ténis Adidas Samba com o teu saldo. Consegues? Como sabes?”","<b>T5.</b> “Já estás no outlet e queres encontrar a loja X. Mostra-me como chegavas lá.”","<b>T6 (opcional).</b> “Descobre se há algum evento este mês.”","<b>T7 (opcional).</b> “Queres ver o que já compraste no outlet com o teu cartão. Mostra-me como.”"])
 +callout("pink","Como conduzir","<p>Diz que estás a testar a app, não a pessoa, e pede para pensar em voz alta. Não ajudes nem expliques. Se pedirem ajuda, devolve: “O que farias se estivesses sozinha?”. Regista se concluiu (sim, com ajuda, não), o tempo, os toques e uma citação. Opcional: faz as mesmas tarefas na app atual para teres um “Antes” real.</p>")
 +'<h3>Resultados</h3>'
 +table(s,["Tarefa","Sucesso (n/3)","Tempo médio","Notas e citações"],rows)
@@ -455,7 +482,7 @@ function applyStore(){
   document.querySelectorAll("[data-k]").forEach(function(el){
     var k=el.getAttribute("data-k"),v=store[k];
     if(el.type==="checkbox"){el.checked=!!v;}
-    else if(el.getAttribute("data-cyc")){var s=v||"?";el.textContent=s;el.setAttribute("data-v",s);}
+    else if(el.getAttribute("data-cyc")){ if(v!=null){ el.textContent=v; el.setAttribute("data-v",v); } }
     else{ if(v!=null){ el.value=v; } }
   });
 }
