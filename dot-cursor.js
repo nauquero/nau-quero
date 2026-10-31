@@ -26,7 +26,7 @@ export function initDotCursor() {
   const leave = () => { dot.style.opacity = '0'; };
   const loop = () => {
     if (!alive) return;
-    cx += (x - cx) * 0.2; cy += (y - cy) * 0.2;
+    cx += (x - cx) * 0.38; cy += (y - cy) * 0.38;
     dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
     raf = requestAnimationFrame(loop);
   };
