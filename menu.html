@@ -41,13 +41,16 @@
   @font-face { font-family:'The Seasons'; src:url('./fonts/TheSeasons-Italic.otf') format('opentype'); font-weight:400; font-style:italic; font-display:swap; unicode-range:U+0000-0025, U+0027-10FFFF; }
   @font-face { font-family:'The Seasons'; src:url('./fonts/TheSeasons-Bold.otf') format('opentype'); font-weight:500 700; font-style:normal; font-display:swap; unicode-range:U+0000-0025, U+0027-10FFFF; }
   @font-face { font-family:'The Seasons'; src:url('./fonts/TheSeasons-BoldItalic.otf') format('opentype'); font-weight:500 700; font-style:italic; font-display:swap; unicode-range:U+0000-0025, U+0027-10FFFF; }
+  @font-face { font-family:'Glacial Indifference'; src:url('./fonts/GlacialIndifference-Regular.woff2') format('woff2'), url('./fonts/GlacialIndifference-Regular.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Glacial Indifference'; src:url('./fonts/GlacialIndifference-Italic.woff2') format('woff2'), url('./fonts/GlacialIndifference-Italic.woff') format('woff'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face { font-family:'Glacial Indifference'; src:url('./fonts/GlacialIndifference-Bold.woff2') format('woff2'), url('./fonts/GlacialIndifference-Bold.woff') format('woff'); font-weight:700; font-style:normal; font-display:swap; }
 
 
 
 
   @font-face { font-family:'Bimbo'; src:url('./fonts/BimboFinetip.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
   html { scroll-behavior: smooth; }
-  body { margin:0; background:#F3E9D2; cursor:none; }
+  body { margin:0; background:#F3E9D2; cursor:none; font-family:'Glacial Indifference',Poppins,sans-serif; }
   a { color:#690A20; }
   a:hover { color:#391D01; }
   @keyframes nqMarquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
@@ -70,7 +73,7 @@
 </style>
 <script src="./ui-sound.js"></script>
 </helmet>
-<div id="nq-top" style="font-family:'Poppins',sans-serif; background:#F3E9D2; color:#391D01; overflow-x:hidden;">
+<div id="nq-top" style="font-family:'Glacial Indifference',Poppins,sans-serif; background:#F3E9D2; color:#391D01; overflow-x:hidden;">
   <div style="position:fixed; inset:0; z-index:9998; pointer-events:none; opacity:0.07; background-image:url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.6%27%20numOctaves%3D%272%27%20seed%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.96%200%200%200%200%200.88%200%200%200%200%200.72%2012%200%200%200%20-7.4399999999999995%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;), url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.4%27%20numOctaves%3D%272%27%20seed%3D%2711%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.08%200%200%200%200%200.03%200%200%200%200%200%2012%200%200%200%20-7.5600000000000005%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;), url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%273.5%27%20numOctaves%3D%272%27%20seed%3D%277%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.9%200%200%200%200%200.78%200%200%200%200%200.58%208%200%200%200%20-4.8%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;); background-size:300px 300px, 340px 340px, 260px 260px;"></div>
   <div style="position:fixed; inset:0; z-index:9; pointer-events:none; opacity:0.32; mix-blend-mode:multiply; background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27180%27 height=%27180%27 filter=%27url(%23n)%27/%3E%3C/svg%3E'); background-size:180px 180px;"></div>
 
@@ -257,10 +260,10 @@ const LAYERS = [
     chips: ['Diagnóstico', 'Posicionamento', 'Plano Estratégico', 'Proposta de valor', 'Persona', 'Análise competitiva', 'Tom de voz', 'Narrativa', 'Roadmap'],
     delivers: ['3 sessões de acompanhamento', 'Documento entregável para análise', 'Dúvidas à distância de um clique'],
     sticker: 'Sem base, o gelado cai. Sem estratégia, a marca também.' },
-  { num: '03', layer: 'Topping', name: 'Redes Sociais & Conteúdo', line: 'O extra que faz toda a diferença.', bg: '#391D01', ink: '#F3E9D2', accent: '#F5C232', glow: '0 0 46px 12px rgba(245,194,50,0.5)', stickerBg: '#F3E9D2', duration: '4 semanas', price: '250★', priceNote: 'por mês',
-    desc: 'Conteúdo, tom de voz e calendário editorial para apareceres onde importa.',
-    expect: 'Tu defines a tua rotina e disponibilidade; nós construímos o tom de voz e o calendário editorial à tua medida.',
-    chips: ['Diagnóstico e posicionamento', 'Estratégia de conteúdo', 'Direção criativa', 'Tom de voz', 'Calendário editorial', 'Análise de concorrência', 'Plano de crescimento'],
+  { num: '03', layer: 'Topping', name: 'Presença Digital', line: 'O extra que faz toda a diferença.', bg: '#391D01', ink: '#F3E9D2', accent: '#F5C232', glow: '0 0 46px 12px rgba(245,194,50,0.5)', stickerBg: '#F3E9D2', duration: '4 semanas', price: '250★', priceNote: 'por mês',
+    desc: 'Websites, interfaces e conteúdo pensados para quem navega — da primeira impressão ao clique que converte.',
+    expect: 'Tu defines a tua rotina e disponibilidade; nós desenhamos a experiência digital — interfaces, conteúdo e tom de voz — à tua medida.',
+    chips: ['UI/UX', 'Design de interface', 'Wireframes', 'Protótipos', 'Estratégia de conteúdo', 'Direção criativa', 'Tom de voz', 'Calendário editorial', 'Análise de concorrência'],
     delivers: ['Sessão semanal', 'Documento entregável para análise', 'Dúvidas à distância de um clique'],
     sticker: 'O topping não é decoração. É a razão pela qual voltam.' },
 ];
@@ -282,7 +285,7 @@ const STEPS = [
 const FAQS = [
   { q: 'Trabalhas só com marcas portuguesas?', a: 'Não. Trabalho sobretudo com marcas portuguesas, porque é onde conheço melhor o mercado, mas trabalho com qualquer marca que fale português, espanhol ou inglês — e todo o processo funciona à distância.' },
   { q: 'Posso contratar apenas um serviço?', a: 'Podes. Cada camada funciona sozinha: há marcas que só precisam de identidade visual, outras só de estratégia. Digo-te sempre com honestidade se acho que falta alguma base.' },
-  { q: 'E posso combinar serviços?', a: 'É o mais comum. Estratégia e identidade juntas são a combinação que dá resultados mais rápidos, e o topping das redes sociais mantém a marca viva depois do lançamento.' },
+  { q: 'E posso combinar serviços?', a: 'É o mais comum. Estratégia e identidade juntas são a combinação que dá resultados mais rápidos, e o topping da presença digital mantém a marca viva depois do lançamento.' },
   { q: 'Trabalham com templates ou é tudo personalizado?', a: 'Tudo personalizado. Nada aqui sai de uma biblioteca de modelos: cada projeto começa com perguntas sobre o teu negócio e as respostas ditam o resultado.' },
   { q: 'Quanto tempo demora um projeto?', a: 'Uma identidade visual leva em média quatro a seis semanas; uma estratégia completa, seis a oito. O calendário fica definido na proposta, com todas as etapas e datas de entrega.' },
   { q: 'Como é o primeiro contacto?', a: 'Montas a tua receita no Build Your Gelato ou escreves-me por email, e agendamos uma conversa de 30 a 45 minutos, sem compromisso. Depois envio uma proposta com âmbito, prazos e valores.' },
