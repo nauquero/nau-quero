@@ -246,11 +246,11 @@ const SERVICES = [
 ];
 
 const PROJECTS = [
-  { num: '01', name: 'Raízes Frescas', sector: 'Mercearia local', slot: 'home-proj-01', ph: 'imagem do projeto', bg: '#391D01', accent: '#ACC048', glow: '0 0 46px 12px rgba(172,192,72,0.5)',
+  { num: '01', name: 'Raízes Frescas', sector: 'Mercearia local', slot: 'home-proj-01', ph: 'imagem do projeto', bg: '#391D01', accent: '#D2E8FF', glow: '0 0 24px 4px rgba(210,232,255,0.18)',
     teaser: 'Estratégia, identidade, direção criativa e aplicações para uma mercearia de bairro.' },
-  { num: '02', name: 'Casa Gelo', sector: 'Gelataria', slot: 'home-proj-02', ph: 'imagem do projeto', bg: '#391D01', accent: '#D2E8FF', glow: '0 0 46px 12px rgba(210,232,255,0.5)',
+  { num: '02', name: 'Casa Gelo', sector: 'Gelataria', slot: 'home-proj-02', ph: 'imagem do projeto', bg: '#391D01', accent: '#D2E8FF', glow: '0 0 24px 4px rgba(210,232,255,0.18)',
     teaser: 'Uma gelataria com nome próprio e uma linguagem visual que sabe a verão inteiro.' },
-  { num: '03', name: 'Vinte Valores', sector: 'Educação', slot: 'home-proj-03', ph: 'imagem do projeto', bg: '#391D01', accent: '#F5C232', glow: '0 0 46px 12px rgba(245,194,50,0.5)',
+  { num: '03', name: 'Vinte Valores', sector: 'Educação', slot: 'home-proj-03', ph: 'imagem do projeto', bg: '#391D01', accent: '#D2E8FF', glow: '0 0 24px 4px rgba(210,232,255,0.18)',
     teaser: 'Posicionamento e identidade para um projeto educativo que fala com pais e alunos.' },
 ];
 
@@ -274,7 +274,7 @@ class Component extends DCLogic {
       bg: d.CAT_BG[p.category] || '#391D01',
       ink: d.CAT_INK[p.category] || '#F3E9D2',
       accent: d.CAT_ACCENT[p.category] || '#F3E9D2',
-      glow: '0 0 46px 12px rgba(' + (d.CAT_GLOW_RGB[p.category] || '105,10,32') + ',0.5)',
+      glow: '0 0 24px 4px rgba(' + (d.CAT_GLOW_RGB[p.category] || '210,232,255') + ',0.18)',
       slot: 'home-feat-' + (i + 1),
       ph: 'imagem de ' + p.name,
       photoSrc: p.photo || '',
