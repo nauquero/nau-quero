@@ -103,13 +103,13 @@ export function initMaze(host, opts = {}) {
       walls[cur] &= ~d; walls[nxt] &= ~OPP[d];
       seen[nxt] = true; stack.push(nxt);
     }
-    // mais simples: abre ~22% das paredes interiores (cria atalhos e menos becos sem saída)
+    // mais simples: abre ~35% das paredes interiores (cria atalhos e menos becos sem saída)
     for (let i = 0; i < cols * rows; i++) {
       if (!active[i]) continue;
       const cx = i % cols, cy = Math.floor(i / cols);
       [E, S].forEach((d) => {
         const nx = cx + DX[d], ny = cy + DY[d];
-        if ((walls[i] & d) && inside(nx, ny) && Math.random() < 0.22) { walls[i] &= ~d; walls[idx(nx, ny)] &= ~OPP[d]; }
+        if ((walls[i] & d) && inside(nx, ny) && Math.random() < 0.35) { walls[i] &= ~d; walls[idx(nx, ny)] &= ~OPP[d]; }
       });
     }
     // fim: célula mais distante do início
@@ -138,10 +138,10 @@ export function initMaze(host, opts = {}) {
     canvas.width = Math.round(W_ * dpr);
     canvas.height = Math.round(H_ * dpr);
     const small = W_ < 600;
-    const nCell = small ? 30 : 34;
-    const maxW = small ? 330 : 520, maxH = small ? 420 : 400;
-    const nc = Math.max(5, Math.floor(Math.min(W_ - 8, maxW) / nCell));
-    const nr = Math.max(5, Math.floor(Math.min(H_ - 8, maxH) / nCell));
+    const nCell = small ? 42 : 46;
+    const maxW = small ? 252 : 368, maxH = small ? 294 : 276;
+    const nc = Math.max(4, Math.floor(Math.min(W_ - 8, maxW) / nCell));
+    const nr = Math.max(4, Math.floor(Math.min(H_ - 8, maxH) / nCell));
     const nKey = [nc, nr, nCell].join('|');
     const moved = nKey !== key;
     key = nKey; cols = nc; rows = nr; cell = nCell;
