@@ -202,8 +202,8 @@
     <div style="position:relative; overflow:hidden; margin:0 -5%; padding:4px 0 2px;">
       <div style="display:flex; gap:16px; width:max-content; transition:transform .5s cubic-bezier(.4,0,.2,1); transform:{{ skillsShift }};">
         <sc-for list="{{ skills }}" as="sk" hint-placeholder-count="8">
-          <div style="position:relative; overflow:visible; flex:0 0 auto; width:280px; min-height:150px; height:auto; background:{{ sk.bg }}; border:1px solid rgba(57,29,1,0.2); border-radius:16px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; gap:12px; opacity:{{ sk.op }}; transform:{{ sk.scale }}; box-shadow:{{ sk.shadow }}; transition:opacity .5s ease, transform .5s cubic-bezier(.4,0,.2,1), background .5s ease, box-shadow .5s ease;">
-            <span style="position:absolute; bottom:-8px; right:8px; font-family:'Petrona',Georgia,serif; font-style:italic; font-size:44.2px; line-height:1; color:#690A20; opacity:0.13; pointer-events:none; z-index:0;">{{ sk.num }}</span>
+          <div style="position:relative; overflow:visible; flex:0 0 auto; width:280px; min-height:96px; height:auto; background:{{ sk.bg }}; border:1px solid rgba(57,29,1,0.2); border-radius:16px; padding:13px 16px; display:flex; flex-direction:column; justify-content:space-between; gap:8px; opacity:{{ sk.op }}; transform:{{ sk.scale }}; box-shadow:{{ sk.shadow }}; transition:opacity .5s ease, transform .5s cubic-bezier(.4,0,.2,1), background .5s ease, box-shadow .5s ease;">
+            <span style="position:absolute; bottom:-8px; right:8px; font-family:'Petrona',Georgia,serif; font-style:italic; font-size:34px; line-height:1; color:#690A20; opacity:0.13; pointer-events:none; z-index:0;">{{ sk.num }}</span>
             <p style="position:relative; font-family:'Poppins',sans-serif; font-size:12.8px; line-height:1.35; margin:0; color:#391D01; z-index:1;">{{ sk.label }}</p>
             <div style="position:relative; display:flex; gap:6px; flex-wrap:wrap; padding-right:44px; z-index:1;">
               <sc-for list="{{ sk.tools }}" as="tl" hint-placeholder-count="2">
@@ -218,21 +218,6 @@
       <button type="button" onClick="{{ skillsPrev }}" aria-label="Anterior" style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(243,233,210,0.3); background:transparent; color:#F3E9D2; cursor:pointer; font-size:11.9px; display:flex; align-items:center; justify-content:center; transition:background .25s ease, transform .25s ease;" style-hover="background:#ACC048; color:#391D01; transform:scale(1.08);">←</button>
       <span style="font-family:'Poppins',sans-serif; font-size:10.2px; letter-spacing:0.1em; color:#F3E9D2; opacity:0.75; min-width:56px; text-align:center;">{{ skillsCount }}</span>
       <button type="button" onClick="{{ skillsNext }}" aria-label="Seguinte" style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(243,233,210,0.3); background:transparent; color:#F3E9D2; cursor:pointer; font-size:11.9px; display:flex; align-items:center; justify-content:center; transition:background .25s ease, transform .25s ease;" style-hover="background:#ACC048; color:#391D01; transform:scale(1.08);">→</button>
-    </div>
-  </section>
-
-  <section style="padding:clamp(28px,3.2vw,46px) 5%;">
-    <p style="font-family:'Petrona',Georgia,serif; font-style:italic; font-size:16px; letter-spacing:0.01em; margin:0 0 14px; opacity:0.8;">O que eu queria ser</p>
-    <div style="margin:0 -5%; overflow:hidden; border-top:1px solid rgba(57,29,1,0.28); border-bottom:1px solid rgba(57,29,1,0.28);">
-      <div style="display:flex; width:max-content; animation:nqMarquee 130s linear infinite;">
-        <sc-for list="{{ personasLoop }}" as="pn" hint-placeholder-count="18">
-          <span style="display:flex; align-items:baseline; gap:10px; padding:16px clamp(12px,1.4vw,20px); white-space:nowrap;">
-            <span style="font-family:'The Seasons','Petrona',Georgia,serif; font-size:clamp(14.4px,1.44vw,19.6px); line-height:1;">{{ pn.label }}</span>
-            <span style="font-family:'Poppins',sans-serif; font-size:10.6px; opacity:0.7;">{{ pn.quip }}</span>
-            <span style="color:#690A20; font-size:10.2px;">✦</span>
-          </span>
-        </sc-for>
-      </div>
     </div>
   </section>
 
@@ -373,18 +358,6 @@ const LANGUAGES = [
   { name: 'Inglês', hello: "Hello, I'm Mariana!", lang: 'en-GB' },
 ];
 
-const PERSONAS = [
-  { label: 'Florista', quip: 'A minha avó faz arranjos lindíssimos — eu jurava que também conseguia.' },
-  { label: 'Cabeleireira', quip: 'Sempre esquisita nos cabeleireiros. Acho que faria melhor.' },
-  { label: 'Médica', quip: 'Queria ser pediatra, mas o meu avô disse que era difícil entender crianças — como eu, na altura.' },
-  { label: 'Farmacêutica', quip: 'Tinha muitas caixas de medicamentos vazias, e tinha que me divertir com alguma coisa.' },
-  { label: 'Gestora de banco', quip: 'Adorava o aspeto clean e a ideia de trabalhar com dinheiro.' },
-  { label: 'Professora', quip: 'Diziam que tinha jeito para explicar — e tenho vários professores na família.' },
-  { label: 'Designer de Moda', quip: 'Ainda acho que tinha potencial. Afinal, nada do que imagino, encontro.' },
-  { label: 'Arquiteta', quip: 'Adorava trabalhos de EVT — divertia-me sempre a planear construções.' },
-  { label: 'Pasteleira', quip: 'Ainda posso vir a ser. Mas aviso já: os meus bolos têm pouco açúcar.' },
-];
-
 const FACTS = [
   'Consigo escrever ao contrário e em espelho com total facilidade',
   'Em todas as fotos do meu Cartão de Cidadão estou a rir (e não sorrir)',
@@ -452,7 +425,6 @@ class Component extends DCLogic {
       skillsPrev: () => this.setState(st => ({ skillAt: (st.skillAt - 1 + SKILLS.length) % SKILLS.length })),
       skillsNext: () => this.setState(st => ({ skillAt: (st.skillAt + 1) % SKILLS.length })),
       languages: LANGUAGES.map(l => ({ ...l, play: () => this.speak(l) })),
-      personasLoop: [...PERSONAS, ...PERSONAS],
       facts: FACTS.map((f, i) => {
         const active = i === this.state.factAt;
         return { num: String(i + 1).padStart(2, '0'),
