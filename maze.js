@@ -163,6 +163,15 @@ export function initMaze(host, opts = {}) {
       walls[cur] &= ~d; walls[nxt] &= ~OPP[d];
       seen[nxt] = true; stack.push(nxt);
     }
+    // mais simples: abre ~22% das paredes interiores (cria atalhos e menos becos sem saída)
+    for (let i = 0; i < cols * rows; i++) {
+      if (!active[i]) continue;
+      const cx = i % cols, cy = Math.floor(i / cols);
+      [E, S].forEach((d) => {
+        const nx = cx + DX[d], ny = cy + DY[d];
+        if ((walls[i] & d) && inside(nx, ny) && Math.random() < 0.22) { walls[i] &= ~d; walls[idx(nx, ny)] &= ~OPP[d]; }
+      });
+    }
     // fim: célula mais distante do início
     const dist = new Array(cols * rows).fill(-1);
     dist[startCell] = 0;
@@ -191,7 +200,7 @@ export function initMaze(host, opts = {}) {
     const small = W_ < 600;
     const maxR = small ? 150 : 170;
     const nR = Math.max(90, Math.min(maxR, (W_ - 12) / (2 * Math.sin(Math.PI * 2 / 5)), (H_ - 12) / (1 + Math.cos(Math.PI / 5))));
-    const nCell = small ? 20 : 24;
+    const nCell = small ? 28 : 32;
     const bh = nR * (1 + Math.cos(Math.PI / 5));
     const cxPx = W_ / 2;
     const cyPx = (H_ - bh) / 2 + nR;                   // estrela centrada na vertical

@@ -24,14 +24,21 @@
   a:hover { color:#D5DB89; }
   @keyframes nqNudge { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
   @keyframes nqSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
-  @keyframes nqFloat { 0%,100% { transform:translateY(0) rotate(-1deg); } 50% { transform:translateY(-7px) rotate(1deg); } }
+  @keyframes nqJump {
+    0%   { transform:translateY(0) scale(1,1); animation-timing-function:ease-out; }
+    12%  { transform:translateY(0) scale(1.1,0.86); animation-timing-function:ease-out; }
+    40%  { transform:translateY(-26px) scale(0.94,1.1); animation-timing-function:ease-in; }
+    68%  { transform:translateY(0) scale(1.08,0.9); animation-timing-function:ease-out; }
+    80%  { transform:translateY(-7px) scale(0.99,1.02); animation-timing-function:ease-in; }
+    90%  { transform:translateY(0) scale(1.03,0.97); }
+    100% { transform:translateY(0) scale(1,1); }
+  }
   @keyframes nqGlow { 0%,100% { box-shadow:0 10px 30px rgba(0,0,0,0.35), 0 0 0 6px rgba(243,233,210,0.18), 0 0 24px 2px rgba(210,232,255,0.35); } 50% { box-shadow:0 14px 34px rgba(0,0,0,0.35), 0 0 0 13px rgba(243,233,210,0.06), 0 0 46px 10px rgba(210,232,255,0.6); } }
   @keyframes nqShine { 0%,55% { left:-70%; } 100% { left:140%; } }
   @keyframes nqTwinkle { 0%,100% { opacity:0; transform:scale(0.2) rotate(0deg); } 50% { opacity:1; transform:scale(1) rotate(90deg); } }
-  .nq-enter { position:relative; overflow:hidden; animation:nqFloat 2.8s ease-in-out infinite, nqGlow 2.2s ease-in-out infinite; transition:transform .25s ease, background .25s ease; }
+  .nq-enter { position:relative; overflow:hidden; animation:nqJump 1.6s infinite, nqGlow 2.2s ease-in-out infinite; transform-origin:50% 100%; transition:background .25s ease; }
   .nq-enter::after { content:''; position:absolute; top:0; left:-70%; width:40%; height:100%; background:linear-gradient(100deg, transparent, rgba(255,255,255,0.85), transparent); transform:skewX(-20deg); animation:nqShine 3s ease-in-out infinite; pointer-events:none; }
-  .nq-enter:hover { background:#FFFFFF !important; transform:scale(1.06); }
-  .nq-enter:active { transform:scale(0.96); }
+  .nq-enter:hover { background:#FFFFFF !important; }
   .nq-spark { position:absolute; color:#D2E8FF; font-size:18px; line-height:1; pointer-events:none; animation:nqTwinkle 1.8s ease-in-out infinite; }
 </style>
 </helmet>
@@ -59,7 +66,7 @@
     </div>
 
     <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
-      <h1 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(22px,4.76vw,71.4px); line-height:0.92; letter-spacing:-0.04em; margin:0; padding:0.3em 0; white-space:nowrap;">We don<span style="font-family:'Petrona',Georgia,serif;">’</span>t do <span style="font-style:italic; color:#D2E8FF;">vanilla.</span></h1>
+      <h1 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(26px,8.6vw,128px); line-height:0.92; letter-spacing:-0.04em; margin:0; padding:0.3em 0; white-space:nowrap;">We don<span style="font-family:'Petrona',Georgia,serif;">’</span>t do <span style="font-style:italic; color:#D2E8FF;">vanilla.</span></h1>
     </div>
   </div>
 </div>
