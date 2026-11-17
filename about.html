@@ -167,7 +167,7 @@
           </sc-for>
         </div>
         <div style="position:relative; overflow:hidden; background:#391D01; color:#F3E9D2; border-radius:14px; padding:14px 16px; margin-bottom:14px;">
-          <span style="position:absolute; top:-10px; right:-4px; font-size:66px; color:#ACC048; opacity:0.14; line-height:1; pointer-events:none;">★</span>
+          <span style="position:absolute; top:-10px; right:-4px; font-size:66px; color:#D2E8FF; opacity:0.16; line-height:1; pointer-events:none;">★</span>
           <sc-for list="{{ statement }}" as="st" hint-placeholder-count="3">
             <p style="position:relative; font-family:'The Seasons','Petrona',Georgia,serif; font-style:italic; font-size:clamp(11.9px,1.2vw,13.8px); line-height:1.4; margin:0 0 5px;">{{ st }}</p>
           </sc-for>
@@ -379,7 +379,7 @@ const SUMMARY = [
   'A migrar para UX research, a ganhar experiência com um case study de investigação e projetos freelance (Nau Quero)',
   'À procura de uma posição de entrada em UX research, consumer insights ou design orientado por investigação, no Porto (híbrido ou remoto)',
 ];
-const SUMMARY_COLORS = ['#690A20', '#ACC048', '#C69A62', '#E85D6B', '#690A20'];
+const SUMMARY_COLORS = ['#690A20'];
 
 const STATEMENT = [
   '☆ Pensadora criativa e estratégica, interessada no cruzamento entre marketing, design, tecnologia e experiência do utilizador.',
@@ -412,11 +412,11 @@ const CERTIFICATIONS = [
   { label: 'Business for All', org: 'Harvard Business School', year: '2023' },
   { label: 'Curso Intensivo de Inglês B2', org: 'Wall Street Institute', year: '2023' },
 ];
-const CERT_BG = ['#ACC048', '#F3E9D2', '#E85D6B', '#D2E8FF'];
-const CERT_INK = ['#391D01', '#391D01', '#F3E9D2', '#391D01'];
-const CERT_ROT = ['-1.4deg', '1.1deg', '-1deg', '1.3deg'];
-const CARD_ACCENT = ['#ACC048', '#D2E8FF', '#F5C232', '#E85D6B'];
-const CARD_GLOW_RGB = ['172,192,72', '210,232,255', '245,194,50', '232,93,107'];
+const CERT_BG = ['#F3E9D2', '#D2E8FF'];
+const CERT_INK = ['#391D01', '#391D01'];
+const CERT_ROT = ['-1.2deg', '1.1deg'];
+const CARD_BG = ['#391D01', '#690A20'];
+const CARD_GLOW_RGB = ['210,232,255', '210,232,255'];
 
 const SKILLS = [
   { label: 'Estratégia e Posicionamento de Marca', tools: ['Affinity', 'Claude Design', 'Canva'] },
@@ -496,10 +496,10 @@ class Component extends DCLogic {
       summary: SUMMARY.map((s, i) => ({ text: s, color: SUMMARY_COLORS[i % SUMMARY_COLORS.length] })),
       statement: STATEMENT,
       experience: EXPERIENCE.map((e, i) => ({ ...e, hasLink: !!e.hasLink, link: e.link || '', linkLabel: e.linkLabel || '',
-        bg: '#391D01', ink: '#F3E9D2', accent: CARD_ACCENT[i % CARD_ACCENT.length],
-        glow: '0 0 36px 9px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.35)' })),
-      education: EDUCATION.map((ed, i) => ({ ...ed, bg: '#391D01', ink: '#F3E9D2', accent: CARD_ACCENT[i % CARD_ACCENT.length],
-        glow: '0 0 36px 9px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.35)' })),
+        bg: CARD_BG[i % CARD_BG.length], ink: '#F3E9D2', accent: '#D2E8FF',
+        glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
+      education: EDUCATION.map((ed, i) => ({ ...ed, bg: CARD_BG[i % CARD_BG.length], ink: '#F3E9D2', accent: '#D2E8FF',
+        glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
       certifications: CERTIFICATIONS.map((c, i) => ({ ...c, bg: CERT_BG[i % CERT_BG.length], ink: CERT_INK[i % CERT_INK.length], rot: 'rotate(' + CERT_ROT[i % CERT_ROT.length] + ')' })),
       skills: SKILLS.map((k, i) => {
         const active = i === this.state.skillAt;
