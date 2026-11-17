@@ -91,17 +91,19 @@ export function initMaze(host, opts = {}) {
     // recursive backtracker só nas células ativas
     walls = new Array(cols * rows).fill(N | E | S | W);
     const seen = new Array(cols * rows).fill(false);
-    const stack = [startCell];
+    const list = [startCell];
     seen[startCell] = true;
-    while (stack.length) {
-      const cur = stack[stack.length - 1];
+    while (list.length) {
+      // 60% escolhe uma célula qualquer (ramifica muito), 40% a mais recente (corredores)
+      const pick = Math.random() < 0.6 ? Math.floor(Math.random() * list.length) : list.length - 1;
+      const cur = list[pick];
       const cx = cur % cols, cy = Math.floor(cur / cols);
       const options = DIRS.filter((d) => inside(cx + DX[d], cy + DY[d]) && !seen[idx(cx + DX[d], cy + DY[d])]);
-      if (!options.length) { stack.pop(); continue; }
+      if (!options.length) { list.splice(pick, 1); continue; }
       const d = options[Math.floor(Math.random() * options.length)];
       const nxt = idx(cx + DX[d], cy + DY[d]);
       walls[cur] &= ~d; walls[nxt] &= ~OPP[d];
-      seen[nxt] = true; stack.push(nxt);
+      seen[nxt] = true; list.push(nxt);
     }
     // fim: célula mais distante do início
     const dist = new Array(cols * rows).fill(-1);
@@ -129,10 +131,10 @@ export function initMaze(host, opts = {}) {
     canvas.width = Math.round(W_ * dpr);
     canvas.height = Math.round(H_ * dpr);
     const small = W_ < 600;
-    const nCell = small ? 42 : 46;
-    const maxW = small ? 252 : 368, maxH = small ? 294 : 276;
-    const nc = Math.max(4, Math.floor(Math.min(W_ - 8, maxW) / nCell));
-    const nr = Math.max(4, Math.floor(Math.min(H_ - 8, maxH) / nCell));
+    const nCell = small ? 34 : 38;
+    const maxW = small ? 272 : 418, maxH = small ? 340 : 304;
+    const nc = Math.max(5, Math.floor(Math.min(W_ - 8, maxW) / nCell));
+    const nr = Math.max(5, Math.floor(Math.min(H_ - 8, maxH) / nCell));
     const nKey = [nc, nr, nCell].join('|');
     const moved = nKey !== key;
     key = nKey; cols = nc; rows = nr; cell = nCell;
@@ -182,10 +184,12 @@ export function initMaze(host, opts = {}) {
     audio();                                            // o toque desbloqueia o áudio
     if (solved) return;
     const p = pos(e);
-    const sc = center(startCell);
-    if (path.length > 1 && Math.hypot(p.x - sc.x, p.y - sc.y) <= cell * 1.1) path = [startCell]; // recomeçar na boneca
+    // retoma a partir do ponto do traço mais próximo do toque (a boneca = recomeçar)
+    let near = -1, nd = cell * 1.3;
+    path.forEach((c, k) => { const q = center(c); const dd = Math.hypot(p.x - q.x, p.y - q.y); if (dd <= nd) { nd = dd; near = k; } });
+    if (near < 0) return;
+    path = path.slice(0, near + 1);
     const head = center(path[path.length - 1]);
-    if (Math.hypot(p.x - head.x, p.y - head.y) > cell * 1.8) return;
     dragging = true;
     lastPt = { x: head.x, y: head.y };
     try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
