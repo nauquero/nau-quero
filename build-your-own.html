@@ -268,9 +268,9 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280}}">
 const GROUPS = [
-  { num: '01', layer: 'Cone', title: 'Identidade Visual', hint: 'A identidade visual — a forma que a marca vai ter.', bg: '#391D01', ink: '#F3E9D2', accent: '#ACC048', glowRgb: '172,192,72', key: 'cone' },
+  { num: '01', layer: 'Cone', title: 'Identidade Visual', hint: 'A identidade visual — a forma que a marca vai ter.', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', key: 'cone' },
   { num: '02', layer: 'Sabor', title: 'Estratégia de Marca', hint: 'A estratégia — o que sustenta todas as decisões.', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', key: 'base' },
-  { num: '03', layer: 'Topping', title: 'Websites, Apps & Redes Sociais', hint: 'É aqui que se nota.', bg: '#391D01', ink: '#F3E9D2', accent: '#F5C232', glowRgb: '245,194,50', key: 'toppings' },
+  { num: '03', layer: 'Topping', title: 'Websites, Apps & Redes Sociais', hint: 'É aqui que se nota.', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', key: 'toppings' },
 ];
 
 const WEB3FORMS_KEY = 'c74b0157-3540-4564-8bff-f552c0451f4d';
@@ -400,7 +400,7 @@ class Component extends DCLogic {
           ...g,
           mark: on ? 'Escolhido ✓' : 'Escolher',
           border: on ? g.accent : 'rgba(57,29,1,0.28)',
-          shadow: on ? '0 0 34px 8px rgba(' + g.glowRgb + ',0.85)' : '0 0 42px 12px rgba(' + g.glowRgb + ',0.45)',
+          shadow: on ? '0 0 26px 5px rgba(' + g.glowRgb + ',0.4)' : '0 0 24px 4px rgba(' + g.glowRgb + ',0.15)',
           pick: () => this.pick(g.key, g.layer),
         };
       }),
