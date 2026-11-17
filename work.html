@@ -69,6 +69,11 @@
     .nq-menu-toggle:checked ~ .nq-nav { display:flex !important; }
     header .nq-nav a { width:100%; box-sizing:border-box; justify-content:center; margin-left:0 !important; transform:none !important; }
   }
+
+  :focus-visible { outline:2px solid #690A20; outline-offset:3px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 <script src="./ui-sound.js"></script>
