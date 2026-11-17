@@ -149,7 +149,7 @@
       </button>
       </div>
 
-      <form id="pedido-form" ref="{{ formRef }}" onSubmit="{{ onFormSubmit }}" style="order:2; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F3E9D2; padding:clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:20px; min-width:0;">
+      <form id="pedido-form" ref="{{ formRef }}" onSubmit="{{ onFormSubmit }}" style="order:2; grid-column:1 / -1; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F3E9D2; padding:clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:20px; min-width:0;">
         <div>
           <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 8px;">2º passo · O pedido</p>
           <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
@@ -182,21 +182,6 @@
         </label>
 
       </form>
-
-      <div style="order:3; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#391D01; color:#F3E9D2; padding:clamp(22px,2.4vw,32px); min-width:0; display:flex; flex-direction:column;">
-        <div style="margin-bottom:16px;">
-          <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#F3E9D2; margin:0 0 6px;">A tua receita</p>
-          <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17px,1.7vw,22.9px); line-height:1.02; letter-spacing:-0.02em; margin:0; color:#F3E9D2;">Vê o gelado a ganhar forma.</h2>
-        </div>
-        <div style="display:flex; justify-content:center; align-items:center; flex:1; margin-bottom:20px;">
-          <div style="position:relative; width:min(240px,70%); aspect-ratio:408 / 612;">
-            <img src="./images/gelado-cone-cartoon2.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; display:block; opacity:{{ coneOpacity }}; transform:translateY({{ coneShift }}); transition:opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1);" />
-            <img src="./images/gelado-scoop-cartoon2.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; display:block; opacity:{{ scoopOpacity }}; transform:translateY({{ scoopShift }}); transition:opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1);" />
-            <img src="./images/gelado-sprinkles-cartoon2.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; display:block; opacity:{{ toppingOpacity }}; transform:translateY({{ sprinkleShift }}); transition:opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1);" />
-          </div>
-        </div>
-        <h3 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(14.6px,1.54vw,19.7px); line-height:1.06; letter-spacing:-0.015em; margin:0; color:#F3E9D2; text-align:center;">{{ recipeName }}</h3>
-      </div>
 
       <div style="order:4; grid-column:1 / -1; display:flex; flex-direction:column; gap:12px;">
         <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0; text-align:center; display:{{ stepLabelDisplay }};">3º passo · Envia o pedido</p>
