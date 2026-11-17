@@ -133,12 +133,6 @@
             <p style="font-size:clamp(11.5px,1.22vw,13px); line-height:1.4; margin:0 0 5px; padding-left:16px; position:relative; max-width:58ch;"><span style="position:absolute; left:0; color:{{ s.color }};">✦</span>{{ s.text }}</p>
           </sc-for>
         </div>
-        <div style="position:relative; overflow:hidden; background:#391D01; color:#F3E9D2; border-radius:14px; padding:14px 16px; margin-bottom:14px;">
-          <span style="position:absolute; top:-10px; right:-4px; font-size:66px; color:#D2E8FF; opacity:0.16; line-height:1; pointer-events:none;">★</span>
-          <sc-for list="{{ statement }}" as="st" hint-placeholder-count="3">
-            <p style="position:relative; font-family:'The Seasons','Petrona',Georgia,serif; font-style:italic; font-size:clamp(11.9px,1.2vw,13.8px); line-height:1.4; margin:0 0 5px;">{{ st }}</p>
-          </sc-for>
-        </div>
       </div>
     </div>
   </section>
@@ -334,12 +328,6 @@ const SUMMARY = [
 ];
 const SUMMARY_COLORS = ['#690A20'];
 
-const STATEMENT = [
-  '☆ Pensadora criativa e estratégica, interessada no cruzamento entre marketing, design, tecnologia e experiência do utilizador.',
-  '★ A explorar como consumer insights e pensamento criativo podem moldar experiências digitais com significado, em websites e apps.',
-  '★ Atualmente a desenvolver projetos práticos em UI/UX e design de produto digital, a combinar marketing com design visual, pensamento estratégico e desenvolvimento apoiado por IA. ☆',
-];
-
 const EXPERIENCE = [
   { role: 'Designer de Marca e Digital', org: 'Nau Quero · Freelance', period: 'Desde 2024',
     bullets: ['Projetos independentes de branding, estratégia e UX/UI para marcas portuguesas.', 'Também aberta a oportunidades a tempo inteiro em UX research, consumer insights ou design orientado por investigação.'] },
@@ -447,7 +435,6 @@ class Component extends DCLogic {
       whyPrev: () => this.setState(st => ({ whyAt: (st.whyAt - 1 + WHY_ICE_CREAM.length) % WHY_ICE_CREAM.length })),
       whyNext: () => this.setState(st => ({ whyAt: (st.whyAt + 1) % WHY_ICE_CREAM.length })),
       summary: SUMMARY.map((s, i) => ({ text: s, color: SUMMARY_COLORS[i % SUMMARY_COLORS.length] })),
-      statement: STATEMENT,
       experience: EXPERIENCE.map((e, i) => ({ ...e, hasLink: !!e.hasLink, link: e.link || '', linkLabel: e.linkLabel || '',
         bg: CARD_BG[i % CARD_BG.length], ink: '#F3E9D2', accent: '#D2E8FF',
         glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
