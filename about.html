@@ -436,7 +436,7 @@ class Component extends DCLogic {
       experience: EXPERIENCE.map((e, i) => ({ ...e, hasLink: !!e.hasLink, link: e.link || '', linkLabel: e.linkLabel || '',
         bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF',
         glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
-      education: EDUCATION.map((ed, i) => ({ ...ed, bg: CARD_BG[i % CARD_BG.length], ink: '#F3E9D2', accent: '#D2E8FF',
+      education: EDUCATION.map((ed, i) => ({ ...ed, bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF',
         glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
       certifications: CERTIFICATIONS.map((c, i) => ({ ...c, bg: CERT_BG[i % CERT_BG.length], ink: CERT_INK[i % CERT_INK.length], rot: 'rotate(' + CERT_ROT[i % CERT_ROT.length] + ')' })),
       skills: SKILLS.map((k, i) => {
