@@ -95,7 +95,7 @@
   <section style="position:relative; padding:clamp(44px,5vw,80px) 5% clamp(40px,4.5vw,64px); background:#690A20; color:#F3E9D2; overflow:hidden;">
     <div style="position:absolute; inset:0; opacity:0.35; background-image:radial-gradient(#F3E9D2 1.5px, transparent 1.6px); background-size:22px 22px;"></div>
     <div style="position:relative; max-width:1180px; margin:0 auto;">
-      <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#C69A62; margin:0 0 16px;">Começar um projeto · Monta o teu gelado</p>
+      <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#C69A62; margin:0 0 16px;">Começar um projeto · Monta o teu gelado</p>
       <h1 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(22.9px,3.85vw,62.6px); line-height:0.88; letter-spacing:-0.035em; margin:0 0 20px; max-width:22ch;">Ready to order something <span style="font-style:italic; color:#ACC048;">extra?</span></h1>
       <div style="display:flex; gap:clamp(18px,3vw,44px); align-items:center; flex-wrap:wrap;">
       <p style="font-size:clamp(11.9px,1.24vw,14.4px); line-height:1.6; max-width:56ch; margin:0; flex:1 1 min(100%,300px);">Escolhe o cone, a base e os toppings da tua marca. A receita segue com o pedido — nada de formulário em branco.</p>
@@ -127,7 +127,7 @@
   <section id="pedido" style="padding:clamp(44px,5vw,84px) 5%; background:#F3E9D2;">
     <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:clamp(18px,2.4vw,32px); align-items:stretch;">
       <div style="grid-column:1 / -1; display:flex; flex-direction:column; gap:clamp(14px,1.6vw,22px); min-width:0;">
-        <div><p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 6px;">1º passo</p>
+        <div><p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 6px;">1º passo</p>
         <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17px,1.7vw,22.9px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 14px;">Escolhe as camadas do teu gelado.</h2></div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:clamp(14px,1.6vw,22px); align-items:stretch;">
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
@@ -151,7 +151,7 @@
 
       <form id="pedido-form" ref="{{ formRef }}" onSubmit="{{ onFormSubmit }}" style="order:2; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F3E9D2; padding:clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:20px; min-width:0;">
         <div>
-          <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 8px;">2º passo · O pedido</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 8px;">2º passo · O pedido</p>
           <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
             <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(15.9px,1.73vw,22.5px); line-height:1.02; letter-spacing:-0.02em; margin:0; flex:1 1 auto;">Diz<span style="font-family:'Poppins',sans-serif; font-style:normal;">-</span>me quem és.</h2>
           </div>
@@ -185,7 +185,7 @@
 
       <div style="order:3; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#391D01; color:#F3E9D2; padding:clamp(22px,2.4vw,32px); min-width:0; display:flex; flex-direction:column;">
         <div style="margin-bottom:16px;">
-          <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#F3E9D2; margin:0 0 6px;">A tua receita</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#F3E9D2; margin:0 0 6px;">A tua receita</p>
           <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17px,1.7vw,22.9px); line-height:1.02; letter-spacing:-0.02em; margin:0; color:#F3E9D2;">Vê o gelado a ganhar forma.</h2>
         </div>
         <div style="display:flex; justify-content:center; align-items:center; flex:1; margin-bottom:20px;">
@@ -199,7 +199,7 @@
       </div>
 
       <div style="order:4; grid-column:1 / -1; display:flex; flex-direction:column; gap:12px;">
-        <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0; text-align:center; display:{{ stepLabelDisplay }};">3º passo · Envia o pedido</p>
+        <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0; text-align:center; display:{{ stepLabelDisplay }};">3º passo · Envia o pedido</p>
 
         <div style="display:{{ errorDisplay }}; align-items:center; gap:10px; border:1px solid #690A20; border-radius:16px; background:#F3E9D2; color:#690A20; padding:16px 22px; text-align:center; flex-direction:column;">
           <p style="font-family:'Poppins',sans-serif; font-size:11px; line-height:1.6; margin:0;">Não foi possível enviar o pedido. Tenta novamente ou escreve para <strong>nauquero.mr@gmail.com</strong>.</p>
