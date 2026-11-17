@@ -135,9 +135,8 @@
     </div>
   </section>
 
-  <section style="padding:clamp(40px,5vw,70px) 5%;">
-    <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 clamp(10px,1.2vw,16px);">Percurso profissional</p>
-    <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(23.2px,3.75vw,58px); line-height:0.9; letter-spacing:-0.03em; margin:0 0 clamp(20px,2.4vw,30px);">A minha <span style="font-style:italic; color:#690A20;">experiência</span></h2>
+  <section style="padding:clamp(40px,5vw,70px) 5%; background:#690A20;">
+    <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(23.2px,3.75vw,58px); line-height:0.9; letter-spacing:-0.03em; margin:0 0 clamp(20px,2.4vw,30px); color:#F3E9D2;">A minha <span style="font-style:italic; color:#ACC048;">experiência</span></h2>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:14px;">
       <sc-for list="{{ experience }}" as="ex" hint-placeholder-count="4">
         <article data-reveal style="background:{{ ex.bg }}; color:{{ ex.ink }}; border:1px solid rgba(57,29,1,0.2); border-radius:16px; padding:clamp(16px,1.8vw,22px); display:flex; flex-direction:column; gap:6px; box-shadow:{{ ex.glow }}; transition:transform .3s ease, box-shadow .35s ease;" style-hover="transform:translateY(-5px) rotate(-0.5deg); box-shadow:0 20px 40px -14px rgba(57,29,1,0.5), 0 0 50px 12px rgba(172,192,72,0.28);">
@@ -156,7 +155,6 @@
   </section>
 
   <section style="padding:clamp(36px,4.5vw,64px) 5%; background:#F3D9BC;">
-    <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 clamp(10px,1.2vw,16px);">Formação académica</p>
     <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(23.2px,3.75vw,58px); line-height:0.9; letter-spacing:-0.03em; margin:0 0 clamp(20px,2.4vw,30px);">A minha <span style="font-style:italic; color:#690A20;">formação</span></h2>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:14px;">
       <sc-for list="{{ education }}" as="ed" hint-placeholder-count="2">
@@ -173,7 +171,6 @@
   </section>
 
   <section style="padding:clamp(40px,5vw,76px) 5%; background:#690A20;">
-    <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#ACC048; margin:0 0 10px;">Certificações · línguas · competências</p>
     <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(23.2px,3.75vw,58px); line-height:0.9; letter-spacing:-0.03em; margin:0 0 clamp(18px,2.2vw,28px); color:#F3E9D2;">Certificações <span style="font-style:italic; color:#ACC048;">e ferramentas</span></h2>
     <div style="display:flex; gap:clamp(24px,3.5vw,56px); flex-wrap:wrap; align-items:flex-start;">
       <div style="flex:1 1 min(100%,280px); min-width:0;">
@@ -225,7 +222,7 @@
   </section>
 
   <section style="padding:clamp(28px,3.2vw,46px) 5%;">
-    <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; margin:0 0 14px; opacity:0.7;">O que eu queria ser</p>
+    <p style="font-family:'Petrona',Georgia,serif; font-style:italic; font-size:16px; letter-spacing:0.01em; margin:0 0 14px; opacity:0.8;">O que eu queria ser</p>
     <div style="margin:0 -5%; overflow:hidden; border-top:1px solid rgba(57,29,1,0.28); border-bottom:1px solid rgba(57,29,1,0.28);">
       <div style="display:flex; width:max-content; animation:nqMarquee 130s linear infinite;">
         <sc-for list="{{ personasLoop }}" as="pn" hint-placeholder-count="18">
@@ -362,9 +359,9 @@ const CARD_GLOW_RGB = ['210,232,255', '210,232,255'];
 
 const SKILLS = [
   { label: 'Estratégia e Posicionamento de Marca', tools: ['Affinity', 'Claude Design', 'Canva'] },
-  { label: 'Comportamento do Consumidor e Insights', tools: ['Perplexity', 'SPSS'] },
+  { label: 'Comportamento do Consumidor e Insights', tools: ['SPSS'] },
   { label: 'Marketing Analytics', tools: ['Power BI', 'Excel'] },
-  { label: 'Análise e Previsão de Tendências', tools: ['Perplexity', 'Power BI'] },
+  { label: 'Análise e Previsão de Tendências', tools: ['Power BI'] },
   { label: 'Estratégia de Conteúdo e Redes Sociais', tools: ['CapCut AI', 'Canva'] },
   { label: 'Experiência do Cliente (CX)', tools: ['Framer', 'Lovable'] },
   { label: 'Investigação Científica e Testes de Hipóteses', tools: ['SPSS', 'Word'] },
@@ -437,7 +434,7 @@ class Component extends DCLogic {
       whyNext: () => this.setState(st => ({ whyAt: (st.whyAt + 1) % WHY_ICE_CREAM.length })),
       summary: SUMMARY.map((s, i) => ({ text: s, color: SUMMARY_COLORS[i % SUMMARY_COLORS.length] })),
       experience: EXPERIENCE.map((e, i) => ({ ...e, hasLink: !!e.hasLink, link: e.link || '', linkLabel: e.linkLabel || '',
-        bg: CARD_BG[i % CARD_BG.length], ink: '#F3E9D2', accent: '#D2E8FF',
+        bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF',
         glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
       education: EDUCATION.map((ed, i) => ({ ...ed, bg: CARD_BG[i % CARD_BG.length], ink: '#F3E9D2', accent: '#D2E8FF',
         glow: '0 0 30px 7px rgba(' + CARD_GLOW_RGB[i % CARD_GLOW_RGB.length] + ',0.25)' })),
