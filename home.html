@@ -178,7 +178,7 @@
     </div>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:clamp(10px,1.2vw,16px); align-items:start;">
       <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="3">
-        <a data-reveal href="./work.html" style="display:flex; flex-direction:column; gap:8px; text-decoration:none; color:#391D01; background:rgba(57,29,1,0.03); border:1px solid rgba(57,29,1,0.14); border-radius:16px; padding:9px; transition:transform .3s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease;" style-hover="transform:translateY(-4px); border-color:rgba(105,10,32,0.4); background:rgba(57,29,1,0.06); box-shadow:0 16px 32px -16px rgba(57,29,1,0.4), 0 0 32px 6px rgba(172,192,72,0.22);">
+        <a data-reveal href="./work.html" style="display:flex; flex-direction:column; gap:8px; text-decoration:none; color:#391D01; background:rgba(57,29,1,0.03); border:1px solid rgba(57,29,1,0.14); border-radius:16px; padding:9px; transition:transform .3s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease;" style-hover="transform:translateY(-4px); border-color:rgba(105,10,32,0.4); background:rgba(57,29,1,0.06); box-shadow:0 16px 32px -16px rgba(57,29,1,0.4), 0 0 24px 4px rgba(210,232,255,0.2);">
           <div style="position:relative; aspect-ratio:1/1; border-radius:10px; overflow:hidden; background:{{ pr.bg }};">
             <image-slot id="{{ pr.slot }}" shape="rect" placeholder="{{ pr.ph }}" src="{{ pr.photoSrc }}" style="position:absolute; inset:0;"></image-slot>
           </div>
