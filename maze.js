@@ -1,5 +1,5 @@
-// Labirinto em forma de estrela da página de entrada.
-// O início é o ícone do favicon (numa ponta da estrela); a pessoa desenha o
+// Labirinto da página de entrada.
+// O início é o ícone do favicon (canto de cima à esquerda); a pessoa desenha o
 // caminho com o dedo (ou rato) até ao fim. Há som enquanto desenha e ao concluir.
 const N = 1, E = 2, S = 4, W = 8;
 const DX = { [N]: 0, [E]: 1, [S]: 0, [W]: -1 };
@@ -20,9 +20,8 @@ export function initMaze(host, opts = {}) {
   if (iconSrc) icon.src = iconSrc;
 
   let W_ = 0, H_ = 0, dpr = 1;
-  let cols = 0, rows = 0, cell = 0, ox = 0, oy = 0, R = 0, key = '';
-  let active = [];
-  let outline = [];         // célula dentro da estrela?
+  let cols = 0, rows = 0, cell = 0, ox = 0, oy = 0, key = '';
+  let active = [];         // célula faz parte do labirinto?
   let walls = [];          // bitmask de paredes por célula
   let startCell = 0, end = 0;
   let path = [];
@@ -85,68 +84,9 @@ export function initMaze(host, opts = {}) {
     [0, 4, 7, 12].forEach((semi) => note(523.25 * Math.pow(2, semi / 12), t0 + 0.6, 1.4, 0.05, 'triangle'));
   }
 
-  // ---------- geometria da estrela ----------
-  function starPoly(cx, cy, Ro) {
-    const Ri = Ro * 0.5, pts = [];
-    for (let k = 0; k < 10; k++) {
-      const a = -Math.PI / 2 + k * Math.PI / 5;
-      const r = k % 2 === 0 ? Ro : Ri;
-      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
-    }
-    return pts;
-  }
-  function pip(x, y, poly) {
-    let c = false;
-    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-      const [xi, yi] = poly[i], [xj, yj] = poly[j];
-      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
-    }
-    return c;
-  }
-
-  function generate(cxPx, cyPx) {
-    // grelha que cobre a estrela
-    const bw = 2 * R * Math.sin(Math.PI * 2 / 5), bh = R * (1 + Math.cos(Math.PI / 5));
-    cols = Math.ceil(bw / cell) + 1;
-    rows = Math.ceil(bh / cell) + 1;
-    ox = cxPx - cols * cell / 2;
-    oy = (cyPx - R) - (rows * cell - bh) / 2;
-    const poly = starPoly(cxPx, cyPx, R);
-    outline = poly;
-    active = new Array(cols * rows).fill(false);
-    for (let i = 0; i < cols * rows; i++) {
-      const c = center(i), h = cell / 2;
-      const hits = [[0, 0], [-h, -h], [h, -h], [-h, h], [h, h]].filter(([dx, dy]) => pip(c.x + dx, c.y + dy, poly)).length;
-      active[i] = hits >= 2;
-    }
-    // maior componente ligada (descarta células soltas nas pontas)
-    const comp = new Array(cols * rows).fill(-1);
-    let best = -1, bestSize = 0, id = 0;
-    for (let i = 0; i < active.length; i++) {
-      if (!active[i] || comp[i] >= 0) continue;
-      let size = 0; const q = [i]; comp[i] = id;
-      while (q.length) {
-        const cur = q.pop(); size++;
-        const cx = cur % cols, cy = Math.floor(cur / cols);
-        DIRS.forEach((d) => {
-          const nx = cx + DX[d], ny = cy + DY[d];
-          if (inside(nx, ny) && comp[idx(nx, ny)] < 0) { comp[idx(nx, ny)] = id; q.push(idx(nx, ny)); }
-        });
-      }
-      if (size > bestSize) { bestSize = size; best = id; }
-      id++;
-    }
-    for (let i = 0; i < active.length; i++) if (comp[i] !== best) active[i] = false;
-
-    // início: célula mais alta (ponta de cima), a mais central em caso de empate
-    let s = -1;
-    for (let i = 0; i < active.length; i++) {
-      if (!active[i]) continue;
-      if (s < 0) { s = i; continue; }
-      const a = center(i), b = center(s);
-      if (a.y < b.y - 0.5 || (Math.abs(a.y - b.y) < 0.5 && Math.abs(a.x - cxPx) < Math.abs(b.x - cxPx))) s = i;
-    }
-    startCell = s;
+  function generate() {
+    active = new Array(cols * rows).fill(true);
+    startCell = 0;                                      // boneca no canto de cima à esquerda
 
     // recursive backtracker só nas células ativas
     walls = new Array(cols * rows).fill(N | E | S | W);
@@ -198,22 +138,16 @@ export function initMaze(host, opts = {}) {
     canvas.width = Math.round(W_ * dpr);
     canvas.height = Math.round(H_ * dpr);
     const small = W_ < 600;
-    const maxR = small ? 150 : 170;
-    const nR = Math.max(90, Math.min(maxR, (W_ - 12) / (2 * Math.sin(Math.PI * 2 / 5)), (H_ - 12) / (1 + Math.cos(Math.PI / 5))));
-    const nCell = small ? 28 : 32;
-    const bh = nR * (1 + Math.cos(Math.PI / 5));
-    const cxPx = W_ / 2;
-    const cyPx = (H_ - bh) / 2 + nR;                   // estrela centrada na vertical
-    const nKey = [Math.round(nR), nCell].join('|');
+    const nCell = small ? 30 : 34;
+    const maxW = small ? 330 : 520, maxH = small ? 420 : 400;
+    const nc = Math.max(5, Math.floor(Math.min(W_ - 8, maxW) / nCell));
+    const nr = Math.max(5, Math.floor(Math.min(H_ - 8, maxH) / nCell));
+    const nKey = [nc, nr, nCell].join('|');
     const moved = nKey !== key;
-    key = nKey; R = nR; cell = nCell;
-    if (moved || !walls.length) generate(cxPx, cyPx);
-    else {                                              // só reposiciona
-      const bw = 2 * R * Math.sin(Math.PI * 2 / 5);
-      ox = cxPx - cols * cell / 2;
-      oy = (cyPx - R) - (rows * cell - bh) / 2;
-      void bw;
-    }
+    key = nKey; cols = nc; rows = nr; cell = nCell;
+    ox = (W_ - cols * cell) / 2;
+    oy = (H_ - rows * cell) / 2;
+    if (moved || !walls.length) generate();
   }
 
   function cellAt(x, y) {
@@ -282,17 +216,13 @@ export function initMaze(host, opts = {}) {
     ctx.clearRect(0, 0, W_, H_);
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
 
-    // fundo suave da estrela
+    // fundo suave
     ctx.fillStyle = 'rgba(243,233,210,0.06)';
     for (let i = 0; i < active.length; i++) {
       if (!active[i]) continue;
       const x = ox + (i % cols) * cell, y = oy + Math.floor(i / cols) * cell;
       ctx.fillRect(x, y, cell + 0.5, cell + 0.5);
     }
-
-    // contorno liso da estrela
-    ctx.strokeStyle = 'rgba(243,233,210,0.28)'; ctx.lineWidth = 1.5;
-    ctx.beginPath(); outline.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.closePath(); ctx.stroke();
 
     // caminho percorrido
     ctx.strokeStyle = '#D2E8FF';
