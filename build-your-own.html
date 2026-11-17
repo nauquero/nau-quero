@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<style>html{background:#F8F6F0;}body{background:#F8F6F0;opacity:0;transition:opacity .35s ease;}</style>
+<style>html{background:#F3E9D2;}body{background:#F3E9D2;opacity:0;transition:opacity .35s ease;}</style>
 <script>
 (function(){
   addEventListener('DOMContentLoaded', function(){
@@ -46,7 +46,7 @@
 
 
   html { scroll-behavior: smooth; }
-  body { margin:0; background:#F8F6F0; cursor:none; }
+  body { margin:0; background:#F3E9D2; cursor:none; }
   a { color:#690A20; }
   a:hover { color:#391D01; }
   @keyframes nqPop { 0% { transform:scale(0.4); opacity:0; } 60% { transform:scale(1.12); opacity:1; } 100% { transform:scale(1); opacity:1; } }
@@ -60,7 +60,7 @@
       display:none !important; position:absolute; left:0; right:0; top:100%;
       flex-direction:column !important; align-items:stretch !important;
       justify-content:flex-start !important; gap:8px !important;
-      background:#F8F6F0; padding:14px 5% 20px; margin:0;
+      background:#F3E9D2; padding:14px 5% 20px; margin:0;
       border-bottom:1px solid rgba(57,29,1,0.28); box-shadow:0 16px 28px rgba(57,29,1,0.14);
       z-index:19;
     }
@@ -75,19 +75,19 @@
 </style>
 <script src="./ui-sound.js"></script>
 </helmet>
-<div id="nq-top" style="font-family:'Poppins',sans-serif; background:#F8F6F0; color:#391D01; overflow-x:hidden;">
+<div id="nq-top" style="font-family:'Poppins',sans-serif; background:#F3E9D2; color:#391D01; overflow-x:hidden;">
   <div style="position:fixed; inset:0; z-index:9998; pointer-events:none; opacity:0.07; background-image:url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.6%27%20numOctaves%3D%272%27%20seed%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.96%200%200%200%200%200.88%200%200%200%200%200.72%2012%200%200%200%20-7.4399999999999995%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;), url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.4%27%20numOctaves%3D%272%27%20seed%3D%2711%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.08%200%200%200%200%200.03%200%200%200%200%200%2012%200%200%200%20-7.5600000000000005%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;), url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%273.5%27%20numOctaves%3D%272%27%20seed%3D%277%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.9%200%200%200%200%200.78%200%200%200%200%200.58%208%200%200%200%20-4.8%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;); background-size:300px 300px, 340px 340px, 260px 260px;"></div>
   <div style="position:fixed; inset:0; z-index:9; pointer-events:none; opacity:0.35; mix-blend-mode:multiply; background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27180%27 height=%27180%27 filter=%27url(%23n)%27/%3E%3C/svg%3E'); background-size:180px 180px;"></div>
 
-  <header style="position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; row-gap:8px; padding:12px 5%; background:#F8F6F0; border-bottom:1px solid rgba(57,29,1,0.28);">
+  <header style="position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; row-gap:8px; padding:12px 5%; background:#F3E9D2; border-bottom:1px solid rgba(57,29,1,0.28);">
     <a href="./home.html" style="display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:#391D01; white-space:nowrap; transition:transform .3s ease;" style-hover="transform:rotate(-4deg) scale(1.05);">
       <img src="./images/nauquero-logo-brown.png" alt="NAU QUERO" style="height:21px; width:auto; display:block;" />
     </a>
     <input type="checkbox" id="nq-menu-toggle" class="nq-menu-toggle" style="position:absolute; opacity:0; pointer-events:none;"><label for="nq-menu-toggle" class="nq-menu-btn" aria-label="Abrir menu" style="display:none; align-items:center; justify-content:center; width:40px; height:40px; border:1px solid rgba(57,29,1,0.28); border-radius:10px; cursor:pointer; flex:0 0 auto;"><svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 1H18" stroke="#391D01" stroke-width="1.6"/><path d="M0 6.5H18" stroke="#391D01" stroke-width="1.6"/><path d="M0 12H18" stroke="#391D01" stroke-width="1.6"/></svg></label><nav class="nq-nav" style="display:flex; align-items:center; gap:2px; flex-wrap:wrap; row-gap:6px; justify-content:flex-end;">
-      <a href="./home.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F8F6F0; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">Início</a>
-      <a href="./about.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F8F6F0; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">Sobre</a>
-      <a href="./menu.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F8F6F0; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">O Menu</a>
-      <a href="./work.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F8F6F0; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">Projetos</a>
+      <a href="./home.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F3E9D2; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">Início</a>
+      <a href="./about.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F3E9D2; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">Sobre</a>
+      <a href="./menu.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F3E9D2; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">O Menu</a>
+      <a href="./work.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; color:#391D01; text-decoration:none; padding:11px 15px; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; white-space:nowrap; transition:background .25s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease;" style-hover="background:#F3E9D2; box-shadow:0 0 22px 3px rgba(172,192,72,0.9);">Projetos</a>
       <a href="./build-your-own.html" style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:0.015em; background:#690A20; color:#F3E9D2; text-decoration:none; padding:14px 22px; border:1px solid rgba(57,29,1,0.28); border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; margin-left:6px; white-space:nowrap; transition:transform .3s ease; box-shadow:0 0 14px 2px rgba(105,10,32,0.45); transition:transform .3s ease, box-shadow .35s ease; animation:nqPulse 2.8s ease-in-out infinite;" style-hover="transform:rotate(-0.7deg); box-shadow:0 0 24px 3px rgba(105,10,32,0.75);">Monta o teu gelado →</a>
     </nav>
   </header>
@@ -124,7 +124,7 @@
   </svg>
   </div>
 
-  <section id="pedido" style="padding:clamp(44px,5vw,84px) 5%; background:#F8F6F0;">
+  <section id="pedido" style="padding:clamp(44px,5vw,84px) 5%; background:#F3E9D2;">
     <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:clamp(18px,2.4vw,32px); align-items:stretch;">
       <div style="grid-column:1 / -1; display:flex; flex-direction:column; gap:clamp(14px,1.6vw,22px); min-width:0;">
         <div><p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 6px;">1º passo</p>
@@ -149,7 +149,7 @@
       </button>
       </div>
 
-      <form id="pedido-form" ref="{{ formRef }}" onSubmit="{{ onFormSubmit }}" style="order:2; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F8F6F0; padding:clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:20px; min-width:0;">
+      <form id="pedido-form" ref="{{ formRef }}" onSubmit="{{ onFormSubmit }}" style="order:2; border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F3E9D2; padding:clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:20px; min-width:0;">
         <div>
           <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 8px;">2º passo · O pedido</p>
           <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
@@ -201,7 +201,7 @@
       <div style="order:4; grid-column:1 / -1; display:flex; flex-direction:column; gap:12px;">
         <p style="font-family:'Indie Flower',cursive; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0; text-align:center; display:{{ stepLabelDisplay }};">3º passo · Envia o pedido</p>
 
-        <div style="display:{{ errorDisplay }}; align-items:center; gap:10px; border:1px solid #690A20; border-radius:16px; background:#F8F6F0; color:#690A20; padding:16px 22px; text-align:center; flex-direction:column;">
+        <div style="display:{{ errorDisplay }}; align-items:center; gap:10px; border:1px solid #690A20; border-radius:16px; background:#F3E9D2; color:#690A20; padding:16px 22px; text-align:center; flex-direction:column;">
           <p style="font-family:'Poppins',sans-serif; font-size:11.5px; line-height:1.6; margin:0;">Não foi possível enviar o pedido. Tenta novamente ou escreve para <strong>nauquero.mr@gmail.com</strong>.</p>
         </div>
 
@@ -225,7 +225,7 @@
           <a href="https://www.linkedin.com/in/mariana-rodrigues-2108/" target="_blank" rel="noopener" style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.015em; color:#F3E9D2; text-decoration:none; display:inline-flex; align-items:center;" style-hover="color:#ACC048;">LinkedIn · Mariana Rodrigues</a>
         </div>
       </div>
-      <div style="border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F8F6F0; padding:clamp(22px,2.4vw,32px);">
+      <div style="border:1px solid rgba(57,29,1,0.28); border-radius:16px; background:#F3E9D2; padding:clamp(22px,2.4vw,32px);">
         <p style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.2em; color:#690A20; margin:0 0 12px;">Tempo de resposta</p>
         <p style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(19.9px,2.25vw,31.8px); line-height:1; letter-spacing:-0.02em; margin:0 0 12px;"><span style="font-family:'Petrona',Georgia,serif;">48</span> horas</p>
         <p style="font-size:11.9px; line-height:1.6; margin:0;">Respondo em dias úteis com uma leitura honesta do que me contaste — e a proposta de uma conversa de 30 a 45 minutos, sem compromisso.</p>
