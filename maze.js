@@ -103,15 +103,6 @@ export function initMaze(host, opts = {}) {
       walls[cur] &= ~d; walls[nxt] &= ~OPP[d];
       seen[nxt] = true; stack.push(nxt);
     }
-    // mais simples: abre ~35% das paredes interiores (cria atalhos e menos becos sem saída)
-    for (let i = 0; i < cols * rows; i++) {
-      if (!active[i]) continue;
-      const cx = i % cols, cy = Math.floor(i / cols);
-      [E, S].forEach((d) => {
-        const nx = cx + DX[d], ny = cy + DY[d];
-        if ((walls[i] & d) && inside(nx, ny) && Math.random() < 0.35) { walls[i] &= ~d; walls[idx(nx, ny)] &= ~OPP[d]; }
-      });
-    }
     // fim: célula mais distante do início
     const dist = new Array(cols * rows).fill(-1);
     dist[startCell] = 0;
