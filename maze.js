@@ -131,15 +131,17 @@ export function initMaze(host, opts = {}) {
     canvas.width = Math.round(W_ * dpr);
     canvas.height = Math.round(H_ * dpr);
     const small = W_ < 600;
-    const nCell = small ? 34 : 38;
-    const maxW = small ? 272 : 418, maxH = small ? 340 : 304;
-    const nc = Math.max(5, Math.floor(Math.min(W_ - 8, maxW) / nCell));
-    const nr = Math.max(5, Math.floor(Math.min(H_ - 8, maxH) / nCell));
+    // labirinto em blocos: paredes com a mesma espessura dos corredores (bs)
+    const nCell = small ? 30 : 34;                      // célula lógica = 2 blocos
+    const bs = nCell / 2;
+    const maxW = small ? 270 : 400, maxH = small ? 330 : 300;
+    const nc = Math.max(5, Math.floor((Math.min(W_ - 8, maxW) - bs) / nCell));
+    const nr = Math.max(5, Math.floor((Math.min(H_ - 8, maxH) - bs) / nCell));
     const nKey = [nc, nr, nCell].join('|');
     const moved = nKey !== key;
     key = nKey; cols = nc; rows = nr; cell = nCell;
-    ox = (W_ - cols * cell) / 2;
-    oy = (H_ - rows * cell) / 2;
+    ox = (W_ - (cols * cell + bs)) / 2 + bs / 2;
+    oy = (H_ - (rows * cell + bs)) / 2 + bs / 2;
     if (moved || !walls.length) generate();
   }
 
@@ -211,17 +213,9 @@ export function initMaze(host, opts = {}) {
     ctx.clearRect(0, 0, W_, H_);
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
 
-    // fundo suave
-    ctx.fillStyle = 'rgba(243,233,210,0.06)';
-    for (let i = 0; i < active.length; i++) {
-      if (!active[i]) continue;
-      const x = ox + (i % cols) * cell, y = oy + Math.floor(i / cols) * cell;
-      ctx.fillRect(x, y, cell + 0.5, cell + 0.5);
-    }
-
     // caminho percorrido
     ctx.strokeStyle = '#D2E8FF';
-    ctx.lineWidth = Math.max(6, cell * 0.3);
+    ctx.lineWidth = cell * 0.3;
     ctx.beginPath();
     path.forEach((c, i) => { const p = center(c); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
     if (finger && dragging) {
@@ -231,8 +225,9 @@ export function initMaze(host, opts = {}) {
     ctx.stroke();
 
     // paredes (só células ativas)
-    ctx.strokeStyle = 'rgba(243,233,210,0.9)';
-    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = '#F3E9D2';
+    ctx.lineCap = 'square';
+    ctx.lineWidth = cell / 2;
     ctx.beginPath();
     for (let i = 0; i < walls.length; i++) {
       if (!active[i]) continue;
@@ -245,17 +240,18 @@ export function initMaze(host, opts = {}) {
       if (w & S) { ctx.moveTo(x, y + cell); ctx.lineTo(x + cell, y + cell); }
     }
     ctx.stroke();
+    ctx.lineCap = 'round';
 
     // fim: anel a pulsar
     const e = center(end);
     const pulse = 0.5 + 0.5 * Math.sin((t || 0) / 380);
     ctx.strokeStyle = '#D2E8FF'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(e.x, e.y, cell * (0.28 + 0.1 * pulse), 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(e.x, e.y, cell * (0.24 + 0.08 * pulse), 0, Math.PI * 2); ctx.stroke();
     ctx.fillStyle = '#D2E8FF';
-    ctx.beginPath(); ctx.arc(e.x, e.y, cell * 0.13, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(e.x, e.y, cell * 0.1, 0, Math.PI * 2); ctx.fill();
 
     // início: favicon
-    const s = center(startCell), size = cell * 1.05;
+    const s = center(startCell), size = cell * 0.95;
     if (iconReady) ctx.drawImage(icon, s.x - size / 2, s.y - size / 2, size, size);
     else { ctx.fillStyle = '#F3E9D2'; ctx.beginPath(); ctx.arc(s.x, s.y, cell * 0.3, 0, Math.PI * 2); ctx.fill(); }
 
