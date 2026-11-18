@@ -32,56 +32,43 @@ export function initMaze(host, opts = {}) {
   const inside = (cx, cy) => cx >= 0 && cy >= 0 && cx < cols && cy < rows && active[idx(cx, cy)];
   const center = (i) => ({ x: ox + (i % cols + 0.5) * cell, y: oy + (Math.floor(i / cols) + 0.5) * cell });
 
-  // ---------- som ----------
-  let ac = null, master = null, lastTick = 0;
-  const scale = [0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24]; // pentatónica maior
+  // ---------- som (alinhado com os cliques e o sparkle do resto do site, ui-sound.js) ----------
+  let ac = null, lastTickAt = 0, lastBumpAt = 0;
   function audio() {
     if (ac) { if (ac.state === 'suspended') ac.resume(); return ac; }
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return null;
     ac = new AC();
-    master = ac.createGain();
-    master.gain.value = 0.9;
-    master.connect(ac.destination);
     return ac;
   }
-  function note(freq, t, dur, vol, type) {
-    const o = ac.createOscillator(); o.type = type || 'sine'; o.frequency.value = freq;
-    const g = ac.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(vol, t + 0.012);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    o.connect(g); g.connect(master);
-    o.start(t); o.stop(t + dur + 0.05);
-  }
+  function shared() { return window.__nqUiSound; }
   function tick(len, back) {
-    if (!audio()) return;
-    const now = ac.currentTime;
-    if (now - lastTick < 0.045) return;        // não dispara em rajada
-    lastTick = now;
-    const semi = scale[(Math.floor(len / 2)) % scale.length];
-    const f = 392 * Math.pow(2, semi / 12);
-    note(back ? f * 0.75 : f, now, back ? 0.14 : 0.22, back ? 0.035 : 0.06, 'sine');
-    if (!back) note(f * 2, now, 0.12, 0.018, 'sine');
+    const now = Date.now();
+    if (now - lastTickAt < 45) return;         // não dispara em rajada
+    lastTickAt = now;
+    const s = shared();
+    if (s) s.pop();
   }
   function bump() {
-    if (!audio()) return;
-    const now = ac.currentTime;
-    if (now - lastTick < 0.18) return;
-    lastTick = now;
-    note(130, now, 0.1, 0.05, 'triangle');
+    const now = Date.now();
+    if (now - lastBumpAt < 180) return;
+    lastBumpAt = now;
+    const c = audio(); if (!c) return;
+    const t = c.currentTime;
+    const o = c.createOscillator(); o.type = 'triangle';
+    o.frequency.setValueAtTime(160, t);
+    o.frequency.exponentialRampToValueAtTime(90, t + 0.09);
+    const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.055, t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+    o.connect(lp); lp.connect(g); g.connect(c.destination);
+    o.start(t); o.stop(t + 0.14);
   }
   function fanfare() {
-    if (!audio()) return;
-    const t0 = ac.currentTime + 0.02;
-    [0, 4, 7, 12, 16, 19, 24].forEach((semi, i) => {
-      const t = t0 + i * 0.075;
-      const f = 523.25 * Math.pow(2, semi / 12);
-      note(f, t, 0.9, 0.07, 'sine');
-      note(f * 3.01, t, 0.35, 0.02, 'sine');
-    });
-    // acorde final
-    [0, 4, 7, 12].forEach((semi) => note(523.25 * Math.pow(2, semi / 12), t0 + 0.6, 1.4, 0.05, 'triangle'));
+    const s = shared();
+    if (s) s.shimmer();
   }
 
   function generate() {
