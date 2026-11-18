@@ -94,8 +94,8 @@ export function initMaze(host, opts = {}) {
     const list = [startCell];
     seen[startCell] = true;
     while (list.length) {
-      // 60% escolhe uma célula qualquer (ramifica muito), 40% a mais recente (corredores)
-      const pick = Math.random() < 0.6 ? Math.floor(Math.random() * list.length) : list.length - 1;
+      // 15% escolhe uma célula qualquer, 85% a mais recente — poucos ramos, corredores longos e simples
+      const pick = Math.random() < 0.15 ? Math.floor(Math.random() * list.length) : list.length - 1;
       const cur = list[pick];
       const cx = cur % cols, cy = Math.floor(cur / cols);
       const options = DIRS.filter((d) => inside(cx + DX[d], cy + DY[d]) && !seen[idx(cx + DX[d], cy + DY[d])]);
@@ -119,7 +119,15 @@ export function initMaze(host, opts = {}) {
         if (dist[nxt] < 0) { dist[nxt] = dist[cur] + 1; q.push(nxt); }
       });
     }
+    // fim a meio caminho da distância máxima: percurso mais curto, menos cansativo
+    const targetDist = Math.max(1, Math.round(dist[far] * 0.55));
     end = far;
+    let bestDiff = Infinity;
+    for (let i = 0; i < dist.length; i++) {
+      if (dist[i] < 0) continue;
+      const diff = Math.abs(dist[i] - targetDist);
+      if (diff < bestDiff) { bestDiff = diff; end = i; }
+    }
     path = [startCell];
     solved = false;
   }
@@ -132,9 +140,9 @@ export function initMaze(host, opts = {}) {
     canvas.height = Math.round(H_ * dpr);
     const small = W_ < 600;
     // labirinto em blocos: paredes com a mesma espessura dos corredores (bs)
-    const nCell = small ? 30 : 34;                      // célula lógica = 2 blocos
+    const nCell = small ? 36 : 42;                      // célula lógica = 2 blocos (maior = menos células = mais simples)
     const bs = nCell / 2;
-    const maxW = small ? 270 : 400, maxH = small ? 330 : 300;
+    const maxW = small ? 230 : 320, maxH = small ? 260 : 220;
     const nc = Math.max(5, Math.floor((Math.min(W_ - 8, maxW) - bs) / nCell));
     const nr = Math.max(5, Math.floor((Math.min(H_ - 8, maxH) - bs) / nCell));
     const nKey = [nc, nr, nCell].join('|');
