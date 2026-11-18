@@ -126,7 +126,8 @@
   </svg>
   </div>
 
-  <section style="padding:clamp(34px,4vw,58px) 5%;">
+  <section style="position:relative; overflow:hidden; padding:clamp(34px,4vw,58px) 5%;">
+    <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:4%; right:4%; width:clamp(16px,2.2vw,26px); height:clamp(16px,2.2vw,26px); color:#690A20; opacity:0.08; transform:rotate(8deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
     <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 clamp(18px,2vw,26px);">Clica na área que queres ver!</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:clamp(12px,1.4vw,18px);">
       <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
@@ -139,7 +140,8 @@
     </div>
   </section>
 
-  <section style="padding:clamp(34px,4vw,64px) 5% clamp(60px,7vw,110px);">
+  <section style="position:relative; overflow:hidden; padding:clamp(34px,4vw,64px) 5% clamp(60px,7vw,110px);">
+    <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:2%; left:3%; width:clamp(14px,2vw,22px); height:clamp(14px,2vw,22px); color:#690A20; opacity:0.07; transform:rotate(-13deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
     <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex; flex-direction:column; border-top:1px solid rgba(57,29,1,0.28);">
         <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
@@ -195,7 +197,9 @@
     </sc-if>
   </section>
 
-  <section style="padding:clamp(44px,5.5vw,80px) 5%; text-align:center; background:#690A20; color:#F3E9D2; border-radius:50% 50% 0 0 / 60px 60px 0 0;">
+  <section style="position:relative; overflow:hidden; padding:clamp(44px,5.5vw,80px) 5%; text-align:center; background:#690A20; color:#F3E9D2; border-radius:50% 50% 0 0 / 60px 60px 0 0;">
+    <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:12%; left:10%; width:clamp(18px,2.6vw,30px); height:clamp(18px,2.6vw,30px); color:#F3E9D2; opacity:0.1; transform:rotate(15deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:14%; right:9%; width:clamp(14px,2vw,22px); height:clamp(14px,2vw,22px); color:#ACC048; opacity:0.14; transform:rotate(-9deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
     <div data-reveal style="max-width:900px; margin:0 auto;">
       <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(23.8px,4.08vw,64.6px); line-height:0.9; letter-spacing:-0.04em; margin:0 0 clamp(20px,2.6vw,30px); color:#F3E9D2;">Ready to order something <span style="font-style:italic; color:#ACC048;">extra?</span></h2>
       <p style="font-size:clamp(12.4px,1.46vw,15.4px); line-height:1.6; max-width:48ch; margin:0 auto clamp(24px,3vw,36px); color:#F3E9D2;">Conta-me em que ponto está a tua marca. A primeira conversa é só isso: uma conversa.</p>
