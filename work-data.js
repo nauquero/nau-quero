@@ -1,14 +1,14 @@
 export const FILTERS = [
   { key: 'identidade', label: 'Identidade', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', note: 'Logótipo, paleta, tipografia e manual de marca.' },
-  { key: 'estrategia', label: 'Estratégia', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', note: 'Diagnóstico, posicionamento e planos de ação.' },
-  { key: 'digital', label: 'Presença Digital', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', note: 'Redes sociais, conteúdo e comunicação online.' },
-  { key: 'investigacao', label: 'Investigação Científica', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', note: 'Tese, artigos críticos e estudos de consumidor.' },
+  { key: 'estrategia', label: 'Estratégia', bg: '#391D01', ink: '#F3E9D2', accent: '#ACC048', glowRgb: '172,192,72', note: 'Diagnóstico, posicionamento e planos de ação.' },
+  { key: 'digital', label: 'Presença Digital', bg: '#391D01', ink: '#F3E9D2', accent: '#F3C6D8', glowRgb: '243,198,216', note: 'Websites, apps e webapps que dão corpo à marca.' },
+  { key: 'investigacao', label: 'Investigação Científica', bg: '#391D01', ink: '#F3E9D2', accent: '#E3D1FF', glowRgb: '227,209,255', note: 'Tese, artigos críticos e estudos de consumidor.' },
 ];
 
 export const CAT_BG = { identidade: '#391D01', estrategia: '#391D01', digital: '#391D01', investigacao: '#391D01' };
 export const CAT_INK = { identidade: '#F3E9D2', estrategia: '#F3E9D2', digital: '#F3E9D2', investigacao: '#F3E9D2' };
-export const CAT_ACCENT = { identidade: '#D2E8FF', estrategia: '#D2E8FF', digital: '#D2E8FF', investigacao: '#D2E8FF' };
-export const CAT_GLOW_RGB = { identidade: '210,232,255', estrategia: '210,232,255', digital: '210,232,255', investigacao: '210,232,255' };
+export const CAT_ACCENT = { identidade: '#D2E8FF', estrategia: '#ACC048', digital: '#F3C6D8', investigacao: '#E3D1FF' };
+export const CAT_GLOW_RGB = { identidade: '210,232,255', estrategia: '172,192,72', digital: '243,198,216', investigacao: '227,209,255' };
 export const LAYER_LABEL = { identidade: 'Cone', estrategia: 'Sabor', digital: 'Topping', investigacao: 'Research' };
 
 export const PROJECTS = [
@@ -187,8 +187,10 @@ export const PROJECTS = [
       { title: 'Roadmap', text: 'Definição de objetivos e estratégia de entrada específica: foco em hotéis e restaurantes na Grécia, e em empresas e bem-estar laboral na Alemanha.' },
     ],
   },
-  { name: 'Floralma', brand: 'Floralma', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Presença Digital', 'Redes Sociais'], desc: 'Estratégia de presença digital para a Floralma — a construir.' },
-  { name: 'Produflores', brand: 'Produflores', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Presença Digital', 'Redes Sociais'], desc: 'Estratégia de presença digital para a Produflores — a construir.' },
+  { name: 'Nau Quero', brand: 'Nau Quero — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O website da própria Nau Quero — a construir.' },
+  { name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O cartão de apresentação digital da Gabriela Pereira — a construir.' },
+  { name: 'Butty', brand: 'Butty — App', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['App Mobile (PWA)'], desc: 'A app Butty, em funcionamento — a construir.' },
+  { name: 'Raízes Frescas', brand: 'Raízes Frescas — Webapp', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Webapp'], desc: 'A webapp de controlo da Raízes Frescas — a construir.' },
   {
     name: 'Continente', brand: 'Continente / Sonae', year: '2024', category: 'estrategia', categoryLabel: 'Estratégia de Marca',
     tags: ['Marketing Relacional', 'Fidelização', 'Benchmarking'],
