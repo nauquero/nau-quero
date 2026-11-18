@@ -136,6 +136,45 @@ export const PROJECTS = [
     },
   },
   {
+    name: 'Butty', brand: 'Butty — No ifs, just butts', year: '2026',
+    category: 'identidade', categoryLabel: 'Identidade de Marca',
+    tags: ['App Mobile (PWA)', 'Wellness', 'Brand & Product'],
+    desc: 'Estratégia de marca e produto para a Butty, uma app de treino e bem-estar (PWA) pensada por e para mulheres — com a Butty, a sua mascote, a dar cara e voz a uma experiência de fitness mais pessoal, divertida e sem julgamentos.',
+    identity: {
+      diagnostic: {
+        before: ['Sem conceito de marca definido — apenas a ideia de uma app de fitness para mulheres.', 'Mercado saturado de apps de treino genéricas, impessoais e por vezes intimidantes.', 'Nenhuma mascote, tom de voz ou identidade visual que diferenciasse o produto.'],
+        after: ['Posicionamento, personalidade e voz de marca totalmente definidos, com a Butty como mascote central.', 'Produto estruturado em 4 fases de desenvolvimento, dos treinos à personalização por objetivos.', 'Uma identidade divertida, confiante e sem julgamentos, pensada para mulheres jovens que querem treinar com prazer.'],
+        opportunity: 'Antes, era só mais uma ideia de app de fitness. Hoje, é a Butty: uma marca com cara, voz e atitude própria — "No ifs, just butts" — pensada por e para mulheres que querem treinar sem pressão nem comparações.',
+      },
+      concept: {
+        story: 'O conceito nasce do slogan "No ifs, just butts": chega de desculpas, só progresso. A Butty dá nome à app e à sua mascote — uma personagem divertida e motivadora que acompanha cada utilizadora como uma amiga, celebrando conquistas e tornando o treino menos intimidante e mais pessoal.',
+        symbolism: [
+          { element: 'Butty, a mascote', meaning: 'Dá rosto e personalidade à marca — uma companheira que motiva sem julgar.' },
+          { element: '"No ifs, just butts"', meaning: 'Resume a atitude da marca: sem desculpas, só ação.' },
+          { element: 'Paleta rosa, lilás e menta', meaning: 'Feminilidade divertida e acessível, sem ser infantil.' },
+          { element: 'Tinta como contraste', meaning: 'Dá estrutura e sofisticação a uma paleta predominantemente pastel.' },
+        ],
+      },
+      palette: [
+        { name: 'Rosa', hex: '#F5C6D8', use: 'Fundo claro e acentos suaves — feminilidade sem ser doce demais.', light: false },
+        { name: 'Rosa Escuro', hex: '#9C5A74', use: 'Contraste e profundidade em elementos-chave.', light: true },
+        { name: 'Rosa Profundo', hex: '#8A4B65', use: 'Cor principal — fundos e destaques da marca.', light: true },
+        { name: 'Lilás', hex: '#D9CFF0', use: 'Fundo claro alternativo e detalhes calmos.', light: false },
+        { name: 'Menta', hex: '#C6E8DC', use: 'Toques de frescura, associados a progresso e bem-estar.', light: false },
+        { name: 'Pêssego', hex: '#FBDCC4', use: 'Calor e energia em acentos pontuais.', light: false },
+        { name: 'Tinta', hex: '#4A3B4A', use: 'Texto e contraste sobre fundos claros.', light: true },
+      ],
+      typography: { displayLabel: 'Display / Títulos — Poppins', displaySample: 'No ifs, just butts.', bodyLabel: 'Body / Corpo — Poppins', bodySample: 'Texto secundário para instruções, legendas e mensagens motivacionais.' },
+      personality: ['Divertida', 'Confiante', 'Descontraída', 'Sem julgamentos'],
+      tone: ['Próxima', 'Encorajadora', 'Bem-disposta', 'Direta'],
+      roadmap: {
+        curto: ['Treinos, séries e tracking (Fase 1)'],
+        medio: ['Medições corporais, nutrição e perfis (Fase 2)', 'Ciclo menstrual e gamificação com XP (Fase 3)'],
+        longo: ['Personalização e acesso privado por convite/PIN (Fase 4)'],
+      },
+    },
+  },
+  {
     name: 'Noocity', brand: 'Noocity', year: '2023', category: 'estrategia', categoryLabel: 'Estratégia de Marca',
     photo: './images/ChatGPT%20Image%2028_09_2026%2C%2011_59_01.png',
     tags: ['Internacionalização', 'Agricultura Urbana', 'Sustentabilidade'],
