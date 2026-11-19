@@ -28,11 +28,12 @@
   @keyframes nqGlow { 0%,100% { box-shadow:0 10px 30px rgba(0,0,0,0.35), 0 0 0 6px rgba(243,233,210,0.18), 0 0 24px 2px rgba(210,232,255,0.35); } 50% { box-shadow:0 14px 34px rgba(0,0,0,0.35), 0 0 0 13px rgba(243,233,210,0.06), 0 0 46px 10px rgba(210,232,255,0.6); } }
   @keyframes nqShine { 0%,55% { left:-70%; } 100% { left:140%; } }
   @keyframes nqTwinkle { 0%,100% { opacity:0; transform:scale(0.2) rotate(0deg); } 50% { opacity:1; transform:scale(1) rotate(90deg); } }
+  @keyframes nqTwinkleStar { 0%,100% { opacity:0; transform:scale(0.2) rotate(0deg); } 50% { opacity:0.5; transform:scale(1) rotate(90deg); } }
   .nq-enter { position:relative; overflow:hidden; animation:nqFloat 3.4s ease-in-out infinite, nqGlow 3.4s ease-in-out infinite; transition:background .25s ease; }
   .nq-enter::after { content:''; position:absolute; top:0; left:-70%; width:40%; height:100%; background:linear-gradient(100deg, transparent, rgba(255,255,255,0.85), transparent); transform:skewX(-20deg); animation:nqShine 3s ease-in-out infinite; pointer-events:none; }
   .nq-enter:hover { background:#FFFFFF !important; }
   .nq-spark { position:absolute; color:#D2E8FF; font-size:18px; line-height:1; pointer-events:none; animation:nqTwinkle 1.8s ease-in-out infinite; }
-  .nq-star5 { position:absolute; width:10px; height:10px; background:#D2E8FF; clip-path:polygon(50% 0%,61% 35%,98% 35%,69% 57%,79% 91%,50% 70%,21% 91%,31% 57%,2% 35%,39% 35%); pointer-events:none; animation:nqTwinkle 1.8s ease-in-out infinite; }
+  .nq-star5 { position:absolute; width:10px; height:10px; background:#D2E8FF; clip-path:polygon(50% 0%,61% 35%,98% 35%,69% 57%,79% 91%,50% 70%,21% 91%,31% 57%,2% 35%,39% 35%); pointer-events:none; animation:nqTwinkleStar 1.8s ease-in-out infinite; }
 </style>
 <script src="./ui-sound.js"></script>
 </helmet>
@@ -43,10 +44,10 @@
   <div style="position:absolute; inset:0; z-index:9; pointer-events:none; opacity:0.02; background-image:url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.6%27%20numOctaves%3D%272%27%20seed%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.96%200%200%200%200%200.88%200%200%200%200%200.72%2012%200%200%200%20-7.4399999999999995%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;), url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.4%27%20numOctaves%3D%272%27%20seed%3D%2711%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.08%200%200%200%200%200.03%200%200%200%200%200%2012%200%200%200%20-7.5600000000000005%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;), url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%273.5%27%20numOctaves%3D%272%27%20seed%3D%277%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.9%200%200%200%200%200.78%200%200%200%200%200.58%208%200%200%200%20-4.8%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E&quot;); background-size:300px 300px, 340px 340px, 260px 260px;"></div>
 
   <div style="position:absolute; inset:0; z-index:9; pointer-events:none;">
-    <span class="nq-star5" style="left:8%; top:12%; width:11px; height:11px; animation-delay:.2s;"></span>
-    <span class="nq-star5" style="left:18%; top:70%; width:9px; height:9px; animation-delay:1.1s;"></span>
-    <span class="nq-star5" style="right:14%; top:16%; width:10px; height:10px; animation-delay:1.6s;"></span>
-    <span class="nq-star5" style="right:9%; top:62%; width:12px; height:12px; animation-delay:.9s;"></span>
+    <span class="nq-star5" style="left:8%; top:12%; width:22px; height:22px; animation-delay:.2s;"></span>
+    <span class="nq-star5" style="left:18%; top:70%; width:18px; height:18px; animation-delay:1.1s;"></span>
+    <span class="nq-star5" style="right:14%; top:16%; width:20px; height:20px; animation-delay:1.6s;"></span>
+    <span class="nq-star5" style="right:9%; top:62%; width:24px; height:24px; animation-delay:.9s;"></span>
   </div>
 
   <div style="position:absolute; left:50%; top:50%; z-index:12; transform:translate(-50%,-50%); pointer-events:none;">
