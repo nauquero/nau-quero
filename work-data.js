@@ -188,7 +188,18 @@ export const PROJECTS = [
     ],
   },
   { name: 'Nau Quero', brand: 'Nau Quero — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O website da própria Nau Quero — a construir.' },
-  { name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O cartão de apresentação digital da Gabriela Pereira — a construir.' },
+  {
+    name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital',
+    tags: ['Website', 'One-Page', 'Direito & Advocacia'],
+    desc: 'O cartão de apresentação digital da Gabriela Pereira — um website one-page construído sobre a identidade de marca já desenvolvida, pensado para gerar confiança e converter visitas em pedidos de consulta.',
+    highlight: 'Site ao vivo em nauquero.github.io/gabriela.pereira — da apresentação das áreas de atuação ao pedido de consulta, em cinco secções pensadas para transmitir rigor, discrição e proximidade.',
+    process: [
+      { title: 'Hero', text: '"Ao seu lado nos momentos que mais importam." — localização (Póvoa de Varzim), 21 anos de advocacia e as quatro áreas de atuação logo à vista, com chamada direta para marcar consulta.' },
+      { title: 'Áreas de Atuação', text: 'Direito da Família, Direito Penal, Direito de Menores e Direito Civil apresentados em quatro cartões numerados, cada um com a sua descrição e o tom próprio da marca.' },
+      { title: 'Sobre', text: 'Missão, visão e valores — Ética, Proximidade e Compromisso — e percurso académico e profissional, com a frase "Confiança, competência e proximidade — em cada caso, sem exceção."' },
+      { title: 'Como Funciona & Contacto', text: 'Quatro passos claros do primeiro contacto à resolução do caso, seguidos de um formulário de pedido de consulta com consentimento RGPD e todos os contactos diretos.' },
+    ],
+  },
   { name: 'Butty', brand: 'Butty — App', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['App Mobile (PWA)'], desc: 'A app Butty, em funcionamento — a construir.' },
   { name: 'Raízes Frescas', brand: 'Raízes Frescas — Webapp', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Webapp'], desc: 'A webapp de controlo da Raízes Frescas — a construir.' },
   {
