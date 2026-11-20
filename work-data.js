@@ -188,7 +188,22 @@ export const PROJECTS = [
     ],
   },
   { name: 'Nau Quero', brand: 'Nau Quero — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O website da própria Nau Quero — a construir.' },
-  { name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O cartão de apresentação digital da Gabriela Pereira — a construir.' },
+  {
+    name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital',
+    tags: ['Website', 'One-Page', 'Direito & Advocacia'],
+    desc: 'O cartão de apresentação digital da Gabriela Pereira — um website one-page construído sobre a identidade de marca já desenvolvida, pensado para gerar confiança e converter visitas em pedidos de consulta.',
+    highlight: 'Site ao vivo em nauquero.github.io/gabriela.pereira — da apresentação das áreas de atuação ao pedido de consulta, em cinco secções pensadas para transmitir rigor, discrição e proximidade.',
+    process: [
+      { title: 'Hero', text: '"Ao seu lado nos momentos que mais importam." — localização (Póvoa de Varzim), 21 anos de advocacia e as quatro áreas de atuação logo à vista, com chamada direta para marcar consulta.' },
+      { title: 'Áreas de Atuação', text: 'Direito da Família, Direito Penal, Direito de Menores e Direito Civil apresentados em quatro cartões numerados, cada um com a sua descrição e o tom próprio da marca.' },
+      { title: 'Sobre', text: 'Missão, visão e valores — Ética, Proximidade e Compromisso — e percurso académico e profissional, com a frase "Confiança, competência e proximidade — em cada caso, sem exceção."' },
+      { title: 'Como Funciona & Contacto', text: 'Quatro passos claros do primeiro contacto à resolução do caso, seguidos de um formulário de pedido de consulta com consentimento RGPD e todos os contactos diretos.' },
+    ],
+    mockups: [
+      { id: 'gp-site-mockup-desktop', label: 'Hero — Desktop, Tablet & Mobile', placeholder: 'Mockup — hero em vários dispositivos', src: './images/gabriela-pereira-website-desktop.webp' },
+      { id: 'gp-site-mockup-contacto', label: 'Secção de Contacto', placeholder: 'Mockup — secção de contacto', src: './images/gabriela-pereira-website-contacto.webp' },
+    ],
+  },
   { name: 'Butty', brand: 'Butty — App', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['App Mobile (PWA)'], desc: 'A app Butty, em funcionamento — a construir.' },
   { name: 'Raízes Frescas', brand: 'Raízes Frescas — Webapp', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Webapp'], desc: 'A webapp de controlo da Raízes Frescas — a construir.' },
   {
@@ -294,6 +309,7 @@ export function buildSummary(p) {
   if (p.keyFindings) out.bullets = out.bullets.concat(p.keyFindings);
   if (p.process) out.bullets = out.bullets.concat(p.process.map(s => s.title + ' — ' + s.text));
   if (p.publication) out.meta = p.publication;
+  if (p.mockups) out.shots = p.mockups.slice(0, 3).map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder, src: m.src || '' }));
   const id = p.identity;
   if (id) {
     if (id.palette) out.dots = id.palette.slice(0, 6).map(c => ({ hex: c.hex, name: c.name }));
@@ -313,6 +329,9 @@ export function buildSections(p) {
   if (p.process) out.push(sec('Processo', { pairs: p.process.map(s => ({ label: s.title, text: s.text })) }));
   if (p.keyFindings) out.push(sec('Conclusões', { paras: p.keyFindings }));
   if (p.publication) out.push(sec('Publicação', { paras: [p.publication] }));
+  if (p.mockups) out.push(sec('Mockups', {
+    slots: p.mockups.map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder })),
+  }));
   const id = p.identity;
   if (id) {
     if (id.palette) out.push(sec('Paleta', {
