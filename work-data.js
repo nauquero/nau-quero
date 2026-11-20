@@ -82,20 +82,17 @@ export const PROJECTS = [
           { label: 'Ícone oval — papel', value: '60 px' },
         ],
       },
-      patterns: { text: 'Padrões nascidos das gotas do ícone, repetidos em texturas discretas que reforçam a marca sem competir com o conteúdo.', imgId: 'gp-patterns' },
+      patterns: { text: 'Padrões nascidos das gotas do ícone, repetidos em texturas discretas que reforçam a marca sem competir com o conteúdo.' },
       moodboard: {
         keywords: ['Elegância discreta', 'Autoridade com calor', 'Tradição e modernidade em equilíbrio'],
         note: 'Estas foram as referências visuais que guiaram todas as decisões criativas.',
-        imgIds: ['gp-mood-1', 'gp-mood-2', 'gp-mood-3', 'gp-mood-4'],
       },
-      digitalComm: { text: 'Uma assinatura de email cuidada gera confiança — sobretudo quando o primeiro contacto é por email.', note: 'Assinatura predefinida no e-mail profissional, com logótipo e paleta da marca.', imgId: 'gp-signature' },
+      digitalComm: { text: 'Uma assinatura de email cuidada gera confiança — sobretudo quando o primeiro contacto é por email.', note: 'Assinatura predefinida no e-mail profissional, com logótipo e paleta da marca.' },
       presence: { website: 'Cartão de apresentação digital da marca — já ao vivo.', linkedin: ['Atualizar informações acerca do percurso de Gabriela Pereira.', 'Modificar o @ para gabrielapereira.adv.'] },
       mockups: [
         { id: 'gp-mockup-cartao', label: 'Cartão de Visita', placeholder: 'Mockup — cartão de visita', src: './images/81da9fad-8bb4-4d74-9712-f31017f56090.png' },
         { id: 'gp-mockup-sinaletica', label: 'Sinalética Horário & Andar', placeholder: 'Mockup — sinalética', src: './images/Placa%20de%20atendimento%20profissional%20(1).png' },
         { id: 'gp-mockup-digital', label: 'Presença Digital', placeholder: 'Mockup — presença digital', src: './images/Espa%C3%A7o%20de%20trabalho%20elegante%20e%20sofisticado%20(1).png' },
-        { id: 'gp-mockup-papel', label: 'Papel de Carta & Envelope', placeholder: 'Mockup — papel de carta e envelope' },
-        { id: 'gp-mockup-agenda', label: 'Agenda & Material', placeholder: 'Mockup — agenda e material' },
       ],
       roadmap: {
         curto: ['Sessão fotográfica profissional', 'Assinatura de email em toda a comunicação'],
