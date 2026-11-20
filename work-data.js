@@ -1,4 +1,5 @@
 export const FILTERS = [
+  { key: 'todos', label: 'Todos', bg: '#391D01', ink: '#F3E9D2', accent: '#ACC048', glowRgb: '172,192,72', note: 'Todo o portefólio, numa só mesa.' },
   { key: 'identidade', label: 'Identidade', bg: '#391D01', ink: '#F3E9D2', accent: '#D2E8FF', glowRgb: '210,232,255', note: 'Logótipo, paleta, tipografia e manual de marca.' },
   { key: 'estrategia', label: 'Estratégia', bg: '#391D01', ink: '#F3E9D2', accent: '#ACC048', glowRgb: '172,192,72', note: 'Diagnóstico, posicionamento e planos de ação.' },
   { key: 'digital', label: 'Presença Digital', bg: '#391D01', ink: '#F3E9D2', accent: '#F3C6D8', glowRgb: '243,198,216', note: 'Websites, apps e webapps que dão corpo à marca.' },
