@@ -126,37 +126,40 @@
   </svg>
   </div>
 
-  <section style="position:relative; overflow:hidden; padding:clamp(34px,4vw,58px) 5%;">
-    <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:4%; right:4%; width:clamp(16px,2.2vw,26px); height:clamp(16px,2.2vw,26px); color:#690A20; opacity:0.08; transform:rotate(8deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
-    <p style="font-family:'Poppins',sans-serif; font-size:12.8px; letter-spacing:0.01em; color:#690A20; margin:0 0 clamp(18px,2vw,26px);">Clica na área que queres ver!</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:clamp(12px,1.4vw,18px);">
-      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-        <button type="button" onClick="{{ f.select }}" style="display:flex; flex-direction:column; align-items:flex-start; gap:10px; text-align:left; background:{{ f.bg }}; color:{{ f.ink }}; border:1px solid rgba(57,29,1,0.28); border-top:4px solid {{ f.accent }}; border-radius:18px; padding:clamp(18px,1.8vw,24px); min-height:clamp(150px,13vw,190px); cursor:pointer; box-shadow:{{ f.shadow }}; transform:{{ f.lift }}; transition:transform .3s ease, box-shadow .35s ease;" style-hover="transform:translateY(-4px) rotate(-0.6deg);">
-          <span style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17.8px,1.7vw,24.6px); line-height:1.02; letter-spacing:-0.02em; color:{{ f.accent }};">{{ f.label }}</span>
-          <span style="font-size:11px; line-height:1.55; opacity:0.82;">{{ f.note }}</span>
-          <span style="margin-top:auto; display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.06em; text-transform:uppercase;"><span>{{ f.cta }}</span><span style="transition:transform .3s ease; transform:{{ f.arrow }};">→</span><span style="opacity:0.55; letter-spacing:0.1em;">{{ f.count }}</span></span>
-        </button>
-      </sc-for>
+  <section style="position:relative; z-index:15; overflow:visible; padding:clamp(18px,2.2vw,26px) 5%; background:#F3E9D2; border-bottom:1px solid rgba(57,29,1,0.18);">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+      <div style="display:flex; gap:8px; flex-wrap:wrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:2px;">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+          <button type="button" onClick="{{ f.select }}" style="display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.015em; white-space:nowrap; color:{{ f.ink }}; background:{{ f.bg }}; border:1px solid {{ f.border }}; border-radius:999px; padding:9px 15px; cursor:pointer; transition:transform .3s ease, box-shadow .3s ease, background .3s ease;" style-hover="transform:translateY(-2px); box-shadow:0 10px 18px -10px rgba(57,29,1,0.4);">
+            <span style="width:9px; height:9px; border-radius:50%; background:{{ f.accent }}; flex:0 0 auto; box-shadow:0 0 0 2px rgba(57,29,1,0.12);"></span>
+            <span>{{ f.label }}</span>
+            <span style="opacity:0.6; font-weight:500;">{{ f.count }}</span>
+          </button>
+        </sc-for>
+      </div>
     </div>
+    <p style="font-size:11.3px; line-height:1.5; margin:clamp(10px,1.4vw,14px) 0 0; color:#391D01; opacity:0.7; max-width:62ch;">{{ activeNote }}</p>
   </section>
 
-  <section style="position:relative; overflow:hidden; padding:clamp(34px,4vw,64px) 5% clamp(60px,7vw,110px);">
+  <section style="position:relative; overflow:hidden; padding:clamp(28px,3.4vw,46px) 5% clamp(60px,7vw,110px);">
     <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:2%; left:3%; width:clamp(14px,2vw,22px); height:clamp(14px,2vw,22px); color:#690A20; opacity:0.07; transform:rotate(-13deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
-    <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
-      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); gap:clamp(16px,2vw,24px); align-items:start;">
-        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
-          <article data-reveal style="position:relative; display:flex; flex-direction:column; gap:12px; background:#FBF4E6; border:1px solid rgba(57,29,1,0.18); border-left:4px solid {{ p.accent }}; border-radius:18px; padding:clamp(20px,2.2vw,26px); box-shadow:0 14px 30px -18px rgba(57,29,1,0.3); transition:transform .3s ease, box-shadow .35s ease;" style-hover="transform:translateY(-5px) rotate(-0.3deg); box-shadow:0 20px 40px -16px rgba(57,29,1,0.42);">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-              <span style="font-family:'Poppins',sans-serif; font-size:10.2px; letter-spacing:0.18em; color:#690A20; opacity:0.6;">{{ p.index }}</span>
-              <span style="font-family:'Poppins',sans-serif; font-size:10.2px; letter-spacing:0.04em; color:#391D01; opacity:0.5;">{{ p.year }}</span>
-            </div>
-            <h3 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17.8px,1.9vw,24px); line-height:1.05; letter-spacing:-0.02em; margin:0; color:#391D01;">{{ p.name }}</h3>
-            <span style="align-self:flex-start; font-family:'Poppins',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.04em; color:#391D01; background:{{ p.accent }}; border-radius:999px; padding:5px 12px;">{{ p.categoryLabel }}</span>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr)); gap:clamp(18px,2.2vw,28px); align-items:start;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+        <article data-reveal style="position:relative; display:flex; flex-direction:column; background:#FBF4E6; border:1px solid rgba(57,29,1,0.18); border-radius:20px; overflow:hidden; box-shadow:0 14px 30px -18px rgba(57,29,1,0.3); transition:transform .3s ease, box-shadow .35s ease;" style-hover="transform:translateY(-6px) rotate(-0.3deg); box-shadow:0 22px 42px -16px rgba(57,29,1,0.42);">
+          <div style="position:relative; aspect-ratio:4/3; background:#391D01; overflow:hidden;">
+            <image-slot id="{{ p.slot }}" shape="rect" placeholder="{{ p.ph }}" src="{{ p.photoSrc }}" style="position:absolute; inset:0;"></image-slot>
+            <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(185deg, rgba(57,29,1,0) 55%, rgba(57,29,1,0.55) 100%);"></div>
+            <span style="position:absolute; top:12px; left:12px; font-family:'Poppins',sans-serif; font-size:9.8px; font-weight:600; letter-spacing:0.05em; color:#391D01; background:{{ p.accent }}; border-radius:999px; padding:5px 11px; box-shadow:0 4px 10px -4px rgba(0,0,0,0.3);">{{ p.categoryLabel }}</span>
+            <span style="position:absolute; top:12px; right:12px; font-family:'Poppins',sans-serif; font-size:9.8px; letter-spacing:0.04em; color:#F3E9D2; background:rgba(57,29,1,0.55); border-radius:999px; padding:5px 11px;">{{ p.year }}</span>
+            <h3 style="position:absolute; left:14px; right:14px; bottom:12px; margin:0; font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17.8px,1.9vw,23px); line-height:1.05; letter-spacing:-0.02em; color:#F3E9D2; text-shadow:0 2px 10px rgba(0,0,0,0.35);">{{ p.name }}</h3>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; padding:clamp(16px,1.8vw,22px);">
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
               <sc-for list="{{ p.tags }}" as="tg" hint-placeholder-count="2">
                 <span style="font-family:'Poppins',sans-serif; font-size:10px; letter-spacing:0.01em; color:#391D01; opacity:0.75; border:1px solid rgba(57,29,1,0.22); border-radius:999px; padding:4px 10px;">{{ tg }}</span>
               </sc-for>
             </div>
+            <p style="font-size:11.9px; line-height:1.6; margin:0; color:#391D01; opacity:0.9; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;">{{ p.lead }}</p>
             <sc-if value="{{ p.hasDetail }}" hint-placeholder-val="{{ true }}">
               <button type="button" onClick="{{ p.toggle }}" style="margin-top:2px; align-self:flex-start; display:inline-flex; align-items:center; gap:7px; background:transparent; border:0; padding:0; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; font-weight:600; letter-spacing:0.02em; color:#690A20; transition:color .25s ease;" style-hover="color:#391D01;">
                 <span>{{ p.cta }}</span><span style="display:inline-flex; transition:transform .35s ease; transform:{{ p.chev }};">↓</span>
@@ -164,7 +167,6 @@
             </sc-if>
             <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
               <div style="animation:nqReveal .35s ease; border-top:1px solid rgba(57,29,1,0.18); padding-top:14px; margin-top:2px; display:flex; flex-direction:column; gap:12px;">
-                <p style="font-size:11.9px; line-height:1.6; margin:0; color:#391D01;">{{ p.lead }}</p>
                 <sc-for list="{{ p.bullets }}" as="b" hint-placeholder-count="0">
                   <p style="font-size:11px; line-height:1.55; margin:0; padding-left:12px; border-left:2px solid {{ p.accent }}; color:#391D01;">{{ b }}</p>
                 </sc-for>
@@ -191,9 +193,12 @@
                 </sc-if>
               </div>
             </sc-if>
-          </article>
-        </sc-for>
-      </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <p style="text-align:center; font-size:12.8px; opacity:0.6; padding:40px 0;">Ainda não há projetos nesta categoria — volta em breve.</p>
     </sc-if>
   </section>
 
@@ -243,7 +248,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { active: null, open: {}, data: null };
+  state = { active: 'todos', open: {}, data: null };
 
   componentDidMount() {
     import('./work-data.js').then(m => { this._d = m; this.setState({ data: true }); });
@@ -252,7 +257,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { if (this._destroy) this._destroy(); if (this._dot) this._dot(); }
 
-  selectFilter(k) { this.setState({ active: k }); }
+  selectFilter(k) { this.setState({ active: k, open: {} }); }
   toggle(name) { this.setState(s => ({ open: { ...s.open, [name]: !s.open[name] } })); }
 
   matches(p, key) {
@@ -263,45 +268,44 @@ class Component extends DCLogic {
 
   renderVals() {
     const d = this._d;
-    if (!d) return { filters: [], projects: [], hasSelection: false, noSelection: true };
+    if (!d) return { filters: [], projects: [], activeNote: '', noResults: false };
     const active = this.state.active;
-    const list = active ? d.PROJECTS.filter(p => this.matches(p, active)) : [];
+    const list = d.PROJECTS.filter(p => this.matches(p, active));
+    const activeFilter = d.FILTERS.find(f => f.key === active);
     return {
-      hasSelection: !!active,
-      noSelection: !active,
+      activeNote: activeFilter ? activeFilter.note : '',
+      noResults: list.length === 0,
       filters: d.FILTERS.map(f => {
         const on = active === f.key;
         return {
           label: f.label,
-          note: f.note,
-          count: String(d.PROJECTS.filter(p => this.matches(p, f.key)).length),
           select: () => this.selectFilter(f.key),
-          bg: f.bg,
-          ink: f.ink,
+          count: String(d.PROJECTS.filter(p => this.matches(p, f.key)).length),
           accent: f.accent,
-          cta: on ? 'A ver os projetos' : 'Ver os projetos',
-          arrow: on ? 'rotate(90deg)' : 'rotate(0deg)',
-          shadow: on ? '0 0 0 3px ' + f.accent + ', 0 0 26px 5px rgba(' + f.glowRgb + ',0.35)' : '0 0 24px 4px rgba(' + f.glowRgb + ',0.15)',
-          lift: on ? 'translateY(-4px)' : 'none',
+          bg: on ? f.accent : 'transparent',
+          ink: '#391D01',
+          border: on ? f.accent : 'rgba(57,29,1,0.28)',
         };
       }),
       projects: list.map((p, i) => {
         const s = d.buildSummary(p);
-        const hasDetail = !!(s.lead || s.bullets.length || s.chips.length || s.dots.length || s.shots.length);
+        const hasDetail = !!(s.bullets.length || s.dots.length || s.meta || s.shots.length);
         const open = !!this.state.open[p.name] && hasDetail;
         return {
           name: p.name, brand: p.brand, year: p.year, tags: p.tags || [],
           categoryLabel: p.categoryLabel,
           index: String(i + 1).padStart(2, '0'),
-          lead: s.lead, bullets: s.bullets, chips: s.chips, dots: s.dots, shots: s.shots, meta: s.meta,
+          lead: s.lead, bullets: s.bullets, dots: s.dots, shots: s.shots, meta: s.meta,
           hasDots: s.dots.length > 0, hasShots: s.shots.length > 0, hasMeta: !!s.meta,
           hasDetail,
           open,
           toggle: hasDetail ? (() => this.toggle(p.name)) : (() => {}),
-          cursor: hasDetail ? 'pointer' : 'default',
           cta: open ? 'Ver menos' : 'Ver mais',
           chev: open ? 'rotate(180deg)' : 'rotate(0deg)',
           accent: d.CAT_ACCENT[p.category] || '#ACC048',
+          slot: 'work-cover-' + (p.category + '-' + p.name).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+          ph: p.name,
+          photoSrc: p.photo || '',
         };
       }),
     };
