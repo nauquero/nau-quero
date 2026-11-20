@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="pt-PT"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriela Pereira · Advogada</title>
+<meta name="description" content="Gabriela Pereira, advogada em Póvoa de Varzim. Direito da Família, Penal, de Menores e Civil. Cédula 11105P.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─── Design tokens ────────────────────────────────────────── */
+  :root {
+    --ox:       #3D0910;   /* oxblood principal */
+    --ox2:      #2A060B;   /* oxblood médio     */
+    --ox3:      #1C0407;   /* oxblood profundo  */
+    --ox-line:  #5A1620;   /* bordo/linha       */
+    --ivory:    #FFFCEF;   /* secundária clara  */
+    --rose:     #C8A2A6;   /* secundária rosa   */
+    --rose-dim: #9E7679;   /* rosa escurecido   */
+    --gold:     #C9A36B;   /* dourado           */
+    --gold-lt:  #E0C79B;   /* dourado claro     */
+    --paper:    #F4EDE6;   /* quase-branco      */
+    --serif:    'Cormorant Garamond', Georgia, serif;
+    --sans:     'Poppins', sans-serif;
+    --maxw:     1260px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--ox3);
+    color: var(--paper);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 52px; }
+
+  /* ─── Atoms ────────────────────────────────────────────────── */
+  .eyebrow {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--rose);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--rose); }
+
+  .ph {
+    background:
+      repeating-linear-gradient(135deg, rgba(200,162,166,.09) 0 2px, transparent 2px 12px),
+      var(--ox2);
+    border: 1px solid var(--ox-line);
+    display: flex; align-items: flex-end; overflow: hidden;
+  }
+  .ph span {
+    font-family: 'Courier New', monospace; font-size: 10.5px; letter-spacing: .04em;
+    color: var(--rose-dim); background: var(--ox3); padding: 5px 9px;
+    margin: 10px; border: 1px solid var(--ox-line);
+  }
+
+  /* ─── Buttons ──────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 500;
+    letter-spacing: .03em; padding: 14px 28px; border: 1px solid;
+    transition: all .28s; white-space: nowrap;
+  }
+  .btn-solid { background: var(--gold); color: var(--ox3); border-color: var(--gold); }
+  .btn-solid:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+  .btn-ghost { background: transparent; color: var(--gold); border-color: var(--gold); }
+  .btn-ghost:hover { background: var(--gold); color: var(--ox3); }
+
+  /* ─── Nav ──────────────────────────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 60;
+    background: color-mix(in srgb, var(--ox3) 82%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--ox-line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 82px;
+  }
+  .brand { display: flex; align-items: center; }
+  .brand-logo { height: 38px; width: auto; display: block; }
+  nav.links { display: flex; gap: 38px; }
+  nav.links a { font-size: 13.5px; color: rgba(244,237,230,.65); transition: color .2s; }
+  nav.links a:hover { color: var(--gold-lt); }
+  .nav .cta { display: flex; }
+
+  /* ─── Hero ─────────────────────────────────────────────────── */
+  .hero {
+    position: relative; overflow: hidden;
+    background: radial-gradient(130% 100% at 75% -10%, var(--ox) 0%, var(--ox2) 42%, var(--ox3) 100%);
+    padding: 108px 0 80px;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(200,162,166,.025) 0 1px, transparent 1px 80px);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(52px, 7.2vw, 108px);
+    font-weight: 400; line-height: .96; letter-spacing: -0.01em;
+    margin: 30px 0 0; color: var(--ivory);
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-lt); font-weight: 400; }
+  .hero p.lead {
+    font-size: 16.5px; color: rgba(244,237,230,.75); max-width: 490px;
+    margin: 30px 0 38px; font-weight: 300; line-height: 1.78;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .hero-col { position: relative; }
+  .hero-col .portrait-wrap { position: relative; }
+  .hero-col .portrait-wrap .ph { aspect-ratio: 4/5; }
+  .hero-col .portrait-wrap .portrait-img { padding: 0; border: none; overflow: hidden; }
+  .hero-col .portrait-wrap .portrait-img img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+  }
+  .hero-col .frame-outer {
+    position: absolute; inset: -16px; border: 1px solid rgba(201,163,107,.35);
+    pointer-events: none;
+  }
+  .hero-col .frame-inner {
+    position: absolute; inset: 16px; border: 1px solid rgba(201,163,107,.15);
+    pointer-events: none;
+  }
+  .cred-card {
+    position: absolute; left: -36px; bottom: 48px;
+    background: var(--ox3); border: 1px solid var(--gold);
+    padding: 20px 26px; max-width: 230px;
+    box-shadow: 0 32px 64px -20px rgba(0,0,0,.6);
+  }
+  .cred-card .c-lbl { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--rose); }
+  .cred-card .c-val { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--ivory); margin-top: 4px; }
+  .cred-card .c-sub { font-size: 13px; color: rgba(244,237,230,.65); margin-top: 2px; }
+
+  /* ─── Practice bar ─────────────────────────────────────────── */
+  .pbar { border-top: 1px solid var(--ox-line); }
+  .pbar-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .pbar-item {
+    flex: 1; min-width: 160px; padding: 24px 28px;
+    border-right: 1px solid var(--ox-line); font-size: 11.5px;
+    letter-spacing: .16em; text-transform: uppercase; color: rgba(244,237,230,.5);
+    transition: color .25s; display: flex; align-items: center; gap: 10px;
+  }
+  .pbar-item::before { content: "—"; color: var(--gold); font-size: 10px; }
+  .pbar-item:last-child { border-right: none; }
+  .pbar-item:hover { color: var(--gold-lt); }
+
+  /* ─── Section shells ───────────────────────────────────────── */
+  section { padding: 120px 0; }
+  .sec-head { margin-bottom: 62px; }
+  .sec-head h2 {
+    font-family: var(--serif); font-size: clamp(40px, 5.2vw, 68px);
+    font-weight: 400; letter-spacing: -.01em; line-height: 1.02;
+    margin-top: 18px; color: var(--ivory);
+  }
+  .sec-head h2 em { font-style: italic; color: var(--gold-lt); }
+  .sec-head p { color: rgba(244,237,230,.68); font-size: 16px; max-width: 520px; margin-top: 18px; }
+
+  /* ─── Áreas ─────────────────────────────────────────────────── */
+  .areas-sec { background: var(--ox2); }
+  .areas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .area-card {
+    border: 1px solid var(--ox-line); padding: 42px 40px 48px;
+    transition: border-color .3s, transform .3s;
+    background: linear-gradient(160deg, rgba(200,162,166,.04), transparent);
+    position: relative; overflow: hidden;
+  }
+  .area-card::before {
+    content: ""; position: absolute; top: 0; left: 0;
+    width: 0; height: 2px; background: var(--gold); transition: width .4s ease;
+  }
+  .area-card:hover { border-color: rgba(201,163,107,.5); transform: translateY(-4px); }
+  .area-card:hover::before { width: 100%; }
+  .area-num {
+    font-family: var(--serif); font-size: 52px; font-weight: 400;
+    color: var(--ox-line); line-height: 1; margin-bottom: 20px;
+    transition: color .3s;
+  }
+  .area-card:hover .area-num { color: rgba(201,163,107,.4); }
+  .area-card h3 {
+    font-family: var(--serif); font-size: 28px; font-weight: 600;
+    letter-spacing: -.01em; color: var(--ivory); margin-bottom: 14px;
+  }
+  .area-card p { font-size: 15px; color: rgba(244,237,230,.68); line-height: 1.72; }
+
+  /* ─── Sobre ─────────────────────────────────────────────────── */
+  .sobre-sec {
+    background: var(--ivory);
+    color: var(--ox3);
+    position: relative;
+    overflow: hidden;
+  }
+  .sobre-sec::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("./images/gabriela-pereira/textura.png");
+    background-size: 420px auto;
+    background-repeat: repeat;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .sobre-sec .wrap { position: relative; z-index: 1; }
+  /* Cabeçalho: texto + foto pequena */
+  .sobre-header { display: grid; grid-template-columns: 1fr 270px; gap: 60px; align-items: start; margin-bottom: 40px; }
+  .sobre-photo { position: relative; }
+  .sobre-photo .ph {
+    aspect-ratio: 3/4;
+    background:
+      repeating-linear-gradient(135deg, rgba(61,9,16,.07) 0 2px, transparent 2px 12px),
+      #E8DDD6;
+    border-color: #D4C4BB;
+  }
+  .sobre-photo .ph span { background: var(--ivory); color: #8A6B6F; border-color: #D4C4BB; }
+  .sobre-photo .frame-dec {
+    position: absolute; right: -14px; bottom: -14px; width: 55%; height: 55%;
+    border: 1px solid var(--ox); pointer-events: none; z-index: -1;
+  }
+  .sobre-text .eyebrow { color: var(--rose-dim); }
+  .sobre-text .eyebrow::before { background: var(--rose-dim); }
+  .sobre-text h2 {
+    font-family: var(--serif); font-size: clamp(36px, 4.4vw, 56px);
+    font-weight: 400; line-height: 1.06; letter-spacing: -.01em;
+    color: var(--ox); margin: 18px 0 0;
+  }
+  .sobre-text h2 em { font-style: italic; color: var(--ox); }
+  .sobre-text p { color: #4A3234; font-size: 16px; margin-bottom: 0; max-width: 560px; line-height: 1.78; }
+  /* Educação: 3 colunas horizontais */
+  .edu-horiz {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 36px; padding-top: 30px; border-top: 1px solid rgba(61,9,16,.15);
+  }
+  .edu-item { display: flex; gap: 14px; align-items: flex-start; }
+  .edu-item .deg-icon { width: 34px; height: 34px; flex: none; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(61,9,16,.2); border-radius: 50%; }
+  .edu-item .deg-icon svg { width: 15px; height: 15px; }
+  .edu-item .deg { font-family: var(--serif); font-size: 14.5px; font-weight: 600; color: var(--ox); line-height: 1.25; }
+  .edu-item .inst { font-size: 12px; color: #8A6B6F; margin-top: 3px; letter-spacing: .01em; }
+  .sig-line { margin-top: 30px; display: flex; align-items: center; gap: 20px; }
+  .sig-line .sig-div { width: 36px; height: 1px; background: var(--rose-dim); }
+  .sig-line .sig-nm { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ox); }
+  .sig-line .sig-role { font-size: 12px; letter-spacing: .06em; color: var(--rose-dim); margin-top: 2px; }
+
+  /* ─── Sobre: número animado */
+  .sobre-num {
+    font-family: var(--serif); font-style: normal;
+    color: var(--ox);
+    display: inline-block;
+  }
+  @keyframes num-pop {
+    0%   { transform: scale(0.7); opacity: 0; }
+    60%  { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .sobre-num.animate { animation: num-pop .7s cubic-bezier(.34,1.56,.64,1) forwards; }
+
+  /* ─── Sobre: novos elementos ─────────────────────────────── */
+  .sobre-quote {
+    font-family: var(--serif); font-size: 16.5px; font-style: italic;
+    font-weight: 400; color: var(--ox); line-height: 1.5;
+    border-left: 2px solid var(--rose-dim);
+    padding: 4px 0 4px 20px; margin: 24px 0 28px;
+    white-space: nowrap;
+  }
+  .mvv-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin: 0 0 20px;
+  }
+  .mvv-item {
+    border: 1px solid rgba(61,9,16,.14);
+    padding: 20px 22px 22px;
+    background: rgba(61,9,16,.03);
+    position: relative; overflow: hidden;
+    transition: background .35s, border-color .35s, transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s;
+  }
+  .mvv-item::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--ox);
+    transition: width .45s ease;
+  }
+  .mvv-item:hover { background: var(--ox); border-color: var(--ox); transform: translateY(-3px); box-shadow: 0 12px 32px -8px rgba(61,9,16,.25); }
+  .mvv-item:hover::before { width: 100%; }
+  .mvv-item:hover .mvv-label { color: rgba(244,237,230,.55); }
+  .mvv-item:hover .mvv-label::before { background: rgba(244,237,230,.4); }
+  .mvv-item:hover p { color: rgba(244,237,230,.85); }
+  .mvv-label {
+    font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--rose-dim); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+    transition: color .35s;
+  }
+  .mvv-label::before { content: ""; width: 16px; height: 1px; background: var(--rose-dim); transition: background .35s; }
+  .mvv-item p { font-size: 14px; color: #4A3234; line-height: 1.7; margin: 0; transition: color .35s; }
+  .valores-row {
+    display: flex; gap: 0; border: 1px solid rgba(61,9,16,.14);
+    margin: 0 0 28px; overflow: hidden;
+  }
+  .valor-item {
+    flex: 1; padding: 18px 20px;
+    border-right: 1px solid rgba(61,9,16,.14);
+    display: flex; flex-direction: column; gap: 4px;
+    transition: background .32s, border-color .32s;
+    position: relative; overflow: hidden;
+  }
+  .valor-item::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 0;
+    background: rgba(61,9,16,.07);
+    transition: height .35s ease;
+    z-index: 0;
+  }
+  .valor-item:hover { background: var(--ox); border-right-color: rgba(255,255,255,.1); }
+  .valor-item:hover .valor-title { color: var(--gold-lt); }
+  .valor-item:hover .valor-desc { color: rgba(244,237,230,.65); }
+  .valor-item:last-child { border-right: none; }
+  .valor-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 600;
+    color: var(--ox); line-height: 1; position: relative; z-index: 1;
+    transition: color .32s;
+  }
+  .valor-desc { font-size: 12px; color: #8A6B6F; line-height: 1.45; position: relative; z-index: 1; transition: color .32s; }
+
+  /* ─── Processo ─────────────────────────────────────────────── */
+  .processo-sec { background: var(--ox2); }
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+  .steps-grid::before {
+    content: ""; position: absolute; top: 20px; left: 12%; right: 12%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .step { padding: 0 28px 0 0; }
+  .step .step-num {
+    width: 42px; height: 42px; border: 1px solid var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 17px; font-weight: 600;
+    color: var(--gold); margin-bottom: 30px; background: var(--ox2);
+    position: relative; z-index: 1;
+  }
+  .step h4 {
+    font-family: var(--serif); font-size: 22px; font-weight: 600;
+    color: var(--ivory); margin-bottom: 12px; letter-spacing: -.01em;
+  }
+  .step p { font-size: 14.5px; color: rgba(244,237,230,.65); line-height: 1.68; }
+
+  /* ─── Contacto ─────────────────────────────────────────────── */
+  .contacto-sec { background: var(--ox3); }
+  .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; }
+  .contact-info-card { border: 1px solid var(--ox-line); padding: 44px 38px; height: fit-content; }
+  .contact-info-card h3 {
+    font-family: var(--serif); font-size: 34px; font-weight: 400;
+    color: var(--ivory); line-height: 1.15; letter-spacing: -.01em; margin: 16px 0 30px;
+  }
+  .contact-info-card h3 em { font-style: italic; color: var(--gold-lt); }
+  .info-rows { display: flex; flex-direction: column; gap: 22px; }
+  .info-row .lbl { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); margin-bottom: 6px; }
+  .info-row .val { font-size: 15.5px; line-height: 1.5; }
+  .info-row a { transition: color .2s; }
+  .info-row a:hover { color: var(--gold-lt); }
+
+  .map-link {
+    color: inherit; text-decoration: none;
+    border-bottom: 1px solid rgba(201,163,107,.35);
+    transition: color .2s, border-color .2s;
+    display: inline;
+  }
+  .map-link:hover { color: var(--gold-lt); border-bottom-color: var(--gold-lt); }
+  .map-link::after { display: none !important; }
+
+  /* ─── Custom select dropdown ──────────────────────────────── */
+  .cs-wrapper { position: relative; }
+  .cs-display {
+    width: 100%; background: var(--ox2); color: rgba(244,237,230,.32);
+    border: 1px solid var(--ox-line); padding: 14px 40px 14px 16px;
+    font-family: var(--sans); font-size: 15px; font-weight: 300;
+    cursor: pointer; display: flex; align-items: center;
+    transition: border-color .25s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23C9A36B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    user-select: none;
+  }
+  .cs-display.filled { color: var(--paper); }
+  .cs-display:focus,
+  .cs-wrapper.open .cs-display { outline: none; border-color: var(--gold); }
+  .cs-options {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 200;
+    background: #4A2830;
+    border: 1px solid var(--ox-line); border-top: none;
+    display: none;
+    box-shadow: 0 16px 40px -8px rgba(0,0,0,.5);
+  }
+  .cs-wrapper.open .cs-options { display: block; }
+  .cs-option {
+    padding: 13px 16px;
+    color: var(--paper); font-family: var(--sans); font-size: 15px; font-weight: 300;
+    cursor: pointer;
+    transition: background .18s, color .18s;
+  }
+  .cs-option:hover { background: var(--ox); color: var(--gold-lt); }
+  .cs-option.active { background: rgba(201,163,107,.15); }
+
+  /* ─── Form ──────────────────────────────────────────────────── */
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  form .full { grid-column: 1/-1; }
+  .f-field label {
+    display: block; font-size: 10px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--rose-dim); margin-bottom: 9px;
+  }
+  .f-field input,
+  .f-field textarea {
+    width: 100%; background: var(--ox2); color: var(--paper);
+    border: 1px solid var(--ox-line); padding: 14px 16px;
+    font-family: var(--sans); font-size: 15px; font-weight: 300;
+    transition: border-color .25s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .f-field input:focus,
+  .f-field select:focus,
+  .f-field textarea:focus { outline: none; border-color: var(--gold); }
+  .f-field input::placeholder,
+  .f-field textarea::placeholder { color: rgba(244,237,230,.32); }
+  .f-field select option { background: #4A2830; color: var(--paper); }
+  .f-field select option:disabled { color: rgba(244,237,230,.45); }
+  .consent {
+    grid-column: 1/-1; display: flex; gap: 12px; align-items: flex-start;
+    font-size: 12.5px; color: rgba(244,237,230,.55); line-height: 1.55;
+  }
+  .consent input { margin-top: 3px; flex: none; accent-color: var(--gold); cursor: pointer; }
+  .f-submit { grid-column: 1/-1; }
+  .f-submit button {
+    width: 100%; background: var(--gold); color: var(--ox3);
+    border: none; padding: 18px; font-family: var(--sans);
+    font-size: 14.5px; font-weight: 600; letter-spacing: .04em;
+    cursor: pointer; transition: background .28s;
+  }
+  .f-submit button:hover { background: var(--gold-lt); }
+  .form-ok {
+    display: none; grid-column: 1/-1; margin-top: -6px;
+    font-size: 13.5px; color: var(--gold-lt); padding: 14px 0;
+    border-top: 1px solid var(--ox-line);
+  }
+
+  /* ─── Footer ────────────────────────────────────────────────── */
+  footer {
+    background: var(--ox); padding: 68px 0 46px;
+    border-top: 1px solid var(--ox-line);
+  }
+  .ft-top { display: flex; justify-content: space-between; gap: 50px; flex-wrap: wrap; }
+  .ft-logo { width: 200px; height: auto; display: block; margin-bottom: 16px; }
+  .ft-brand .ft-desc { font-size: 14px; color: rgba(244,237,230,.55); max-width: 280px; margin-top: 0; line-height: 1.7; }
+  .ft-cols { display: flex; gap: 58px; flex-wrap: wrap; }
+  .ft-col h5 { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+  .ft-col a,
+  .ft-col p { display: block; font-size: 14px; color: rgba(244,237,230,.6); margin-bottom: 10px; }
+  .ft-col a:hover { color: var(--gold-lt); }
+  .ft-base {
+    margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--ox-line);
+    display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    font-size: 12px; color: rgba(244,237,230,.4);
+  }
+
+
+  /* ─── Visual effects ───────────────────────────────────────── */
+
+  /* Shimmer dourado no título de contacto */
+  .contacto-sec .sec-head h2 {
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 30%, #fff9e8 50%, var(--gold-lt) 70%, var(--gold) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gold-shimmer 4s linear infinite;
+  }
+
+  /* Shimmer on hero gold italic text */
+  @keyframes gold-shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+  }
+  .hero h1 em {
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 30%, #fff9e8 50%, var(--gold-lt) 70%, var(--gold) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gold-shimmer 4s linear infinite;
+  }
+
+  /* Pulse glow on cred-card border */
+  @keyframes border-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,163,107,0); }
+    50%       { box-shadow: 0 0 18px 4px rgba(201,163,107,0.22); }
+  }
+  .cred-card { animation: border-pulse 3.5s ease-in-out infinite; }
+
+  /* Floating scroll indicator */
+  @keyframes bounce-y {
+    0%, 100% { transform: translateY(0); opacity: .7; }
+    50%       { transform: translateY(7px); opacity: 1; }
+  }
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(244,237,230,.4); pointer-events: none; z-index: 2;
+    animation: bounce-y 2.2s ease-in-out infinite;
+  }
+  .scroll-hint svg { opacity: .5; }
+
+  /* Area card tilt is handled via JS; only provide transition base */
+  .area-card { transform-style: preserve-3d; will-change: transform; }
+
+  /* Button magnetic — transition reset handled in JS */
+  .btn { will-change: transform; }
+
+  /* Step number glow on hover */
+  .step:hover .step-num {
+    box-shadow: 0 0 16px 3px rgba(201,163,107,0.35);
+    background: rgba(201,163,107,0.08);
+  }
+  .step .step-num { transition: box-shadow .3s, background .3s; }
+
+  /* Gold line accent on section heads */
+  @keyframes line-grow {
+    from { width: 0; }
+    to   { width: 24px; }
+  }
+  .eyebrow.in-view::before { animation: line-grow .6s ease forwards; }
+
+  /* Nav link animated underline */
+  nav.links a {
+    position: relative;
+  }
+  nav.links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width .3s ease;
+  }
+  nav.links a:hover::after { width: 100%; }
+
+  /* Particle canvas */
+  #hero-canvas {
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 0; opacity: .85;
+  }
+
+  /* ─── Custom cursor ──────────────────────────────────────────── */
+  html, a, button, input, select, textarea, .btn, label { cursor: none !important; }
+  #gp-cursor {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999;
+    transform: translate(-50%, 0);
+    transition: opacity .2s, filter .2s;
+    will-change: left, top;
+    opacity: 0;
+  }
+  #gp-cursor.active { opacity: 1; }
+  #gp-cursor.hover .drop-body { transform: scale(1.18); }
+  #gp-cursor .drop-body { transform-origin: 50% 50%; transition: transform .22s cubic-bezier(.34,1.56,.64,1); }
+
+  /* ─── Scroll reveal ─────────────────────────────────────────── */
+  /* Content always visible; animation layered on top when JS ready */
+  .reveal { opacity: 1; transform: none; }
+  body.js-ready .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
+  body.js-ready .reveal.in { opacity: 1; transform: none; }
+
+  /* ─── Hamburger menu ──────────────────────────────────────── */
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; background: none; border: none;
+    cursor: pointer; padding: 8px; z-index: 100;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1.5px;
+    background: var(--paper); transition: all .3s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 59;
+    background: var(--ox3); flex-direction: column;
+    justify-content: center; align-items: center; gap: 0;
+    padding: 100px 40px 60px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--serif); font-size: 36px; font-weight: 400;
+    color: var(--paper); padding: 16px 0; width: 100%; text-align: center;
+    border-bottom: 1px solid var(--ox-line);
+    transition: color .2s;
+  }
+  .mobile-menu a:first-child { border-top: 1px solid var(--ox-line); }
+  .mobile-menu a:hover { color: var(--gold-lt); }
+  .mobile-menu .mob-cta {
+    margin-top: 36px; width: 100%;
+  }
+  .mobile-menu .mob-cta .btn {
+    width: 100%; justify-content: center;
+    font-size: 14px; padding: 16px;
+  }
+
+  /* ─── Responsive — tablet (≤980px) ─────────────────────────── */
+  @media (max-width: 980px) {
+    .wrap { padding: 0 26px; }
+    section { padding: 80px 0; }
+
+    /* Nav */
+    nav.links, .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-inner { height: 68px; }
+
+    /* Hero */
+    .hero { padding: 72px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-col { order: -1; max-width: 360px; margin: 0 auto; }
+    .cred-card { left: 0; }
+
+    /* Areas */
+    .areas-grid { grid-template-columns: 1fr; gap: 14px; }
+
+    /* Sobre */
+    .sobre-header { grid-template-columns: 1fr 200px; gap: 36px; }
+    .sobre-photo .frame-dec { display: none; }
+    .mvv-grid { grid-template-columns: 1fr; }
+    .edu-horiz { grid-template-columns: 1fr; gap: 18px; }
+    .sobre-quote { white-space: normal; font-size: 15px; }
+
+    /* Processo */
+    .steps-grid { grid-template-columns: 1fr 1fr; gap: 44px; }
+    .steps-grid::before { display: none; }
+
+    /* Contacto */
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    form { grid-template-columns: 1fr; }
+    .sobre-grid { grid-template-columns: 1fr; }
+
+    /* Practice bar */
+    .pbar-inner { flex-wrap: wrap; }
+    .pbar-item { border-bottom: 1px solid var(--ox-line); min-width: 50%; }
+
+    /* Footer */
+    .ft-top { flex-direction: column; gap: 36px; }
+    .ft-cols { gap: 36px; }
+  }
+
+  /* ─── Responsive — mobile (≤600px) ─────────────────────────── */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 20px; }
+    section { padding: 60px 0; }
+
+    /* Nav */
+    .nav-inner { height: 60px; }
+    .brand-logo { height: 28px; }
+
+    /* Hero */
+    .hero { padding: 56px 0 48px; }
+    .hero h1 { font-size: 42px; margin-top: 18px; }
+    .hero p.lead { font-size: 15px; margin: 20px 0 28px; }
+    .hero-cta { flex-direction: column; gap: 10px; }
+    .hero-cta .btn { width: 100%; justify-content: center; }
+    .hero-col { max-width: 280px; }
+    .cred-card { padding: 14px 18px; max-width: 200px; }
+    .cred-card .c-val { font-size: 20px; }
+    .cred-card .c-sub { font-size: 11px; }
+    .scroll-hint { display: none; }
+
+    /* Practice bar */
+    .pbar-item { min-width: 100%; font-size: 10px; padding: 16px 20px; }
+
+    /* Section heads */
+    .sec-head { margin-bottom: 40px; }
+    .sec-head h2 { font-size: 34px; }
+    .sec-head p { font-size: 14px; }
+
+    /* Areas */
+    .area-card { padding: 28px 24px 32px; }
+    .area-card h3 { font-size: 22px; }
+    .area-num { font-size: 38px; }
+
+    /* Sobre */
+    .sobre-header { grid-template-columns: 1fr; gap: 28px; }
+    .sobre-photo { max-width: 220px; }
+    .sobre-text h2 { font-size: 34px; }
+    .sobre-quote { font-size: 14px; white-space: normal; }
+    .sobre-text p { font-size: 14px; }
+    .valores-row { flex-direction: column; }
+    .valor-item { border-right: none; border-bottom: 1px solid rgba(61,9,16,.14); }
+    .valor-item:last-child { border-bottom: none; }
+    .edu-horiz { grid-template-columns: 1fr; }
+
+    /* Processo */
+    .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+    .step { padding: 0; }
+
+    /* Contacto */
+    .contact-info-card { padding: 28px 22px; }
+    .contact-info-card h3 { font-size: 26px; }
+    .f-submit button { font-size: 13px; padding: 16px; }
+
+    /* Footer */
+    .ft-logo { width: 160px; }
+    .ft-cols { flex-direction: column; gap: 28px; }
+    .ft-base { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head><body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <img src="./images/gabriela-pereira/logo.png" alt="Gabriela Pereira · Advocacia &amp; Consultoria" class="brand-logo">
+    </a>
+    <nav class="links">
+      <a href="#areas">Áreas</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contacto" class="btn btn-solid">Agendar consulta</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navegação">
+  <a href="#areas" class="mob-link">Áreas</a>
+  <a href="#sobre" class="mob-link">Sobre</a>
+  <a href="#processo" class="mob-link">Como funciona</a>
+  <a href="#contacto" class="mob-link">Contacto</a>
+  <div class="mob-cta">
+    <a href="#contacto" class="btn btn-solid">Agendar consulta</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Advocacia · Póvoa de Varzim</span>
+        <h1>Ao seu lado<br>nos momentos<br>que <em>mais importam</em>.</h1>
+        <p class="lead">Apoio jurídico em Direito da Família, Penal, de Menores e Civil — para particulares e empresas que procuram rigor, discrição e uma defesa verdadeiramente próxima.</p>
+        <div class="hero-cta">
+          <a href="#contacto" class="btn btn-solid">Agendar consulta</a>
+          <a href="#areas" class="btn btn-ghost">Áreas de atuação</a>
+        </div>
+      </div>
+      <div class="hero-col">
+        <div class="portrait-wrap">
+          <div class="frame-outer"></div>
+          <div class="frame-inner"></div>
+          <div class="ph portrait-img"><img src="./images/gabriela-pereira/portrait.jpg" alt="Gabriela Pereira, advogada"></div>
+        </div>
+        <div class="cred-card">
+          <div class="c-lbl">Experiência</div>
+          <div class="c-val">21 anos</div>
+          <div class="c-sub">Em advocacia&nbsp;
+desde março de 2005</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <svg width="18" height="22" viewBox="0 0 18 22" fill="none"><rect x="6.5" y="1" width="5" height="9" rx="2.5" stroke="currentColor" stroke-width="1.2"></rect><circle cx="9" cy="4.5" r="1.5" fill="currentColor" opacity=".6"></circle><path d="M9 14v6M6 17l3 3 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </div>
+</section>
+
+  <!-- Practice bar -->
+  <div class="pbar">
+    <div class="pbar-inner wrap">
+      <div class="pbar-item">Direito da Família</div>
+      <div class="pbar-item">Direito Penal</div>
+      <div class="pbar-item">Direito de Menores</div>
+      <div class="pbar-item">Direito Civil</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ ÁREAS ═══════════════ -->
+  <section id="areas" class="areas-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Áreas de atuação</span>
+        <h2>Representação em tribunal<br>e <em>assessoria jurídica</em>.</h2>
+        <p>Exercício do mandato geral e consultoria em representação de pessoas singulares ou coletivas, perante os tribunais e outras entidades judiciais.</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card reveal">
+          <div class="area-num">01</div>
+          <h3>Direito da Família</h3>
+          <p>Divórcios, regulação das responsabilidades parentais, partilhas de bens, uniões de facto, pensões de alimentos e todos os processos que envolvem o núcleo familiar — sempre com discrição e sensibilidade.</p>
+        </div>
+        <div class="area-card reveal">
+          <div class="area-num">02</div>
+          <h3>Direito Penal</h3>
+          <p>Defesa e representação em processo-crime, assistência a arguidos e a ofendidos em todas as fases do processo penal, com estratégia rigorosa e comunicação transparente.</p>
+        </div>
+        <div class="area-card reveal">
+          <div class="area-num">03</div>
+          <h3>Direito de Menores</h3>
+          <p>Promoção e proteção de crianças e jovens em risco, regulação de responsabilidades parentais e processos tutelares educativos, sempre centrados no superior interesse do menor.</p>
+        </div>
+        <div class="area-card reveal">
+          <div class="area-num">04</div>
+          <h3>Direito Civil</h3>
+          <p>Contratos, responsabilidade civil, obrigações, heranças, sucessões e preparação de documentos jurídicos diversos para particulares e empresas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SOBRE ═══════════════ -->
+  <section id="sobre" class="sobre-sec">
+    <div class="wrap">
+
+      <!-- Cabeçalho: headline + foto contida -->
+      <div class="sobre-header reveal">
+        <div class="sobre-text">
+          <span class="eyebrow">Sobre</span>
+          <h2><span id="sobre-num" class="sobre-num">21</span> anos<br>a defender o que <em>mais importa</em>.</h2>
+          <blockquote class="sobre-quote">"Confiança, competência e proximidade —&nbsp;em cada caso, sem exceção."</blockquote>
+          <p>Advogada desde 2005, com uma prática abrangente que inclui mandato forense, consultoria jurídica e representação perante tribunais. Atua com especial enfoque no <strong>Direito Criminal</strong> e no <strong>Direito da Família e Menores</strong>, oferecendo soluções claras e eficazes a pessoas singulares e coletivas.</p>
+        </div>
+        <div class="sobre-photo">
+          <div class="ph" style="background:none; border:none; padding:0; overflow:hidden;"><img src="./images/gabriela-pereira/escritorio.jpg" alt="Escritório de Advocacia Gabriela Pereira" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+          <div class="frame-dec"></div>
+        </div>
+      </div>
+
+      <!-- Missão + Visão -->
+      <div class="mvv-grid reveal">
+        <div class="mvv-item">
+          <div class="mvv-label">Missão</div>
+          <p>Prestar assessoria jurídica rigorosa e personalizada, defendendo os interesses de cada cliente com clareza, ética e dedicação.</p>
+        </div>
+        <div class="mvv-item">
+          <div class="mvv-label">Visão</div>
+          <p>Ser uma referência de confiança na advocacia, reconhecida pela proximidade com o cliente e pela qualidade consistente do serviço.</p>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <div class="valores-row reveal">
+        <div class="valor-item">
+          <span class="valor-title">Ética</span>
+          <span class="valor-desc">a base de cada decisão e de cada relação profissional</span>
+        </div>
+        <div class="valor-item">
+          <span class="valor-title">Proximidade</span>
+          <span class="valor-desc">cada cliente é único e merece atenção individual</span>
+        </div>
+        <div class="valor-item">
+          <span class="valor-title">Compromisso</span>
+          <span class="valor-desc">presente em cada caso, do início ao fim</span>
+        </div>
+      </div>
+
+      <!-- Formação: 3 colunas lado a lado -->
+      <div class="edu-horiz reveal">
+        <div class="edu-item">
+          <div class="deg-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L15 5L8 9L1 5L8 1Z" stroke="#3D0910" stroke-width="1.1" stroke-linejoin="round"></path><path d="M1 5V11" stroke="#3D0910" stroke-width="1.1" stroke-linecap="round"></path><path d="M4 6.5V11.5C4 11.5 5.5 13 8 13C10.5 13 12 11.5 12 11.5V6.5" stroke="#3D0910" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div>
+            <div class="deg">Licenciatura em Direito</div>
+            <div class="inst">Universidade Portucalense</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="deg-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="12" height="9" rx="1" stroke="#3D0910" stroke-width="1.1"></rect><path d="M5 4V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V4" stroke="#3D0910" stroke-width="1.1"></path><path d="M8 8V10M6 9H10" stroke="#3D0910" stroke-width="1.1" stroke-linecap="round"></path></svg>
+          </div>
+          <div>
+            <div class="deg">Pós-Graduação em Direito do Registo e Notariado</div>
+            <div class="inst">Católica Business School</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="deg-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="5.5" stroke="#3D0910" stroke-width="1.1"></circle><path d="M5.5 8.5L7 10L10.5 6.5" stroke="#3D0910" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div>
+            <div class="deg">Membro da Ordem dos Advogados</div>
+            <div class="inst">Célula Profissional 11105P&nbsp;</div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROCESSO ═══════════════ -->
+  <section id="processo" class="processo-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Do primeiro contacto<br>à <em>resolução</em>.</h2>
+        <p>Saber o que esperar traz tranquilidade.&nbsp;&nbsp;
+Estes são os quatro momentos do nosso trabalho conjunto.</p>
+      </div>
+      <div class="steps-grid reveal">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Primeiro contacto</h4>
+          <p>Marque a consulta por formulário ou e-mail. Em conversa, percebo a sua situação e as suas necessidades.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Análise do caso</h4>
+          <p>Estudo a documentação, avalio riscos e oportunidades e apresento uma estratégia clara e transparente.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Acompanhamento</h4>
+          <p>Represento-o em todas as diligências e mantenho-o informada a cada etapa, sem surpresas.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Resolução</h4>
+          <p>Procuro o melhor desfecho possível — por acordo ou em tribunal — defendendo sempre os seus interesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CONTACTO ═══════════════ -->
+  <section id="contacto" class="contacto-sec">
+    <div class="wrap">
+      <div class="sec-head reveal" style="max-width: 620px;">
+        <span class="eyebrow">Contacto</span>
+        <h2>Vamos falar<br>sobre o seu caso.</h2>
+        <p>Preencha o formulário ou contacte diretamente.&nbsp;&nbsp;
+Toda a informação é tratada com total confidencialidade.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-card reveal">
+          <span class="eyebrow">Escritório</span>
+          <h3>Póvoa de Varzim.</h3>
+          <div class="info-rows">
+            <div class="info-row">
+              <div class="lbl">E-mail</div>
+              <div class="val"><a href="mailto:gabrielapereira-11105p@adv.oa.pt">gabrielapereira-11105p@adv.oa.pt</a></div>
+            </div>
+            <div class="info-row">
+              <div class="lbl">Telefone</div>
+              <div class="val"><a href="tel:+351252001291">252 001 291</a></div>
+            </div>
+            <div class="info-row">
+              <div class="lbl">Morada</div>
+              <div class="val"><a href="https://share.google/OdepxGywx3Rn0WqBT" target="_blank" rel="noopener" class="map-link">Praça João XXIII, 31<br>4490-440 Póvoa de Varzim</a></div>
+            </div>
+            <div class="info-row">
+              <div class="lbl">LinkedIn</div>
+              <div class="val"><a href="https://www.linkedin.com/in/gabriela-pereira-1a8976281/" target="_blank" rel="noopener">linkedin.com/in/gabriela-pereira</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <form id="contact-form" onsubmit="handleSubmit(event)">
+            <div class="f-field"><label>Nome *</label><input type="text" placeholder="O seu nome completo" required=""></div>
+            <div class="f-field"><label>TELEMÓVEL *</label><input type="tel" placeholder="912 000 000"></div>
+            <div class="f-field full"><label>E-mail *</label><input type="email" placeholder="o.seu@email.pt" required=""></div>
+            <div class="f-field full"><label>Área *</label>
+              <div class="cs-wrapper" id="cs-area">
+                <div class="cs-display" tabindex="0" role="combobox" aria-expanded="false" aria-haspopup="listbox">Selecione uma área…</div>
+                <div class="cs-options" role="listbox">
+                  <div class="cs-option" data-value="Direito da Família">Direito da Família</div>
+                  <div class="cs-option" data-value="Direito Penal">Direito Penal</div>
+                  <div class="cs-option" data-value="Direito de Menores">Direito de Menores</div>
+                  <div class="cs-option" data-value="Direito Civil">Direito Civil</div>
+                  <div class="cs-option" data-value="Outra">Outra</div>
+                </div>
+                <input type="hidden" name="area" id="cs-area-val" required="">
+              </div>
+            </div>
+            <div class="f-field full"><label>Mensagem</label><textarea placeholder="Descreva brevemente a sua situação ou dúvida…"></textarea></div>
+            <label class="consent"><input type="checkbox" required=""> Autorizo o tratamento dos meus dados pessoais para efeitos de contacto, nos termos do Regulamento Geral sobre a Proteção de Dados (RGPD).</label>
+            <div class="f-submit"><button type="submit">Enviar pedido de consulta</button></div>
+            <p class="form-ok" id="form-ok">✓ Mensagem recebida. Entrarei em contacto com a maior brevidade possível.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="./images/gabriela-pereira/logo.png" alt="Gabriela Pereira · Advocacia &amp; Consultoria" class="ft-logo">
+      </div>
+      <div class="ft-cols">
+        <div class="ft-col">
+          <h5>Navegação</h5>
+          <a href="#areas">Áreas de atuação</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#processo">Como funciona</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="ft-col">
+          <h5>Contacto</h5>
+          <a href="mailto:gabrielapereira-11105p@adv.oa.pt">E-mail</a>
+          <a href="tel:+351252001291">252 001 291</a>
+          <p>Praça João XXIII, 31</p>
+          <p>Póvoa de Varzim</p>
+          <a href="https://www.linkedin.com/in/gabriela-pereira-1a8976281/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-base">
+      <span>© 2026 Gabriela Pereira · Célula Profissional 11105P · Ordem dos Advogados</span>
+      <span>Política de Privacidade · RGPD</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ CURSOR ═══════════════ -->
+<div id="gp-cursor" aria-hidden="true">
+  <svg class="drop-body" width="16" height="21" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg" cx="38%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#EDD99E"></stop>
+        <stop offset="55%" stop-color="#C9A36B"></stop>
+        <stop offset="100%" stop-color="#8A6530"></stop>
+      </radialGradient>
+      <filter id="cglow" x="-40%" y="-20%" width="180%" height="160%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1.4" result="blur"></feGaussianBlur>
+        <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+      </filter>
+    </defs>
+    <!-- drop shadow -->
+    <path d="M10 2 C14 8 19.5 14.5 19.5 19 A9.5 9.5 0 0 1 0.5 19 C0.5 14.5 6 8 10 2 Z" fill="rgba(0,0,0,0.35)" transform="translate(1,2)" filter="url(#cglow)"></path>
+    <!-- drop body -->
+    <path d="M10 1 C14 7 19 13.5 19 18.5 A9 9 0 0 1 1 18.5 C1 13.5 6 7 10 1 Z" fill="url(#cg)" filter="url(#cglow)"></path>
+    <!-- inner highlight -->
+    <ellipse cx="7.5" cy="13" rx="2.2" ry="3.8" fill="rgba(255,255,255,0.28)" transform="rotate(-18,7.5,13)"></ellipse>
+    <!-- edge shimmer -->
+    <path d="M10 1 C14 7 19 13.5 19 18.5 A9 9 0 0 1 1 18.5 C1 13.5 6 7 10 1 Z" fill="none" stroke="rgba(255,228,160,0.45)" stroke-width="0.7"></path>
+  </svg>
+</div>
+
+<script>
+  // ── Hamburger menu ────────────────────────────────────────
+  (function() {
+    const btn  = document.getElementById('nav-hamburger');
+    const menu = document.getElementById('mobile-menu');
+    const links = menu.querySelectorAll('a');
+
+    function toggleMenu(open) {
+      btn.classList.toggle('open', open);
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    btn.addEventListener('click', () => toggleMenu(!menu.classList.contains('open')));
+    links.forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+  })();
+
+  // Scroll reveal — add js-ready to body first, then observe
+  document.body.classList.add('js-ready');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Custom cursor
+  (function() {
+    const cur = document.getElementById('gp-cursor');
+    let visible = false;
+
+    function move(e) {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top  = e.clientY + 'px';
+      if (!visible) { cur.classList.add('active'); visible = true; }
+    }
+
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseleave', () => cur.classList.remove('active'));
+    document.addEventListener('mouseenter', () => cur.classList.add('active'));
+
+    // Swell on interactive elements
+    document.addEventListener('mouseover', function(e) {
+      if (e.target.closest('a, button, .btn, input, select, textarea, label, [role="button"]')) {
+        cur.classList.add('hover');
+      } else {
+        cur.classList.remove('hover');
+      }
+    });
+
+    // Compress on click
+    document.addEventListener('mousedown', () => cur.style.filter = 'brightness(1.3) saturate(1.2)');
+    document.addEventListener('mouseup',   () => cur.style.filter = '');
+  })();
+
+
+  // ── Canvas particles in hero ──────────────────────────────
+  (function() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.parentElement;
+    const COLS = ['201,163,107', '224,199,155', '200,162,166'];
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+
+    function rand(a, b) { return a + Math.random() * (b - a); }
+
+    class Dot {
+      constructor(randomY) {
+        this.reset(randomY);
+      }
+      reset(randomY) {
+        this.x  = rand(0, W);
+        this.y  = randomY ? rand(0, H) : H + 4;
+        this.r  = rand(0.6, 2.2);
+        this.vx = rand(-0.22, 0.22);
+        this.vy = rand(-0.55, -0.18);
+        this.op = rand(0.06, 0.28);
+        this.col = COLS[Math.floor(Math.random() * 3)];
+        this.life = 0;
+        this.maxLife = rand(180, 420);
+      }
+      tick() {
+        this.x  += this.vx; this.y += this.vy; this.life++;
+        if (this.y < -4 || this.life > this.maxLife) this.reset(false);
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + this.col + ',' + this.op + ')';
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      for (let i = 0; i < 70; i++) particles.push(new Dot(true));
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.tick(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+
+    init();
+    loop();
+    window.addEventListener('resize', () => { resize(); });
+  })();
+
+  // ── 3D tilt on area cards ─────────────────────────────────
+  document.querySelectorAll('.area-card').forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transition = 'transform .08s ease, border-color .3s';
+      card.style.transform = 'translateY(-6px) perspective(700px) rotateX(' + (-y * 7) + 'deg) rotateY(' + (x * 7) + 'deg)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transition = 'transform .55s cubic-bezier(.23,1,.32,1), border-color .3s';
+      card.style.transform  = '';
+    });
+  });
+
+  // ── Magnetic buttons ──────────────────────────────────────
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transition = 'transform .12s ease, background .28s, border-color .28s, color .28s';
+    });
+    btn.addEventListener('mousemove', function(e) {
+      const r = btn.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 10;
+      const y = ((e.clientY - r.top)  / r.height - 0.5) * 8;
+      btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transition = 'transform .45s cubic-bezier(.23,1,.32,1), background .28s, border-color .28s, color .28s';
+      btn.style.transform  = '';
+    });
+  });
+
+  // ── Parallax hero image ───────────────────────────────────
+  const heroCol = document.querySelector('.hero-col');
+  if (heroCol) {
+    window.addEventListener('scroll', function() {
+      const sy = window.scrollY;
+      heroCol.style.transform = 'translateY(' + (sy * 0.09) + 'px)';
+    }, { passive: true });
+  }
+
+  // ── Counter animation for sobre "21 anos" ────────────────
+  const sobreNum = document.getElementById('sobre-num');
+  if (sobreNum) {
+    const target = 21;
+    let done = false;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !done) {
+        done = true;
+        sobreNum.classList.add('animate');
+        let start = null;
+        const dur = 1600;
+        function step(ts) {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          sobreNum.textContent = Math.round(ease * target);
+          if (p < 1) requestAnimationFrame(step);
+          else sobreNum.textContent = target;
+        }
+        requestAnimationFrame(step);
+        obs.disconnect();
+      }
+    }, { threshold: 0.6 });
+    obs.observe(sobreNum);
+  }
+
+  // ── Counter animation for "21 anos" ───────────────────────
+  const credVal = document.querySelector('.c-val');
+  if (credVal) {
+    const target = 21;
+    let done = false;
+    const counter = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !done) {
+        done = true;
+        let start = null;
+        const dur = 1800;
+        function step(ts) {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          credVal.textContent = Math.round(ease * target) + ' anos';
+          if (p < 1) requestAnimationFrame(step);
+          else credVal.textContent = target + ' anos';
+        }
+        requestAnimationFrame(step);
+        counter.disconnect();
+      }
+    }, { threshold: 0.6 });
+    counter.observe(credVal);
+  }
+
+  // ── Custom select dropdown ────────────────────────────────
+  (function() {
+    const wrapper = document.getElementById('cs-area');
+    const display = wrapper.querySelector('.cs-display');
+    const options = wrapper.querySelectorAll('.cs-option');
+    const hidden  = document.getElementById('cs-area-val');
+
+    display.addEventListener('click', () => {
+      const isOpen = wrapper.classList.toggle('open');
+      display.setAttribute('aria-expanded', isOpen);
+    });
+
+    display.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wrapper.classList.toggle('open'); }
+      if (e.key === 'Escape') wrapper.classList.remove('open');
+    });
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        hidden.value = opt.dataset.value;
+        display.textContent = opt.dataset.value;
+        display.classList.add('filled');
+        wrapper.classList.remove('open');
+        display.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('open');
+        display.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    e.target.reset();
+    const ok = document.getElementById('form-ok');
+    ok.style.display = 'block';
+    setTimeout(() => { ok.style.display = 'none'; }, 8000);
+  }
+</script>
+
+</body></html>
