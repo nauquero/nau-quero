@@ -199,7 +199,23 @@ export const PROJECTS = [
       { title: 'Roadmap', text: 'Definição de objetivos e estratégia de entrada específica: foco em hotéis e restaurantes na Grécia, e em empresas e bem-estar laboral na Alemanha.' },
     ],
   },
-  { name: 'Nau Quero', brand: 'Nau Quero — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O website da própria Nau Quero — a construir.' },
+  {
+    name: 'Nau Quero', brand: 'Nau Quero — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital',
+    photo: './images/nau-quero-website-desktop.webp',
+    tags: ['Website', 'Portefólio', 'Freelancing'],
+    desc: 'O cartão de apresentação da própria Nau Quero — um website de promoção do projeto de freelancing de Mariana Rodrigues, que funciona quase como um CV interativo: a marca, o trabalho e a pessoa por trás dele, tudo na mesma voz despretensiosa e divertida.',
+    highlight: 'Site ao vivo em nauquero.github.io — do "We don\'t do vanilla." da hero aos projetos e serviços, com direito a um easter egg de labirinto a meio da navegação.',
+    process: [
+      { title: 'Hero', text: '"We don\'t do vanilla." — apresentação de Mariana e do projeto Nau Quero, com chamadas diretas para "explorar o meu trabalho" e "ver projetos", ilustrada por mascotes em vários estilos (criativa, tech, fashion, casual).' },
+      { title: 'Marquee de Atitude', text: 'Uma faixa animada resume a proposta de valor em frases curtas: "criar marcas com alma", "transformar ideias em experiências", "pensar fora da caixa", "contar histórias que conectam", "fazer o digital ser mais bonito".' },
+      { title: 'Welcome to Nau Quero', text: 'Secção em bordô que explica o projeto em primeira pessoa — um freelancing feito para marcas com alma que não querem seguir o óbvio — com chamada para "vamos conversar?".' },
+      { title: 'Easter Egg', text: 'Um mini-jogo de labirinto escondido na navegação — "Pensa que isto de um reles é feio e irresistível!" — um toque de humor que reforça a personalidade divertida da marca.' },
+    ],
+    mockups: [
+      { id: 'nq-site-mockup-desktop', label: 'Hero — Desktop & Mobile', placeholder: 'Mockup — hero em vários dispositivos', src: './images/nau-quero-website-desktop.webp' },
+      { id: 'nq-site-mockup-maze', label: 'Easter Egg — Labirinto', placeholder: 'Mockup — easter egg do labirinto', src: './images/nau-quero-website-maze.webp' },
+    ],
+  },
   {
     name: 'Continente', brand: 'Continente / Sonae', year: '2024', category: 'estrategia', categoryLabel: 'Estratégia de Marca',
     tags: ['Marketing Relacional', 'Fidelização', 'Benchmarking'],
