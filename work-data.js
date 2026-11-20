@@ -16,9 +16,21 @@ export const PROJECTS = [
   {
     name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Advocacia & Consultoria', year: '2026',
     category: 'identidade', categoryLabel: 'Identidade de Marca',
+    extraCategories: ['digital'], extraCategoryLabels: ['Presença Digital'],
     photo: './images/Placa%20de%20atendimento%20profissional%20(1).png',
-    tags: ['Brand Guidelines', 'Direito & Advocacia', 'Identidade Visual'],
+    tags: ['Brand Guidelines', 'Identidade Visual', 'Direito & Advocacia', 'Website'],
     desc: 'Brand guidelines completos para Gabriela Pereira, advogada há mais de 20 anos com foco em Direito Criminal, da Família e Menores — uma identidade sóbria e elegante construída para transmitir confiança, proximidade e rigor. Paleta bordô, pérola e dourado, tipografia serifada em contraste com uma sans-serif moderna, e um sistema completo de aplicações, do cartão de visita à presença digital.',
+    highlight: 'Site ao vivo em nauquero.github.io/gabriela.pereira — da apresentação das áreas de atuação ao pedido de consulta, em cinco secções pensadas para transmitir rigor, discrição e proximidade.',
+    process: [
+      { title: 'Hero', text: '"Ao seu lado nos momentos que mais importam." — localização (Póvoa de Varzim), 21 anos de advocacia e as quatro áreas de atuação logo à vista, com chamada direta para marcar consulta.' },
+      { title: 'Áreas de Atuação', text: 'Direito da Família, Direito Penal, Direito de Menores e Direito Civil apresentados em quatro cartões numerados, cada um com a sua descrição e o tom próprio da marca.' },
+      { title: 'Sobre', text: 'Missão, visão e valores — Ética, Proximidade e Compromisso — e percurso académico e profissional, com a frase "Confiança, competência e proximidade — em cada caso, sem exceção."' },
+      { title: 'Como Funciona & Contacto', text: 'Quatro passos claros do primeiro contacto à resolução do caso, seguidos de um formulário de pedido de consulta com consentimento RGPD e todos os contactos diretos.' },
+    ],
+    mockups: [
+      { id: 'gp-site-mockup-desktop', label: 'Hero — Desktop, Tablet & Mobile', placeholder: 'Mockup — hero em vários dispositivos', src: './images/gabriela-pereira-website-desktop.webp' },
+      { id: 'gp-site-mockup-contacto', label: 'Secção de Contacto', placeholder: 'Mockup — secção de contacto', src: './images/gabriela-pereira-website-contacto.webp' },
+    ],
     identity: {
       diagnostic: {
         before: ['Sem identidade visual ou presença digital definida.', 'Dependência do passa-a-palavra, sem materiais de comunicação.', 'Ausência de website e presença digital.', 'Comunicação informal, sem elementos diferenciadores.'],
@@ -77,7 +89,7 @@ export const PROJECTS = [
         imgIds: ['gp-mood-1', 'gp-mood-2', 'gp-mood-3', 'gp-mood-4'],
       },
       digitalComm: { text: 'Uma assinatura de email cuidada gera confiança — sobretudo quando o primeiro contacto é por email.', note: 'Assinatura predefinida no e-mail profissional, com logótipo e paleta da marca.', imgId: 'gp-signature' },
-      presence: { website: 'Cartão de apresentação digital da marca — a validar e a lançar.', linkedin: ['Atualizar informações acerca do percurso de Gabriela Pereira.', 'Modificar o @ para gabrielapereira.adv.'] },
+      presence: { website: 'Cartão de apresentação digital da marca — já ao vivo.', linkedin: ['Atualizar informações acerca do percurso de Gabriela Pereira.', 'Modificar o @ para gabrielapereira.adv.'] },
       mockups: [
         { id: 'gp-mockup-cartao', label: 'Cartão de Visita', placeholder: 'Mockup — cartão de visita', src: './images/81da9fad-8bb4-4d74-9712-f31017f56090.png' },
         { id: 'gp-mockup-sinaletica', label: 'Sinalética Horário & Andar', placeholder: 'Mockup — sinalética', src: './images/Placa%20de%20atendimento%20profissional%20(1).png' },
@@ -95,8 +107,9 @@ export const PROJECTS = [
   {
     name: 'Raízes Frescas', brand: 'Raízes Frescas — Mercearia Biológica', year: '2026',
     category: 'identidade', categoryLabel: 'Identidade de Marca',
+    extraCategories: ['digital'], extraCategoryLabels: ['Presença Digital'],
     photo: './images/raizes-frescas-hero.png',
-    tags: ['Brand Guidelines', 'Produtos Biológicos'],
+    tags: ['Brand Guidelines', 'Produtos Biológicos', 'Webapp'],
     desc: 'Identidade visual e presença digital para a Raízes Frescas, mercearia biológica de proximidade — uma marca fresca, natural e de confiança, com um sistema visual construído à volta da terra, das raízes e do que é cultivado com cuidado.',
     identity: {
       diagnostic: {
@@ -139,6 +152,7 @@ export const PROJECTS = [
   {
     name: 'Butty', brand: 'Butty — No ifs, just butts', year: '2026',
     category: 'identidade', categoryLabel: 'Identidade de Marca',
+    extraCategories: ['digital'], extraCategoryLabels: ['Presença Digital'],
     tags: ['App Mobile (PWA)', 'Wellness', 'Brand & Product'],
     desc: 'Estratégia de marca e produto para a Butty, uma app de treino e bem-estar (PWA) pensada por e para mulheres — com a Butty, a sua mascote, a dar cara e voz a uma experiência de fitness mais pessoal, divertida e sem julgamentos.',
     identity: {
@@ -189,24 +203,6 @@ export const PROJECTS = [
     ],
   },
   { name: 'Nau Quero', brand: 'Nau Quero — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Website'], desc: 'O website da própria Nau Quero — a construir.' },
-  {
-    name: 'Gabriela Pereira', brand: 'Gabriela Pereira — Website', year: '2026', category: 'digital', categoryLabel: 'Presença Digital',
-    tags: ['Website', 'One-Page', 'Direito & Advocacia'],
-    desc: 'O cartão de apresentação digital da Gabriela Pereira — um website one-page construído sobre a identidade de marca já desenvolvida, pensado para gerar confiança e converter visitas em pedidos de consulta.',
-    highlight: 'Site ao vivo em nauquero.github.io/gabriela.pereira — da apresentação das áreas de atuação ao pedido de consulta, em cinco secções pensadas para transmitir rigor, discrição e proximidade.',
-    process: [
-      { title: 'Hero', text: '"Ao seu lado nos momentos que mais importam." — localização (Póvoa de Varzim), 21 anos de advocacia e as quatro áreas de atuação logo à vista, com chamada direta para marcar consulta.' },
-      { title: 'Áreas de Atuação', text: 'Direito da Família, Direito Penal, Direito de Menores e Direito Civil apresentados em quatro cartões numerados, cada um com a sua descrição e o tom próprio da marca.' },
-      { title: 'Sobre', text: 'Missão, visão e valores — Ética, Proximidade e Compromisso — e percurso académico e profissional, com a frase "Confiança, competência e proximidade — em cada caso, sem exceção."' },
-      { title: 'Como Funciona & Contacto', text: 'Quatro passos claros do primeiro contacto à resolução do caso, seguidos de um formulário de pedido de consulta com consentimento RGPD e todos os contactos diretos.' },
-    ],
-    mockups: [
-      { id: 'gp-site-mockup-desktop', label: 'Hero — Desktop, Tablet & Mobile', placeholder: 'Mockup — hero em vários dispositivos', src: './images/gabriela-pereira-website-desktop.webp' },
-      { id: 'gp-site-mockup-contacto', label: 'Secção de Contacto', placeholder: 'Mockup — secção de contacto', src: './images/gabriela-pereira-website-contacto.webp' },
-    ],
-  },
-  { name: 'Butty', brand: 'Butty — App', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['App Mobile (PWA)'], desc: 'A app Butty, em funcionamento — a construir.' },
-  { name: 'Raízes Frescas', brand: 'Raízes Frescas — Webapp', year: '2026', category: 'digital', categoryLabel: 'Presença Digital', tags: ['Webapp'], desc: 'A webapp de controlo da Raízes Frescas — a construir.' },
   {
     name: 'Continente', brand: 'Continente / Sonae', year: '2024', category: 'estrategia', categoryLabel: 'Estratégia de Marca',
     tags: ['Marketing Relacional', 'Fidelização', 'Benchmarking'],
@@ -304,51 +300,123 @@ export const PROJECTS = [
   },
 ];
 
-export function buildSummary(p) {
-  const out = { lead: p.desc || '', bullets: [], chips: p.tags || [], dots: [], shots: [], meta: '' };
-  if (p.highlight) out.bullets = [p.highlight];
-  if (p.keyFindings) out.bullets = out.bullets.concat(p.keyFindings);
-  if (p.process) out.bullets = out.bullets.concat(p.process.map(s => s.title + ' — ' + s.text));
-  if (p.publication) out.meta = p.publication;
-  if (p.mockups) out.shots = p.mockups.slice(0, 3).map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder, src: m.src || '' }));
-  const id = p.identity;
-  if (id) {
-    if (id.palette) out.dots = id.palette.slice(0, 6).map(c => ({ hex: c.hex, name: c.name }));
-    if (id.typography) out.meta = id.typography.displayLabel + ' + ' + id.typography.bodyLabel;
-    if (id.mockups) out.shots = id.mockups.slice(0, 3).map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder, src: m.src || '' }));
-  }
-  return out;
-}
-
 function sec(title, extra) {
-  return Object.assign({ title, paras: [], pairs: [], chips: [], swatches: [], slots: [], lists: [] }, extra || {});
+  return Object.assign({ title, paras: [], pairs: [], chips: [], chipGroups: [], swatches: [], slots: [], lists: [] }, extra || {});
 }
 
+// Builds the full, structured case-study content for a project's detail view —
+// every identity/strategy/digital/research field that exists gets its own
+// section, in a fixed, sensible reading order.
 export function buildSections(p) {
   const out = [];
-  if (p.highlight) out.push(sec('O que ficou', { paras: [p.highlight] }));
-  if (p.process) out.push(sec('Processo', { pairs: p.process.map(s => ({ label: s.title, text: s.text })) }));
-  if (p.keyFindings) out.push(sec('Conclusões', { paras: p.keyFindings }));
-  if (p.publication) out.push(sec('Publicação', { paras: [p.publication] }));
-  if (p.mockups) out.push(sec('Mockups', {
-    slots: p.mockups.map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder })),
-  }));
   const id = p.identity;
-  if (id) {
-    if (id.palette) out.push(sec('Paleta', {
-      swatches: id.palette.map(c => ({ name: c.name, hex: c.hex, use: c.use, ink: c.light ? '#F3E9D2' : '#191410' })),
-    }));
-    if (id.typography) out.push(sec('Tipografia', {
-      pairs: [{ label: id.typography.displayLabel, text: id.typography.displaySample }, { label: id.typography.bodyLabel, text: id.typography.bodySample }],
-    }));
-    if (id.patterns) out.push(sec('Padrões', { slots: [{ id: id.patterns.imgId, label: 'Padrões da marca', placeholder: 'Padrões da marca' }] }));
-    if (id.moodboard) out.push(sec('Moodboard', {
-      chips: id.moodboard.keywords,
-      slots: id.moodboard.imgIds.map((i, n) => ({ id: i, label: 'Referência ' + (n + 1), placeholder: 'Referência visual ' + (n + 1) })),
-    }));
-    if (id.mockups) out.push(sec('Aplicações', {
-      slots: id.mockups.map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder })),
+
+  if (id && id.diagnostic) {
+    const d0 = id.diagnostic;
+    out.push(sec('Diagnóstico', {
+      lists: [
+        d0.before && d0.before.length ? { label: 'Antes', items: d0.before } : null,
+        d0.after && d0.after.length ? { label: 'Depois', items: d0.after } : null,
+      ].filter(Boolean),
+      paras: d0.opportunity ? [d0.opportunity] : [],
     }));
   }
+  if (id && id.concept) {
+    out.push(sec('Conceito', {
+      paras: id.concept.story ? [id.concept.story] : [],
+      lists: (id.concept.symbolism && id.concept.symbolism.length)
+        ? [{ label: 'Simbolismo', items: id.concept.symbolism.map(s => s.element + ' — ' + s.meaning) }]
+        : [],
+    }));
+  }
+  if (id && id.palette) {
+    out.push(sec('Paleta', {
+      swatches: id.palette.map(c => ({ name: c.name, hex: c.hex, use: c.use, ink: c.light ? '#F3E9D2' : '#191410' })),
+    }));
+  }
+  if (id && id.typography) {
+    out.push(sec('Tipografia', {
+      pairs: [
+        { label: id.typography.displayLabel, text: id.typography.displaySample },
+        { label: id.typography.bodyLabel, text: id.typography.bodySample },
+      ],
+    }));
+  }
+  if (id && (id.personality || id.tone)) {
+    out.push(sec('Personalidade & Tom de Voz', {
+      chipGroups: [
+        id.personality && id.personality.length ? { label: 'Personalidade', chips: id.personality } : null,
+        id.tone && id.tone.length ? { label: 'Tom de voz', chips: id.tone } : null,
+      ].filter(Boolean),
+    }));
+  }
+  if (id && id.photography) {
+    out.push(sec('Fotografia', {
+      pairs: [
+        id.photography.scenario ? { label: 'Cenário', text: id.photography.scenario } : null,
+        id.photography.decor ? { label: 'Decoração', text: id.photography.decor } : null,
+        id.photography.avoid ? { label: 'Evitar', text: id.photography.avoid } : null,
+      ].filter(Boolean),
+    }));
+  }
+  if (id && id.patterns) {
+    out.push(sec('Padrões', {
+      paras: id.patterns.text ? [id.patterns.text] : [],
+      slots: id.patterns.imgId ? [{ id: id.patterns.imgId, label: 'Padrões da marca', placeholder: 'Padrões da marca', src: '' }] : [],
+    }));
+  }
+  if (id && id.moodboard) {
+    out.push(sec('Moodboard', {
+      chips: id.moodboard.keywords || [],
+      paras: id.moodboard.note ? [id.moodboard.note] : [],
+      slots: (id.moodboard.imgIds || []).map((i, n) => ({ id: i, label: 'Referência ' + (n + 1), placeholder: 'Referência visual ' + (n + 1), src: '' })),
+    }));
+  }
+  if (id && id.vision) {
+    out.push(sec('Visão & Público-Alvo', {
+      paras: [id.vision.aspiration, id.vision.publicoAlvo].filter(Boolean),
+      lists: (id.vision.naoE && id.vision.naoE.length) ? [{ label: 'O que a marca não é', items: id.vision.naoE }] : [],
+    }));
+  }
+  if (id && id.logo) {
+    out.push(sec('Logótipo', {
+      pairs: (id.logo.sizes || []).map(s => ({ label: s.label, text: s.value })),
+      chipGroups: (id.logo.incorrect && id.logo.incorrect.length) ? [{ label: 'Nunca fazer', chips: id.logo.incorrect }] : [],
+    }));
+  }
+  if (id && id.digitalComm) {
+    out.push(sec('Comunicação Digital', {
+      paras: [id.digitalComm.text, id.digitalComm.note].filter(Boolean),
+      slots: id.digitalComm.imgId ? [{ id: id.digitalComm.imgId, label: 'Assinatura de email', placeholder: 'Assinatura de email', src: '' }] : [],
+    }));
+  }
+  if (id && id.presence) {
+    out.push(sec('Presença', {
+      paras: id.presence.website ? [id.presence.website] : [],
+      lists: (id.presence.linkedin && id.presence.linkedin.length) ? [{ label: 'LinkedIn', items: id.presence.linkedin }] : [],
+    }));
+  }
+  if (id && id.mockups) {
+    out.push(sec('Aplicações', {
+      slots: id.mockups.map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder, src: m.src || '' })),
+    }));
+  }
+  if (p.highlight) out.push(sec('O que ficou', { paras: [p.highlight] }));
+  if (p.process) out.push(sec('Processo', { pairs: p.process.map(s => ({ label: s.title, text: s.text })) }));
+  if (p.mockups) out.push(sec('Mockups', {
+    slots: p.mockups.map(m => ({ id: m.id, label: m.label, placeholder: m.placeholder, src: m.src || '' })),
+  }));
+  if (id && id.roadmap) {
+    out.push(sec('Roadmap', {
+      lists: [
+        id.roadmap.curto && id.roadmap.curto.length ? { label: 'Curto prazo', items: id.roadmap.curto } : null,
+        id.roadmap.medio && id.roadmap.medio.length ? { label: 'Médio prazo', items: id.roadmap.medio } : null,
+        id.roadmap.longo && id.roadmap.longo.length ? { label: 'Longo prazo', items: id.roadmap.longo } : null,
+      ].filter(Boolean),
+    }));
+  }
+  if (p.keyFindings) out.push(sec('Conclusões', { paras: p.keyFindings }));
+  if (p.publication) out.push(sec('Publicação', { paras: [p.publication] }));
+
   return out;
 }

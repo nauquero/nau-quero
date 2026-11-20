@@ -72,6 +72,7 @@
     header .nq-nav a { width:100%; box-sizing:border-box; justify-content:center; margin-left:0 !important; transform:none !important; }
   }
 
+  html:has(body [role="dialog"][aria-modal="true"]) { overflow:hidden; }
   :focus-visible { outline:2px solid #690A20; outline-offset:3px; border-radius:4px; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
@@ -149,8 +150,14 @@
           <div style="position:relative; aspect-ratio:4/3; background:#391D01; overflow:hidden;">
             <image-slot id="{{ p.slot }}" shape="rect" placeholder="{{ p.ph }}" src="{{ p.photoSrc }}" style="position:absolute; inset:0;"></image-slot>
             <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(185deg, rgba(57,29,1,0) 55%, rgba(57,29,1,0.55) 100%);"></div>
-            <span style="position:absolute; top:12px; left:12px; font-family:'Poppins',sans-serif; font-size:9.8px; font-weight:600; letter-spacing:0.05em; color:#391D01; background:{{ p.accent }}; border-radius:999px; padding:5px 11px; box-shadow:0 4px 10px -4px rgba(0,0,0,0.3);">{{ p.categoryLabel }}</span>
-            <span style="position:absolute; top:12px; right:12px; font-family:'Poppins',sans-serif; font-size:9.8px; letter-spacing:0.04em; color:#F3E9D2; background:rgba(57,29,1,0.55); border-radius:999px; padding:5px 11px;">{{ p.year }}</span>
+            <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; justify-content:space-between; gap:8px;">
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <sc-for list="{{ p.categoryBadges }}" as="cb" hint-placeholder-count="2">
+                  <span style="font-family:'Poppins',sans-serif; font-size:9.8px; font-weight:600; letter-spacing:0.05em; color:#391D01; background:{{ cb.accent }}; border-radius:999px; padding:5px 11px; box-shadow:0 4px 10px -4px rgba(0,0,0,0.3); white-space:nowrap;">{{ cb.label }}</span>
+                </sc-for>
+              </div>
+              <span style="flex:0 0 auto; font-family:'Poppins',sans-serif; font-size:9.8px; letter-spacing:0.04em; color:#F3E9D2; background:rgba(57,29,1,0.55); border-radius:999px; padding:5px 11px; white-space:nowrap;">{{ p.year }}</span>
+            </div>
             <h3 style="position:absolute; left:14px; right:14px; bottom:12px; margin:0; font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(17.8px,1.9vw,23px); line-height:1.05; letter-spacing:-0.02em; color:#F3E9D2; text-shadow:0 2px 10px rgba(0,0,0,0.35);">{{ p.name }}</h3>
           </div>
           <div style="display:flex; flex-direction:column; gap:10px; padding:clamp(16px,1.8vw,22px);">
@@ -161,37 +168,9 @@
             </div>
             <p style="font-size:11.9px; line-height:1.6; margin:0; color:#391D01; opacity:0.9; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;">{{ p.lead }}</p>
             <sc-if value="{{ p.hasDetail }}" hint-placeholder-val="{{ true }}">
-              <button type="button" onClick="{{ p.toggle }}" style="margin-top:2px; align-self:flex-start; display:inline-flex; align-items:center; gap:7px; background:transparent; border:0; padding:0; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; font-weight:600; letter-spacing:0.02em; color:#690A20; transition:color .25s ease;" style-hover="color:#391D01;">
-                <span>{{ p.cta }}</span><span style="display:inline-flex; transition:transform .35s ease; transform:{{ p.chev }};">↓</span>
+              <button type="button" onClick="{{ p.openDetail }}" style="margin-top:2px; align-self:flex-start; display:inline-flex; align-items:center; gap:7px; background:transparent; border:0; padding:0; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; font-weight:600; letter-spacing:0.02em; color:#690A20; transition:color .25s ease;" style-hover="color:#391D01;">
+                <span>Ver detalhes</span><span style="display:inline-flex;">↗</span>
               </button>
-            </sc-if>
-            <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
-              <div style="animation:nqReveal .35s ease; border-top:1px solid rgba(57,29,1,0.18); padding-top:14px; margin-top:2px; display:flex; flex-direction:column; gap:12px;">
-                <sc-for list="{{ p.bullets }}" as="b" hint-placeholder-count="0">
-                  <p style="font-size:11px; line-height:1.55; margin:0; padding-left:12px; border-left:2px solid {{ p.accent }}; color:#391D01;">{{ b }}</p>
-                </sc-for>
-                <sc-if value="{{ p.hasDots }}" hint-placeholder-val="{{ false }}">
-                  <div style="display:flex; gap:7px; flex-wrap:wrap;">
-                    <sc-for list="{{ p.dots }}" as="dt" hint-placeholder-count="0">
-                      <span title="{{ dt.name }}" style="width:24px; height:24px; border-radius:7px; border:1px solid rgba(57,29,1,0.22); background:{{ dt.hex }};"></span>
-                    </sc-for>
-                  </div>
-                </sc-if>
-                <sc-if value="{{ p.hasMeta }}" hint-placeholder-val="{{ false }}">
-                  <p style="font-family:'Poppins',sans-serif; font-size:10px; letter-spacing:0.04em; margin:0; opacity:0.6; color:#391D01;">{{ p.meta }}</p>
-                </sc-if>
-                <sc-if value="{{ p.hasShots }}" hint-placeholder-val="{{ false }}">
-                  <div style="display:flex; gap:10px; width:100%;">
-                    <sc-for list="{{ p.shots }}" as="sl" hint-placeholder-count="0">
-                      <figure style="margin:0; flex:1 1 0; min-width:0; border:1px solid rgba(57,29,1,0.22); border-radius:10px; overflow:hidden;">
-                        <div style="position:relative; aspect-ratio:4/3;">
-                          <image-slot id="{{ sl.id }}" shape="rect" placeholder="{{ sl.placeholder }}" src="{{ sl.src }}" style="position:absolute; inset:0;"></image-slot>
-                        </div>
-                      </figure>
-                    </sc-for>
-                  </div>
-                </sc-if>
-              </div>
             </sc-if>
           </div>
         </article>
@@ -201,6 +180,112 @@
       <p style="text-align:center; font-size:12.8px; opacity:0.6; padding:40px 0;">Ainda não há projetos nesta categoria — volta em breve.</p>
     </sc-if>
   </section>
+
+  <sc-if value="{{ hasOpenProject }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; z-index:60; background:rgba(25,13,2,0.62);">
+      <button type="button" onClick="{{ closeDetail }}" aria-label="Fechar" style="position:absolute; inset:0; width:100%; height:100%; border:0; background:transparent; cursor:pointer; padding:0;"></button>
+    </div>
+    <div role="dialog" aria-modal="true" style="position:fixed; z-index:61; top:clamp(10px,4vh,48px); bottom:clamp(10px,4vh,48px); left:50%; transform:translateX(-50%); width:min(92vw,820px); background:#FBF4E6; border-radius:22px; box-shadow:0 30px 70px -20px rgba(0,0,0,0.55); overflow:hidden; display:flex; flex-direction:column;">
+      <div style="position:relative; flex:0 0 auto;">
+        <div style="position:relative; aspect-ratio:16/7; background:#391D01; overflow:hidden;">
+          <image-slot id="{{ detail.slot }}" shape="rect" placeholder="{{ detail.ph }}" src="{{ detail.photoSrc }}" style="position:absolute; inset:0;"></image-slot>
+          <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(185deg, rgba(57,29,1,0) 35%, rgba(57,29,1,0.75) 100%);"></div>
+        </div>
+        <button type="button" onClick="{{ closeDetail }}" aria-label="Fechar" style="position:absolute; top:14px; right:14px; width:36px; height:36px; border-radius:50%; border:0; background:rgba(57,29,1,0.65); color:#F3E9D2; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .25s ease;" style-hover="background:#690A20;">✕</button>
+        <div style="position:absolute; left:20px; right:70px; bottom:16px;">
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
+            <sc-for list="{{ detail.categoryBadges }}" as="cb" hint-placeholder-count="2">
+              <span style="font-family:'Poppins',sans-serif; font-size:9.6px; font-weight:600; letter-spacing:0.05em; color:#391D01; background:{{ cb.accent }}; border-radius:999px; padding:5px 11px;">{{ cb.label }}</span>
+            </sc-for>
+          </div>
+          <h2 style="margin:0; font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(20px,3vw,30px); color:#F3E9D2; text-shadow:0 2px 10px rgba(0,0,0,0.4);">{{ detail.name }}</h2>
+        </div>
+      </div>
+      <div style="overflow-y:auto; padding:clamp(20px,2.6vw,30px); display:flex; flex-direction:column; gap:22px;">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center;">
+          <p style="margin:0; font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.02em; opacity:0.6;">{{ detail.brand }} · {{ detail.year }}</p>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <sc-for list="{{ detail.tags }}" as="tg" hint-placeholder-count="2">
+              <span style="font-family:'Poppins',sans-serif; font-size:10px; color:#391D01; opacity:0.75; border:1px solid rgba(57,29,1,0.22); border-radius:999px; padding:4px 10px;">{{ tg }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <p style="font-size:12.4px; line-height:1.65; margin:0; color:#391D01;">{{ detail.desc }}</p>
+        <sc-for list="{{ detail.sections }}" as="sec" hint-placeholder-count="3">
+          <div style="display:flex; flex-direction:column; gap:12px; border-top:1px solid rgba(57,29,1,0.16); padding-top:18px;">
+            <h3 style="margin:0; font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:17px; color:#690A20;">{{ sec.title }}</h3>
+            <sc-if value="{{ sec.hasParas }}" hint-placeholder-val="{{ false }}">
+              <sc-for list="{{ sec.paras }}" as="pa" hint-placeholder-count="1">
+                <p style="font-size:11.9px; line-height:1.6; margin:0; color:#391D01;">{{ pa }}</p>
+              </sc-for>
+            </sc-if>
+            <sc-if value="{{ sec.hasLists }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <sc-for list="{{ sec.lists }}" as="ls" hint-placeholder-count="2">
+                  <div>
+                    <p style="font-family:'Poppins',sans-serif; font-size:10.4px; font-weight:600; letter-spacing:0.05em; margin:0 0 6px; color:#690A20; text-transform:uppercase;">{{ ls.label }}</p>
+                    <sc-for list="{{ ls.items }}" as="it" hint-placeholder-count="2">
+                      <p style="font-size:11.5px; line-height:1.55; margin:0 0 5px; padding-left:12px; border-left:2px solid rgba(105,10,32,0.3); color:#391D01;">{{ it }}</p>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ sec.hasChipGroups }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <sc-for list="{{ sec.chipGroups }}" as="cg" hint-placeholder-count="2">
+                  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <span style="font-family:'Poppins',sans-serif; font-size:10px; opacity:0.6; white-space:nowrap;">{{ cg.label }}:</span>
+                    <sc-for list="{{ cg.chips }}" as="ch" hint-placeholder-count="3">
+                      <span style="font-family:'Poppins',sans-serif; font-size:10px; color:#391D01; background:rgba(105,10,32,0.08); border-radius:999px; padding:4px 10px;">{{ ch }}</span>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ sec.hasChips }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <sc-for list="{{ sec.chips }}" as="ch" hint-placeholder-count="3">
+                  <span style="font-family:'Poppins',sans-serif; font-size:10px; color:#391D01; background:rgba(105,10,32,0.08); border-radius:999px; padding:4px 10px;">{{ ch }}</span>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ sec.hasSwatches }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <sc-for list="{{ sec.swatches }}" as="sw" hint-placeholder-count="4">
+                  <div style="display:flex; flex-direction:column; gap:6px; width:84px;">
+                    <span title="{{ sw.name }}" style="display:block; width:100%; aspect-ratio:1/1; border-radius:10px; border:1px solid rgba(57,29,1,0.18); background:{{ sw.hex }};"></span>
+                    <span style="font-family:'Poppins',sans-serif; font-size:9.4px; line-height:1.3; color:#391D01;">{{ sw.name }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ sec.hasPairs }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <sc-for list="{{ sec.pairs }}" as="pr" hint-placeholder-count="2">
+                  <div>
+                    <p style="font-family:'Poppins',sans-serif; font-size:10.4px; font-weight:600; margin:0 0 3px; color:#690A20;">{{ pr.label }}</p>
+                    <p style="font-size:11.5px; line-height:1.55; margin:0; color:#391D01;">{{ pr.text }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ sec.hasSlots }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px;">
+                <sc-for list="{{ sec.slots }}" as="sl" hint-placeholder-count="2">
+                  <figure style="margin:0; border:1px solid rgba(57,29,1,0.2); border-radius:10px; overflow:hidden;">
+                    <div style="position:relative; aspect-ratio:4/3;">
+                      <image-slot id="{{ sl.id }}" shape="rect" placeholder="{{ sl.placeholder }}" src="{{ sl.src }}" style="position:absolute; inset:0;"></image-slot>
+                    </div>
+                  </figure>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
 
   <section style="position:relative; overflow:hidden; padding:clamp(44px,5.5vw,80px) 5%; text-align:center; background:#690A20; color:#F3E9D2; border-radius:50% 50% 0 0 / 60px 60px 0 0;">
     <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:12%; left:10%; width:clamp(18px,2.6vw,30px); height:clamp(18px,2.6vw,30px); color:#F3E9D2; opacity:0.1; transform:rotate(15deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
@@ -247,8 +332,12 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
+function slugify(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 class Component extends DCLogic {
-  state = { active: 'todos', open: {}, data: null };
+  state = { active: 'todos', openName: null, data: null };
 
   componentDidMount() {
     import('./work-data.js').then(m => { this._d = m; this.setState({ data: true }); });
@@ -257,8 +346,9 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { if (this._destroy) this._destroy(); if (this._dot) this._dot(); }
 
-  selectFilter(k) { this.setState({ active: k, open: {} }); }
-  toggle(name) { this.setState(s => ({ open: { ...s.open, [name]: !s.open[name] } })); }
+  selectFilter(k) { this.setState({ active: k }); }
+  openDetail(name) { this.setState({ openName: name }); }
+  closeDetail() { this.setState({ openName: null }); }
 
   matches(p, key) {
     if (key === 'todos') return true;
@@ -266,15 +356,25 @@ class Component extends DCLogic {
     return (p.extraCategories || []).indexOf(key) >= 0;
   }
 
+  categoryBadges(d, p) {
+    const labels = [p.categoryLabel].concat(p.extraCategoryLabels || []);
+    const cats = [p.category].concat(p.extraCategories || []);
+    return labels.map((label, i) => ({ label, accent: d.CAT_ACCENT[cats[i]] || '#ACC048' }));
+  }
+
   renderVals() {
     const d = this._d;
-    if (!d) return { filters: [], projects: [], activeNote: '', noResults: false };
+    if (!d) return { filters: [], projects: [], activeNote: '', noResults: false, hasOpenProject: false, detail: null };
     const active = this.state.active;
     const list = d.PROJECTS.filter(p => this.matches(p, active));
     const activeFilter = d.FILTERS.find(f => f.key === active);
+    const openProject = this.state.openName ? d.PROJECTS.find(p => p.name === this.state.openName) : null;
+
     return {
       activeNote: activeFilter ? activeFilter.note : '',
       noResults: list.length === 0,
+      hasOpenProject: !!openProject,
+      closeDetail: () => this.closeDetail(),
       filters: d.FILTERS.map(f => {
         const on = active === f.key;
         return {
@@ -287,27 +387,40 @@ class Component extends DCLogic {
           border: on ? f.accent : 'rgba(57,29,1,0.28)',
         };
       }),
-      projects: list.map((p, i) => {
-        const s = d.buildSummary(p);
-        const hasDetail = !!(s.bullets.length || s.dots.length || s.meta || s.shots.length);
-        const open = !!this.state.open[p.name] && hasDetail;
+      projects: list.map(p => {
+        const sections = d.buildSections(p);
+        const hasDetail = sections.length > 0;
+        const slot = 'work-cover-' + slugify(p.category + '-' + p.name);
         return {
-          name: p.name, brand: p.brand, year: p.year, tags: p.tags || [],
-          categoryLabel: p.categoryLabel,
-          index: String(i + 1).padStart(2, '0'),
-          lead: s.lead, bullets: s.bullets, dots: s.dots, shots: s.shots, meta: s.meta,
-          hasDots: s.dots.length > 0, hasShots: s.shots.length > 0, hasMeta: !!s.meta,
+          name: p.name, year: p.year, tags: p.tags || [],
+          categoryBadges: this.categoryBadges(d, p),
+          lead: p.desc || '',
           hasDetail,
-          open,
-          toggle: hasDetail ? (() => this.toggle(p.name)) : (() => {}),
-          cta: open ? 'Ver menos' : 'Ver mais',
-          chev: open ? 'rotate(180deg)' : 'rotate(0deg)',
+          openDetail: () => this.openDetail(p.name),
           accent: d.CAT_ACCENT[p.category] || '#ACC048',
-          slot: 'work-cover-' + (p.category + '-' + p.name).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-          ph: p.name,
-          photoSrc: p.photo || '',
+          slot, ph: p.name, photoSrc: p.photo || '',
         };
       }),
+      detail: openProject ? (() => {
+        const sections = d.buildSections(openProject).map(s => ({
+          title: s.title,
+          paras: s.paras, hasParas: s.paras.length > 0,
+          lists: s.lists, hasLists: s.lists.length > 0,
+          chipGroups: s.chipGroups, hasChipGroups: s.chipGroups.length > 0,
+          chips: s.chips, hasChips: s.chips.length > 0,
+          swatches: s.swatches, hasSwatches: s.swatches.length > 0,
+          pairs: s.pairs, hasPairs: s.pairs.length > 0,
+          slots: s.slots, hasSlots: s.slots.length > 0,
+        }));
+        return {
+          name: openProject.name, brand: openProject.brand, year: openProject.year,
+          tags: openProject.tags || [], desc: openProject.desc || '',
+          categoryBadges: this.categoryBadges(d, openProject),
+          slot: 'work-cover-' + slugify(openProject.category + '-' + openProject.name),
+          ph: openProject.name, photoSrc: openProject.photo || '',
+          sections,
+        };
+      })() : null,
     };
   }
 }
