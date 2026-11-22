@@ -53,6 +53,7 @@
   body { margin:0; background:#F3E9D2; cursor:none; }
   a { color:#690A20; }
   a:hover { color:#391D01; }
+  @keyframes nqWalk { from { transform:translateX(-120%); } to { transform:translateX(calc(100vw + 20%)); } }
   @keyframes nqMarquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
   @keyframes nqFloat { 0%,100% { transform:translateY(0) rotate(-3deg); } 50% { transform:translateY(-10px) rotate(-1.5deg); } }
   @keyframes nqPulse { 0%,100% { box-shadow:0 0 14px 2px rgba(105,10,32,0.45); } 50% { box-shadow:0 0 22px 5px rgba(105,10,32,0.7); } }
@@ -129,7 +130,8 @@
   </svg>
   </div>
 
-  <section style="position:relative; overflow:hidden; padding:clamp(64px,8vw,120px) 5%; background:#690A20;">
+  <section style="position:relative; overflow:hidden; padding:clamp(64px,8vw,120px) 5% clamp(150px,15vw,220px); background:#690A20;">
+    <video src="./videos/funko-perfil.webm" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="position:absolute; left:0; bottom:clamp(6px,1vw,14px); height:clamp(100px,11vw,160px); width:auto; display:block; pointer-events:none; animation:nqWalk 24s linear infinite; filter:drop-shadow(0 8px 10px rgba(0,0,0,0.3));"></video>
     <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; top:12%; right:10%; width:clamp(22px,3vw,38px); height:clamp(22px,3vw,38px); color:#F3E9D2; opacity:0.1; transform:rotate(14deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
     <svg aria-hidden="true" viewBox="0 0 100 100" style="position:absolute; bottom:8%; left:6%; width:clamp(16px,2.2vw,26px); height:clamp(16px,2.2vw,26px); color:#ACC048; opacity:0.14; transform:rotate(-10deg); pointer-events:none;"><polygon points="50.0,2.0 60.8,35.2 95.7,35.2 67.4,55.7 78.2,88.8 50.0,68.3 21.8,88.8 32.6,55.7 4.3,35.2 39.2,35.2" fill="currentColor"/></svg>
     <div style="display:flex; gap:clamp(28px,5vw,72px); flex-wrap:wrap; align-items:flex-start;">
