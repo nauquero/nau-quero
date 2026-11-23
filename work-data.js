@@ -152,6 +152,11 @@ export const PROJECTS = [
     extraCategories: ['digital'], extraCategoryLabels: ['Presença Digital'],
     tags: ['App Mobile (PWA)', 'Wellness', 'Brand & Product'],
     desc: 'Estratégia de marca e produto para a Butty, uma app de treino e bem-estar (PWA) pensada por e para mulheres — com a Butty, a sua mascote, a dar cara e voz a uma experiência de fitness mais pessoal, divertida e sem julgamentos.',
+    mockups: [
+      { id: 'butty-mockup-perfil-progresso', label: 'Perfil & Progresso', placeholder: 'Mockup — perfil, progresso e treino', src: './images/butty-mockup-perfil-progresso.webp' },
+      { id: 'butty-mockup-inicio', label: 'Início', placeholder: 'Mockup — ecrã de início', src: './images/butty-mockup-inicio.webp' },
+      { id: 'butty-mockup-saude', label: 'Saúde', placeholder: 'Mockup — ecrã de saúde', src: './images/butty-mockup-saude.webp' },
+    ],
     identity: {
       diagnostic: {
         before: ['Sem conceito de marca definido — apenas a ideia de uma app de fitness para mulheres.', 'Mercado saturado de apps de treino genéricas, impessoais e por vezes intimidantes.', 'Nenhuma mascote, tom de voz ou identidade visual que diferenciasse o produto.'],
