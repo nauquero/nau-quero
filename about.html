@@ -229,21 +229,15 @@
     <div style="position:absolute; inset:0; opacity:0.45; background-image:radial-gradient(#F3E9D2 1.5px, transparent 1.6px); background-size:22px 22px;"></div>
     <div style="position:relative;">
       <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(18.6px,3vw,46.4px); line-height:0.9; letter-spacing:-0.03em; margin:0 0 clamp(12px,1.6vw,18px); max-width:16ch; color:#F3E9D2;">Curiosidades sobre <span style="font-style:italic; color:#ACC048;">mim</span></h2>
-      <div style="display:flex; gap:clamp(24px,3.5vw,56px); flex-wrap:wrap; align-items:flex-start;">
-        <div style="flex:0 1 min(100%,240px); display:flex; flex-direction:column; gap:14px;">
-          <div style="display:flex; gap:9px; flex-wrap:wrap;">
-            <sc-for list="{{ facts }}" as="ft" hint-placeholder-count="8">
-              <button type="button" onClick="{{ ft.pick }}" aria-label="Curiosidade {{ ft.num }}" style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(243,233,210,0.4); background:{{ ft.bg }}; color:{{ ft.ink }}; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.06em; display:flex; align-items:center; justify-content:center; transition:transform .3s ease, background .3s ease;" style-hover="transform:translateY(-3px) scale(1.06);">{{ ft.num }}</button>
-            </sc-for>
-          </div>
-          <button type="button" onClick="{{ factShuffle }}" style="align-self:flex-start; background:none; border:0; border-bottom:1px solid rgba(243,233,210,0.5); padding:0 0 3px; cursor:pointer; font-family:'Poppins',sans-serif; font-size:11.9px; color:#F3E9D2; transition:color .25s ease, border-color .25s ease;" style-hover="color:#ACC048; border-color:#ACC048;">Surpreende-me →</button>
+      <div style="background:#F3E9D2; border:1px solid rgba(57,29,1,0.28); border-radius:20px; padding:clamp(18px,2.2vw,26px); display:flex; flex-direction:column; gap:16px;">
+        <p style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.2em; margin:0; color:#690A20;">{{ factNum }}</p>
+        <p style="font-family:'Petrona',Georgia,serif; font-size:clamp(14px,1.6vw,19px); line-height:1.5; margin:0; text-wrap:pretty; color:#391D01; min-height:3.2em;">{{ factText }}</p>
+        <div style="display:flex; gap:10px; flex-wrap:nowrap; overflow-x:auto; padding:2px 0 4px; -webkit-overflow-scrolling:touch;">
+          <sc-for list="{{ facts }}" as="ft" hint-placeholder-count="8">
+            <button type="button" onClick="{{ ft.pick }}" aria-label="Curiosidade {{ ft.num }}" style="flex:0 0 auto; max-width:200px; background:{{ ft.bg }}; opacity:{{ ft.op }}; transform:{{ ft.scale }}; color:{{ ft.ink }}; border:1px solid rgba(57,29,1,0.22); border-radius:999px; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.01em; padding:8px 14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:transform .3s ease, background .3s ease, opacity .3s ease;" style-hover="transform:translateY(-2px) scale(1.02); opacity:1;">{{ ft.preview }}</button>
+          </sc-for>
         </div>
-        <div style="position:relative; flex:1 1 min(100%,260px); max-width:520px; min-width:0;">
-          <div style="background:#F3E9D2; border:1px solid rgba(57,29,1,0.28); border-radius:16px; overflow:hidden; min-height:clamp(90px,8vw,108px); padding:clamp(10px,1.1vw,13px); display:flex; flex-direction:column; justify-content:flex-start; gap:6px;">
-            <p style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.2em; margin:0; color:#690A20;">{{ factNum }}</p>
-            <p style="font-family:'Petrona',Georgia,serif; font-size:clamp(11.6px,1.15vw,14px); line-height:1.45; margin:0; text-wrap:pretty; color:#391D01;">{{ factText }}</p>
-          </div>
-        </div>
+        <button type="button" onClick="{{ factShuffle }}" style="align-self:flex-start; display:inline-flex; align-items:center; background:#ACC048; color:#391D01; font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.015em; padding:11px 18px; border:1px solid transparent; border-radius:999px; white-space:nowrap; cursor:pointer; transition:transform .3s ease, box-shadow .35s ease;" style-hover="transform:rotate(-0.7deg) translateY(-2px); box-shadow:0 0 24px 4px rgba(172,192,72,0.6);">Surpreende-me →</button>
       </div>
     </div>
   </section>
@@ -431,9 +425,14 @@ class Component extends DCLogic {
       languages: LANGUAGES.map(l => ({ ...l, play: () => this.speak(l) })),
       facts: FACTS.map((f, i) => {
         const active = i === this.state.factAt;
+        const words = f.split(' ');
+        const preview = words.slice(0, 6).join(' ') + (words.length > 6 ? '…' : '');
         return { num: String(i + 1).padStart(2, '0'),
-          bg: active ? '#690A20' : '#F3E9D2',
-          ink: active ? '#F3E9D2' : '#391D01',
+          preview,
+          bg: active ? '#ACC048' : '#F3E9D2',
+          ink: active ? '#391D01' : '#391D01',
+          op: active ? 1 : 0.55,
+          scale: active ? 'scale(1)' : 'scale(0.96)',
           pick: () => this.setState({ factAt: i }) };
       }),
       factNum: String(this.state.factAt + 1).padStart(2, '0') + ' / ' + String(FACTS.length).padStart(2, '0'),
