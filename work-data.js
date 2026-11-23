@@ -150,6 +150,7 @@ export const PROJECTS = [
     name: 'Butty', brand: 'Butty — No ifs, just butts', year: '2026',
     category: 'identidade', categoryLabel: 'Identidade de Marca',
     extraCategories: ['digital'], extraCategoryLabels: ['Presença Digital'],
+    photo: './images/butty-mockup-inicio.webp',
     tags: ['App Mobile (PWA)', 'Wellness', 'Brand & Product'],
     desc: 'Estratégia de marca e produto para a Butty, uma app de treino e bem-estar (PWA) pensada por e para mulheres — com a Butty, a sua mascote, a dar cara e voz a uma experiência de fitness mais pessoal, divertida e sem julgamentos.',
     mockups: [
