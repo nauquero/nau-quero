@@ -229,12 +229,27 @@
     <div style="position:absolute; inset:0; opacity:0.45; background-image:radial-gradient(#F3E9D2 1.5px, transparent 1.6px); background-size:22px 22px;"></div>
     <div style="position:relative;">
       <h2 style="font-family:'The Seasons','Petrona',Georgia,serif; font-weight:400; font-size:clamp(18.6px,3vw,46.4px); line-height:0.9; letter-spacing:-0.03em; margin:0 0 clamp(12px,1.6vw,18px); max-width:16ch; color:#F3E9D2;">Curiosidades sobre <span style="font-style:italic; color:#ACC048;">mim</span></h2>
-      <div style="background:#F3E9D2; border:1px solid rgba(57,29,1,0.28); border-radius:20px; padding:clamp(18px,2.2vw,26px); display:flex; flex-direction:column; gap:16px;">
-        <p style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.2em; margin:0; color:#690A20;">{{ factNum }}</p>
-        <p style="font-family:'Petrona',Georgia,serif; font-size:clamp(14px,1.6vw,19px); line-height:1.5; margin:0; text-wrap:pretty; color:#391D01; min-height:3.2em;">{{ factText }}</p>
-        <div style="display:flex; gap:10px; flex-wrap:nowrap; overflow-x:auto; padding:2px 0 4px; -webkit-overflow-scrolling:touch;">
+      <div style="max-width:620px; display:flex; flex-direction:column; gap:20px;">
+        <div style="position:relative;">
+          <div aria-hidden="true" style="position:absolute; inset:0; background:#F3E9D2; opacity:0.35; border:1px solid rgba(57,29,1,0.18); border-radius:20px; transform:rotate(-3.2deg) translateY(5px);"></div>
+          <div aria-hidden="true" style="position:absolute; inset:0; background:#F3E9D2; opacity:0.6; border:1px solid rgba(57,29,1,0.22); border-radius:20px; transform:rotate(2.2deg) translateY(2px);"></div>
+          <button type="button" onClick="{{ factFlipNext }}" aria-label="Revelar a próxima curiosidade" style="position:relative; display:block; width:100%; min-height:clamp(190px,21vw,230px); background:none; border:0; padding:0; cursor:pointer; perspective:1400px; text-align:left;">
+            <div style="position:relative; width:100%; height:100%; min-height:clamp(190px,21vw,230px); transform-style:preserve-3d; transition:transform .65s cubic-bezier(.4,0.1,.2,1); transform:rotateY({{ flipDeg }}) rotate({{ factTilt }});">
+              <div style="position:absolute; inset:0; backface-visibility:hidden; overflow:hidden; background:#F3E9D2; border:1px solid rgba(57,29,1,0.28); border-radius:20px; padding:clamp(18px,2.2vw,26px); display:flex; flex-direction:column; gap:10px; box-shadow:0 14px 30px -12px rgba(0,0,0,0.35);">
+                <p style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.2em; margin:0; color:#690A20;">{{ faceANum }}</p>
+                <p style="font-family:'Petrona',Georgia,serif; font-size:clamp(14px,1.6vw,19px); line-height:1.5; margin:0; text-wrap:pretty; color:#391D01; overflow:hidden;">{{ faceAText }}</p>
+              </div>
+              <div style="position:absolute; inset:0; backface-visibility:hidden; overflow:hidden; transform:rotateY(180deg); background:#F3E9D2; border:1px solid rgba(57,29,1,0.28); border-radius:20px; padding:clamp(18px,2.2vw,26px); display:flex; flex-direction:column; gap:10px; box-shadow:0 14px 30px -12px rgba(0,0,0,0.35);">
+                <p style="font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.2em; margin:0; color:#690A20;">{{ faceBNum }}</p>
+                <p style="font-family:'Petrona',Georgia,serif; font-size:clamp(14px,1.6vw,19px); line-height:1.5; margin:0; text-wrap:pretty; color:#391D01; overflow:hidden;">{{ faceBText }}</p>
+              </div>
+            </div>
+          </button>
+          <p style="margin:10px 0 0; font-family:'Poppins',sans-serif; font-size:10.2px; letter-spacing:0.08em; color:#F3E9D2; opacity:0.6;">Toca na carta para virar ↻</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <sc-for list="{{ facts }}" as="ft" hint-placeholder-count="8">
-            <button type="button" onClick="{{ ft.pick }}" aria-label="Curiosidade {{ ft.num }}" style="flex:0 0 auto; max-width:200px; background:{{ ft.bg }}; opacity:{{ ft.op }}; transform:{{ ft.scale }}; color:{{ ft.ink }}; border:1px solid rgba(57,29,1,0.22); border-radius:999px; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.01em; padding:8px 14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:transform .3s ease, background .3s ease, opacity .3s ease;" style-hover="transform:translateY(-2px) scale(1.02); opacity:1;">{{ ft.preview }}</button>
+            <button type="button" onClick="{{ ft.pick }}" aria-label="Curiosidade {{ ft.num }}" style="background:{{ ft.bg }}; opacity:{{ ft.op }}; transform:{{ ft.scale }} rotate({{ ft.rot }}); color:{{ ft.ink }}; border:1px solid rgba(57,29,1,0.22); border-radius:999px; cursor:pointer; font-family:'Poppins',sans-serif; font-size:10.6px; letter-spacing:0.01em; padding:8px 14px; white-space:nowrap; max-width:220px; overflow:hidden; text-overflow:ellipsis; transition:transform .3s ease, background .3s ease, opacity .3s ease;" style-hover="transform:translateY(-3px) scale(1.04) rotate(0deg); opacity:1;">{{ ft.num }} · {{ ft.preview }}</button>
           </sc-for>
         </div>
         <button type="button" onClick="{{ factShuffle }}" style="align-self:flex-start; display:inline-flex; align-items:center; background:#ACC048; color:#391D01; font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.015em; padding:11px 18px; border:1px solid transparent; border-radius:999px; white-space:nowrap; cursor:pointer; transition:transform .3s ease, box-shadow .35s ease;" style-hover="transform:rotate(-0.7deg) translateY(-2px); box-shadow:0 0 24px 4px rgba(172,192,72,0.6);">Surpreende-me →</button>
@@ -369,7 +384,16 @@ const FACTS = [
 const FACT_ROT = ['-1.2deg', '1deg', '-0.8deg', '1.2deg', '-1.5deg', '0.8deg', '-1deg', '1.4deg'];
 
 class Component extends DCLogic {
-  state = { skillAt: 0, factAt: 0, whyAt: 0 };
+  state = { skillAt: 0, factAt: 0, whyAt: 0, flip: 0,
+    faceA: { num: '01 / ' + String(FACTS.length).padStart(2, '0'), text: FACTS[0] },
+    faceB: { num: '01 / ' + String(FACTS.length).padStart(2, '0'), text: FACTS[0] } };
+
+  revealFact(i) {
+    const flip = this.state.flip + 1;
+    const face = { num: String(i + 1).padStart(2, '0') + ' / ' + String(FACTS.length).padStart(2, '0'), text: FACTS[i] };
+    if (flip % 2 === 0) this.setState({ factAt: i, flip, faceA: face });
+    else this.setState({ factAt: i, flip, faceB: face });
+  }
 
   speak(l) {
     const synth = window.speechSynthesis;
@@ -426,21 +450,27 @@ class Component extends DCLogic {
       facts: FACTS.map((f, i) => {
         const active = i === this.state.factAt;
         const words = f.split(' ');
-        const preview = words.slice(0, 6).join(' ') + (words.length > 6 ? '…' : '');
+        const preview = words.slice(0, 5).join(' ') + (words.length > 5 ? '…' : '');
         return { num: String(i + 1).padStart(2, '0'),
           preview,
+          rot: FACT_ROT[i % FACT_ROT.length],
           bg: active ? '#ACC048' : '#F3E9D2',
-          ink: active ? '#391D01' : '#391D01',
+          ink: '#391D01',
           op: active ? 1 : 0.55,
-          scale: active ? 'scale(1)' : 'scale(0.96)',
-          pick: () => this.setState({ factAt: i }) };
+          scale: active ? 'scale(1.05)' : 'scale(0.96)',
+          pick: () => this.revealFact(i) };
       }),
-      factNum: String(this.state.factAt + 1).padStart(2, '0') + ' / ' + String(FACTS.length).padStart(2, '0'),
-      factText: FACTS[this.state.factAt],
+      flipDeg: this.state.flip % 2 === 0 ? '0deg' : '180deg',
+      factTilt: FACT_ROT[this.state.factAt % FACT_ROT.length],
+      faceANum: this.state.faceA.num,
+      faceAText: this.state.faceA.text,
+      faceBNum: this.state.faceB.num,
+      faceBText: this.state.faceB.text,
+      factFlipNext: () => this.revealFact((this.state.factAt + 1) % FACTS.length),
       factShuffle: () => {
         let n = this.state.factAt;
         while (n === this.state.factAt) n = Math.floor(Math.random() * FACTS.length);
-        this.setState({ factAt: n });
+        this.revealFact(n);
       },
     };
   }
